@@ -1,0 +1,28 @@
+# This configuration is intended for development purpose
+version : '3.8'
+services :
+  mysql :
+    image : mysql:5.7.34
+    container_name : bookingdb-mysql
+    restart : unless-stopped
+    ports :
+      - 3306:3306
+    environment :
+      - MYSQL_DATABASE=sa_test_db
+      - MYSQL_USER=sa_test
+      - MYSQL_PASSWORD=sa_test
+      - MYSQL_ROOT_PASSWORD=sa_root
+      - TZ=UTC
+
+  rabbitmq :
+    container_name : bookingdb-rabbitmq
+    image : rabbitmq:3.8-management-alpine
+    restart : unless-stopped
+    environment :
+      - RABBITMQ_DEFAULT_USER=sa_test
+      - RABBITMQ_DEFAULT_PASS=sa_test
+    ports :
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
