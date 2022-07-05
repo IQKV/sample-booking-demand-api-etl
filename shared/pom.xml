@@ -2,43 +2,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar.micro.k8s.bookingdb</groupId>
-    <artifactId>bookingdb</artifactId>
+    <artifactId>shared</artifactId>
     <version>0.8.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>micro-k8s-bookingdb</name>
-    <description>Sample Spring Boot application that uses some features provided by Spring Cloud, deployed on Kubernetes</description>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <organization>
-        <name>uJar Bootcamp</name>
-        <url>https://www.ujar.org</url>
-    </organization>
-    <developers>
-        <developer>
-            <id>1</id>
-            <name>Dima Denysenko</name>
-            <email>coding@dimdnk.com</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:https://github.com/ujar-org/micro-k8s-bookingdb.git</connection>
-        <tag>HEAD</tag>
-    </scm>
+    <name>shared</name>
+    <description>Shared Models, Configuration and DTOs</description>
 
     <parent>
-        <groupId>org.ujar.parent</groupId>
-        <artifactId>ujar-parent-pom</artifactId>
+        <groupId>org.ujar.micro.k8s.bookingdb</groupId>
+        <artifactId>bookingdb</artifactId>
         <version>0.8.0-SNAPSHOT</version>
     </parent>
 
@@ -48,48 +21,45 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
-    <modules>
-        <module>shared</module>
-        <module>bookingcom-client</module>
-        <module>admin-service</module>
-        <module>geo-data-import-service</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.ujar.boot</groupId>
+            <artifactId>ujar-boot-starter-amqp</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <release>${java.version}</release>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.liquibase</groupId>
-                    <artifactId>liquibase-maven-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <compilerArgument>-Xlint:deprecation</compilerArgument>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
