@@ -31,10 +31,16 @@ spring :
       hibernate.generate_statistics : false
     show-sql : false
   rabbitmq:
-    host: ${RABBIT_HOST:localhost}
-    port: ${RABBIT_PORT:5672}
-    username: ${RABBIT_USERNAME:sa_test}
-    password: ${RABBIT_PASSWORD:sa_test}
+    host: ${RABBIT_HOST:${embedded.rabbitmq.host:localhost}}
+    port: ${RABBIT_PORT:${embedded.rabbitmq.port:5672}}
+    username: ${RABBIT_USERNAME:${embedded.rabbitmq.user:sa_test}}
+    password: ${RABBIT_PASSWORD:${embedded.rabbitmq.password:sa_test}}
+
+embedded :
+  rabbitmq :
+    enabled : true
+    reuse-container : true
+    docker-image : rabbitmq:3.8-management-alpine
 
 bookingdb :
   net-client :
@@ -47,3 +53,7 @@ bookingdb :
     output-format: json
     connect-timeout : 1  # in sec.
     request-timeout : 2
+
+  queues :
+    geo-data-import-queue: data-import-jobs
+    geo-data-import-exchange: data-import-jobs-exchange

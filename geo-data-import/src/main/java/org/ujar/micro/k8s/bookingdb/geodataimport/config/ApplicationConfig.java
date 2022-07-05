@@ -3,6 +3,7 @@ package org.ujar.micro.k8s.bookingdb.geodataimport.config;
 import javax.sql.DataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -21,6 +22,7 @@ import org.ujar.micro.k8s.bookingdb.bookingcomclient.annotation.EnableBookingcom
 @EnableTransactionManagement
 @EnableSpringDataWebSupport
 @EnableBookingcomClient
+@EnableConfigurationProperties({AmqpQueuesProperties.class})
 public class ApplicationConfig {
 
   @Bean

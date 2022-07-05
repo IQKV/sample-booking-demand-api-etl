@@ -107,3 +107,7 @@ bookingdb :
     output-format: json
     connect-timeout : 1  # in sec.
     request-timeout : 2
+
+  queues :
+    geo-data-import-queue: ${QUEUE_DATA_IMPORT_JOBS:data-import-jobs}
+    geo-data-import-exchange: ${QUEUE_EXCHANGE_DATA_IMPORT_JOBS:data-import-jobs-exchange}

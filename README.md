@@ -3,7 +3,7 @@
 
 ### Technology stack
 
-Java 17, Maven 3, Spring Boot 2.7, Spring Cloud 2021.0.3, mysql:5.7.34
+Java 17, Maven 3, Spring Boot 2.7, Spring Cloud 2021.0.3, mysql:5.7.34, rabbitmq:3.8
 
 _Including utils:_ liquibase, WireMock, Mysql testcontainers, docker-compose._dev_.yml,
 logbook, micrometer, _checkstyle_ configuration, SpotBugs, PMD etc.
