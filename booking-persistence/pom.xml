@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>admin-service</artifactId>
+    <artifactId>booking-persistence</artifactId>
     <version>0.8.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>admin-service</name>
-    <description>Admin REST API Service</description>
+    <name>booking-persistence</name>
+    <description>Common repositories and entities</description>
 
     <parent>
         <groupId>org.ujar.micro.k8s.bookingdb</groupId>
@@ -22,34 +22,9 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.ujar.micro.k8s.bookingdb</groupId>
-            <artifactId>batch-job</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
+         <dependency>
             <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-logbook</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-restful</artifactId>
+            <artifactId>ujar-boot-starter-cache</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -59,11 +34,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-amqp</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -79,58 +49,7 @@
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>testcontainers-support</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.testcontainers</groupId>
-                    <artifactId>mysql</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.playtika.testcontainers</groupId>
-                    <artifactId>embedded-rabbitmq</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>

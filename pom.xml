@@ -49,10 +49,12 @@
     </properties>
 
     <modules>
-        <module>shared</module>
-        <module>bookingcom-client</module>
+        <module>batch-job</module>
+        <module>booking-api-client</module>
+        <module>booking-persistence</module>
         <module>admin-service</module>
-        <module>geo-data-import-service</module>
+        <module>init-container-service</module>
+        <module>importer-service</module>
     </modules>
 
     <build>
@@ -72,10 +74,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.liquibase</groupId>
-                    <artifactId>liquibase-maven-plugin</artifactId>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
