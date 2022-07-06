@@ -14,7 +14,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
 
-            <column name="code" type="CHAR(3)">
+            <column name="country" type="CHAR(2)">
                 <constraints nullable="false" unique="true"/>
             </column>
 

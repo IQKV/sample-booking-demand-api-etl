@@ -11,6 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan({"org.ujar.micro.k8s.bookingdb.persistence.entity"})
 @EnableJpaAuditing
 @EnableTransactionManagement
-public class StorageConfig {
+public class PersistenceConfig {
 
 }

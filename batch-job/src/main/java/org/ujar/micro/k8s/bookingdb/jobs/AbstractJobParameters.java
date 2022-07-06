@@ -4,9 +4,11 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 @Getter
+@Setter
 public abstract class AbstractJobParameters implements Serializable {
 
   @Serial

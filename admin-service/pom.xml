@@ -19,12 +19,18 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <start-class>org.ujar.micro.k8s.bookingdb.admin.AdminServiceApplication</start-class>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.ujar.micro.k8s.bookingdb</groupId>
             <artifactId>batch-job</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ujar.micro.k8s.bookingdb</groupId>
+            <artifactId>booking-persistence</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -137,6 +143,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
