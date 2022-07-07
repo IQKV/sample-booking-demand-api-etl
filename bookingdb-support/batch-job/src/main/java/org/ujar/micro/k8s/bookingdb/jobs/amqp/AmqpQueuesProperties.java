@@ -13,8 +13,11 @@ import org.springframework.validation.annotation.Validated;
 public class AmqpQueuesProperties {
 
   @NonNull
-  private final String geoDataImportQueue;
-  @NonNull
-  private final String geoDataImportExchange;
+  private final String importExchange;
 
+  @NonNull
+  private final String importCountriesQueue;
+
+  @NonNull
+  private final String importCitiesQueue;
 }

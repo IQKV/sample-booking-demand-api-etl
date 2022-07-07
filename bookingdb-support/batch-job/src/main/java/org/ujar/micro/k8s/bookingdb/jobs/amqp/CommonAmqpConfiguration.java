@@ -2,8 +2,8 @@ package org.ujar.micro.k8s.bookingdb.jobs.amqp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Declarables;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -29,17 +29,33 @@ public class CommonAmqpConfiguration {
   }
 
   @Bean
-  Queue geoDataImportQueue() {
-    return new Queue(queues.getGeoDataImportQueue(), true);
+  Queue importCountriesQueue() {
+    return new Queue(queues.getImportCountriesQueue(), true);
   }
 
   @Bean
-  TopicExchange geoDataImportExchange() {
-    return new TopicExchange(queues.getGeoDataImportExchange());
+  Queue importCitiesQueue() {
+    return new Queue(queues.getImportCitiesQueue(), true);
   }
 
   @Bean
-  Binding geoDataImportBinding(Queue queue, TopicExchange exchange) {
-    return BindingBuilder.bind(queue).to(exchange).with("geo.data.#");
+  TopicExchange importTopicExchange() {
+    return new TopicExchange(queues.getImportExchange());
+  }
+
+  @Bean
+  public Declarables topicBindings(Queue importCountriesQueue,
+                                   Queue importCitiesQueue,
+                                   TopicExchange importTopicExchange) {
+    return new Declarables(
+        importCountriesQueue,
+        importCitiesQueue,
+        importTopicExchange,
+        BindingBuilder
+            .bind(importCountriesQueue)
+            .to(importTopicExchange).with("countries"),
+        BindingBuilder
+            .bind(importCitiesQueue)
+            .to(importTopicExchange).with("cities.country.*"));
   }
 }

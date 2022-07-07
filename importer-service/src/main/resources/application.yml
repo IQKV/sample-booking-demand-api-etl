@@ -3,7 +3,7 @@ spring :
     name : importer-service
   datasource :
     type : com.zaxxer.hikari.HikariDataSource
-    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/sa_test_db?serverTimezone=UTC}
+    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/sa_test_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
     username : ${DATASOURCE_USERNAME:sa_test}
     password : ${DATASOURCE_PASSWORD:sa_test}
     driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
@@ -109,5 +109,6 @@ bookingdb :
     request-timeout : 2
 
   queues :
-    geo-data-import-queue: ${QUEUE_DATA_IMPORT_JOBS:data-import-jobs}
-    geo-data-import-exchange: ${QUEUE_EXCHANGE_DATA_IMPORT_JOBS:data-import-jobs-exchange}
+    import-exchange: ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
+    import-countries-queue: ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
+    import-cities-queue: ${IMPORT_CITIES_QUEUE:import-cities-queue}

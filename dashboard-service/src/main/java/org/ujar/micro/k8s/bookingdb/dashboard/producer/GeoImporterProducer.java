@@ -10,21 +10,17 @@ import org.ujar.micro.k8s.bookingdb.jobs.amqp.AmqpQueuesProperties;
 
 @Component
 public class GeoImporterProducer extends AbstractProducer {
-
-  private static final String ROUTING_KEY_COUNTRIES = "geo.data.countries";
-  private static final String ROUTING_KEY_CITIES = "geo.data.cities";
-
   public GeoImporterProducer(RabbitTemplate template, AmqpQueuesProperties properties) {
     super(template, properties);
   }
 
   public JobParameters startImportCountries(CountriesImportParameters parameters) {
-    super.send(properties.getGeoDataImportExchange(), ROUTING_KEY_COUNTRIES, parameters);
+    super.send(properties.getImportExchange(), "countries", parameters);
     return parameters;
   }
 
   public JobParameters startImportCities(CitiesImportParameters parameters) {
-    super.send(properties.getGeoDataImportExchange(), ROUTING_KEY_CITIES, parameters);
+    super.send(properties.getImportExchange(), "cities.country." + parameters.getCountry(), parameters);
     return parameters;
   }
 }

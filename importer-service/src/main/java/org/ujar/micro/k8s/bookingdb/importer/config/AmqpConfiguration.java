@@ -6,7 +6,8 @@ import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ujar.micro.k8s.bookingdb.importer.consumer.GeoDataImportConsumer;
+import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportCitiesConsumer;
+import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportCountriesConsumer;
 import org.ujar.micro.k8s.bookingdb.jobs.amqp.AmqpQueuesProperties;
 
 @Configuration
@@ -16,18 +17,34 @@ public class AmqpConfiguration {
   private final AmqpQueuesProperties queues;
 
   @Bean
-  public SimpleMessageListenerContainer geoDataImportMessageListenerContainer(
-      final ConnectionFactory connectionFactory, final MessageListenerAdapter geoDataImportMessageListenerAdapter) {
+  public SimpleMessageListenerContainer importCountriesListenerContainer(
+      final ConnectionFactory connectionFactory, final MessageListenerAdapter importCountriesListenerAdapter) {
     final var container = new SimpleMessageListenerContainer();
     container.setConnectionFactory(connectionFactory);
-    container.setQueueNames(queues.getGeoDataImportQueue());
-    container.setMessageListener(geoDataImportMessageListenerAdapter);
+    container.setQueueNames(queues.getImportCountriesQueue());
+    container.setMessageListener(importCountriesListenerAdapter);
     container.setDefaultRequeueRejected(false);
     return container;
   }
 
   @Bean
-  public MessageListenerAdapter geoDataImportMessageListenerAdapter(final GeoDataImportConsumer consumer) {
+  public MessageListenerAdapter importCountriesListenerAdapter(final ImportCountriesConsumer consumer) {
+    return new MessageListenerAdapter(consumer, "consume");
+  }
+
+  @Bean
+  public SimpleMessageListenerContainer importCitiesListenerContainer(
+      final ConnectionFactory connectionFactory, final MessageListenerAdapter importCitiesListenerAdapter) {
+    final var container = new SimpleMessageListenerContainer();
+    container.setConnectionFactory(connectionFactory);
+    container.setQueueNames(queues.getImportCitiesQueue());
+    container.setMessageListener(importCitiesListenerAdapter);
+    container.setDefaultRequeueRejected(false);
+    return container;
+  }
+
+  @Bean
+  public MessageListenerAdapter importCitiesListenerAdapter(final ImportCitiesConsumer consumer) {
     return new MessageListenerAdapter(consumer, "consume");
   }
 }

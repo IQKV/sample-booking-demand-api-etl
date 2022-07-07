@@ -4,5 +4,5 @@ ${AnsiColor.GREEN} | | | |  _   | |  / _` | | '__|
 ${AnsiColor.GREEN} | |_| | | |__| | | (_| | | |   
 ${AnsiColor.GREEN}  \__,_|  \____/   \__,_| |_|   
 ${AnsiColor.BLUE} ===============================
-${AnsiColor.BLUE} Admin Service
+${AnsiColor.BLUE} Admin Dashboard Service
 ${AnsiColor.BLUE} ===============================

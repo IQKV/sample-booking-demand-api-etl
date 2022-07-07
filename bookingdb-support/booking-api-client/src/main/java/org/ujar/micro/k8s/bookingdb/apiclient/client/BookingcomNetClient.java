@@ -30,7 +30,7 @@ public class BookingcomNetClient extends AbstractNetClient {
         "languages", LANGUAGE_CODE,
         "rows", rows.toString(),
         "offset", offset.toString(),
-        "country", countryCode);
+        "countries", countryCode);
     return doRequest("cities", queryParams);
   }
 }

@@ -44,5 +44,6 @@ embedded :
 
 bookingdb :
   queues :
-    geo-data-import-queue: data-import-jobs
-    geo-data-import-exchange: data-import-jobs-exchange
+    import-exchange: import-jobs-exchange
+    import-countries-queue: import-countries-queue
+    import-cities-queue: import-cities-queue
