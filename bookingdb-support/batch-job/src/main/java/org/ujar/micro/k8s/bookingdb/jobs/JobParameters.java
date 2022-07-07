@@ -4,7 +4,7 @@ import java.time.Instant;
 
 public interface JobParameters  {
 
-  JobType getType();
+  JobType getJobType();
 
   Instant getPublishedAt();
 }

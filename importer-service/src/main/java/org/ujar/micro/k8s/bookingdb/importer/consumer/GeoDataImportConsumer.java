@@ -15,7 +15,7 @@ public class GeoDataImportConsumer {
 
   public void consume(JobParameters parameters) {
     log.info("Received parameters: {}", parameters);
-    if (parameters.getType() == JobType.IMPORT_CITIES) {
+    if (parameters.getJobType() == JobType.IMPORT_CITIES) {
       importer.importCities();
     } else {
       importer.importCountries();

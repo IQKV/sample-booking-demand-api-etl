@@ -14,11 +14,11 @@ public abstract class AbstractJobParameters implements JobParameters, Serializab
   @Serial
   private static final long serialVersionUID = 1L;
 
-  protected JobType type;
+  protected JobType jobType;
 
   private Instant publishedAt;
 
-  public AbstractJobParameters() {
+  protected AbstractJobParameters() {
     setPublishedAt(Instant.now());
   }
 }

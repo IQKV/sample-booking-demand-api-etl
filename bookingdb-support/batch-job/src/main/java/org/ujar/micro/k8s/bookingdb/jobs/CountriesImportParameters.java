@@ -5,5 +5,5 @@ import lombok.Builder;
 @Builder
 public class CountriesImportParameters extends AbstractJobParameters {
 
-  protected JobType type = JobType.IMPORT_COUNTRIES;
+  protected JobType jobType = JobType.IMPORT_COUNTRIES;
 }
