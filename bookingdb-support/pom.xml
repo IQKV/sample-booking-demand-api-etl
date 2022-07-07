@@ -1,0 +1,28 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.ujar.micro.k8s.bookingdb</groupId>
+    <artifactId>bookingdb-support</artifactId>
+    <version>0.8.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>bookingdb-support</name>
+    <parent>
+        <groupId>org.ujar.micro.k8s.bookingdb</groupId>
+        <artifactId>bookingdb</artifactId>
+        <version>0.8.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>batch-job</module>
+        <module>booking-api-client</module>
+        <module>booking-persistence</module>
+    </modules>
+</project>

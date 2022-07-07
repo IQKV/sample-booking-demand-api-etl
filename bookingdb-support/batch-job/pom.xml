@@ -11,7 +11,7 @@
 
     <parent>
         <groupId>org.ujar.micro.k8s.bookingdb</groupId>
-        <artifactId>bookingdb</artifactId>
+        <artifactId>bookingdb-support</artifactId>
         <version>0.8.0-SNAPSHOT</version>
     </parent>
 

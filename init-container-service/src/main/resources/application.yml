@@ -21,8 +21,8 @@ spring :
       hibernate.jdbc.time_zone : UTC
       hibernate.id.new_generator_mappings : true
       hibernate.connection.provider_disables_autocommit : true
-      hibernate.cache.use_second_level_cache : true
-      hibernate.cache.use_query_cache : true
+      hibernate.cache.use_second_level_cache : false
+      hibernate.cache.use_query_cache : false
       hibernate.generate_statistics : false
       # modify batch size as necessary
       hibernate.jdbc.batch_size : 25
@@ -33,8 +33,6 @@ spring :
     show-sql : false
 
 
-  jackson :
-    default-property-inclusion : NON_NULL
   lifecycle :
     timeout-per-shutdown-phase : ${TIMEOUT_PER_SHUTDOWN:20s}
 

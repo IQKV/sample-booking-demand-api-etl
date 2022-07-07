@@ -2,28 +2,29 @@ package org.ujar.micro.k8s.bookingdb.dashboard.producer;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import org.ujar.micro.k8s.bookingdb.jobs.AbstractJobParameters;
-import org.ujar.micro.k8s.bookingdb.jobs.ImportJobParameters;
-import org.ujar.micro.k8s.bookingdb.jobs.JobType;
+import org.ujar.micro.k8s.bookingdb.jobs.CitiesImportParameters;
+import org.ujar.micro.k8s.bookingdb.jobs.CountriesImportParameters;
+import org.ujar.micro.k8s.bookingdb.jobs.JobParameters;
 import org.ujar.micro.k8s.bookingdb.jobs.amqp.AbstractProducer;
 import org.ujar.micro.k8s.bookingdb.jobs.amqp.AmqpQueuesProperties;
 
 @Component
 public class GeoImporterProducer extends AbstractProducer {
 
+  private static final String ROUTING_KEY_COUNTRIES = "geo.data.countries";
+  private static final String ROUTING_KEY_CITIES = "geo.data.cities";
+
   public GeoImporterProducer(RabbitTemplate template, AmqpQueuesProperties properties) {
     super(template, properties);
   }
 
-  public AbstractJobParameters startImportCountries(ImportJobParameters parameters) {
-    parameters.setType(JobType.IMPORT_COUNTRIES);
-    super.send(properties.getGeoDataImportExchange(), "geo.data.countries", parameters);
+  public JobParameters startImportCountries(CountriesImportParameters parameters) {
+    super.send(properties.getGeoDataImportExchange(), ROUTING_KEY_COUNTRIES, parameters);
     return parameters;
   }
 
-  public AbstractJobParameters startImportCities(ImportJobParameters parameters) {
-    parameters.setType(JobType.IMPORT_CITIES);
-    super.send(properties.getGeoDataImportExchange(), "geo.data.cities", parameters);
+  public JobParameters startImportCities(CitiesImportParameters parameters) {
+    super.send(properties.getGeoDataImportExchange(), ROUTING_KEY_CITIES, parameters);
     return parameters;
   }
 }

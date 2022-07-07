@@ -49,9 +49,7 @@
     </properties>
 
     <modules>
-        <module>batch-job</module>
-        <module>booking-api-client</module>
-        <module>booking-persistence</module>
+        <module>bookingdb-support</module>
         <module>dashboard-service</module>
         <module>init-container-service</module>
         <module>importer-service</module>

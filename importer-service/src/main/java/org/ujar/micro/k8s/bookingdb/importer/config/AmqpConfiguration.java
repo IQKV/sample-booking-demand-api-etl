@@ -17,8 +17,8 @@ public class AmqpConfiguration {
 
   @Bean
   public SimpleMessageListenerContainer geoDataImportMessageListenerContainer(
-      ConnectionFactory connectionFactory, MessageListenerAdapter geoDataImportMessageListenerAdapter) {
-    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+      final ConnectionFactory connectionFactory, final MessageListenerAdapter geoDataImportMessageListenerAdapter) {
+    final var container = new SimpleMessageListenerContainer();
     container.setConnectionFactory(connectionFactory);
     container.setQueueNames(queues.getGeoDataImportQueue());
     container.setMessageListener(geoDataImportMessageListenerAdapter);
@@ -27,7 +27,7 @@ public class AmqpConfiguration {
   }
 
   @Bean
-  public MessageListenerAdapter geoDataImportMessageListenerAdapter(GeoDataImportConsumer consumer) {
+  public MessageListenerAdapter geoDataImportMessageListenerAdapter(final GeoDataImportConsumer consumer) {
     return new MessageListenerAdapter(consumer, "consume");
   }
 }
