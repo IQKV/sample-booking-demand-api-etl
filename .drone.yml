@@ -1,0 +1,122 @@
+kind: pipeline
+name: CI
+
+type : docker
+
+trigger:
+  branch:
+    - main
+    - develop
+    - feature/*
+  event:
+    - push
+
+volumes:
+  - name: m2cache
+    host:
+      path: /volume1/m2cache
+steps:
+
+  - name: build-and-deploy
+    image: maven:3-openjdk-17-slim
+    volumes:
+      - name: m2cache
+        path: /root/.m2
+    environment :
+      DEPLOYER_USERNAME :
+        from_secret : DEPLOYER_USERNAME
+      DEPLOYER_PASSWORD :
+        from_secret : DEPLOYER_PASSWORD
+      SONAR_HOST :
+        from_secret : SONAR_HOST
+      SONAR_TOKEN :
+        from_secret : SONAR_TOKEN
+    commands:
+      - mvn clean compile test-compile -P default -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn pmd:check -P default -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn com.github.spotbugs:spotbugs-maven-plugin:check -P default -Dspotbugs.xmlOutput=true -Dspotbugs.failOnError=true -Dspotbugs.includeTests=true -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=ujar-org:micro-k8s-bookingdb -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn deploy -P default -DskipTests=true -Dcheckstyle.skip=true -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+    when:
+      branch:
+        include:
+          - main
+          - develop
+          - feature/*
+      event:
+        exclude:
+          - pull_request
+
+  - name: docker-build-dev-init-container-service
+    image: plugins/docker
+    settings:
+      dockerfile: init-container-service/Dockerfile
+      context: ./init-container-service/
+      storage_driver: vfs
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service
+      registry: docker-registry.ujar.org
+      tags :
+        - latest
+    when:
+      branch:
+        include:
+          - main
+          - develop
+          - feature/*
+      event:
+        exclude:
+          - pull_request
+
+
+  - name: docker-build-dev-dashboard-service
+    image: plugins/docker
+    settings:
+      dockerfile: dashboard-service/Dockerfile
+      context: ./dashboard-service/
+      storage_driver: vfs
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-dashboard-service
+      registry: docker-registry.ujar.org
+      tags :
+        - latest
+    when:
+      branch:
+        include:
+          - main
+          - develop
+          - feature/*
+      event:
+        exclude:
+          - pull_request
+
+  - name: docker-build-dev-importer-service
+    image: plugins/docker
+    settings:
+      dockerfile: importer-service/Dockerfile
+      context: ./importer-service/
+      storage_driver: vfs
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-importer-service
+      registry: docker-registry.ujar.org
+      tags :
+        - latest
+    when:
+      branch:
+        include:
+          - main
+          - develop
+          - feature/*
+      event:
+        exclude:
+          - pull_request
+

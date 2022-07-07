@@ -1,0 +1,48 @@
+spring :
+  application :
+    name : dashboard-service
+  devtools :
+    add-properties : false
+    restart :
+      enabled : false
+    livereload :
+      enabled : false
+
+  datasource :
+    type : com.zaxxer.hikari.HikariDataSource
+    driver-class-name : ${DATASOURCE_DRIVER:org.h2.Driver}
+    url : ${DATASOURCE_URL:jdbc:h2:mem:sa_test_db}
+    username : ${DATASOURCE_USERNAME:sa_test}
+    password : ${DATASOURCE_PASSWORD:sa_test}
+    hikari :
+      pool-name : Hikari
+      auto-commit : false
+  jpa :
+    hibernate :
+      ddl-auto : none
+      naming :
+        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    open-in-view : true
+    properties :
+      hibernate.jdbc.time_zone : UTC
+      hibernate.cache.use_second_level_cache : false
+      hibernate.cache.use_query_cache : false
+      hibernate.generate_statistics : false
+    show-sql : false
+  rabbitmq:
+    host: ${RABBIT_HOST:${embedded.rabbitmq.host:localhost}}
+    port: ${RABBIT_PORT:${embedded.rabbitmq.port:5672}}
+    username: ${RABBIT_USERNAME:${embedded.rabbitmq.user:sa_test}}
+    password: ${RABBIT_PASSWORD:${embedded.rabbitmq.password:sa_test}}
+
+embedded :
+  rabbitmq :
+    enabled : true
+    reuse-container : true
+    docker-image : rabbitmq:3.8-management-alpine
+
+bookingdb :
+  queues :
+    geo-data-import-queue: data-import-jobs
+    geo-data-import-exchange: data-import-jobs-exchange
