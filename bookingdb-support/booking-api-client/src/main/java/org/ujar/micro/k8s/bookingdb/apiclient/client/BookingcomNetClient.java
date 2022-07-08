@@ -33,4 +33,17 @@ public class BookingcomNetClient extends AbstractNetClient {
         "countries", countryCode);
     return doRequest("cities", queryParams);
   }
+
+  /**
+   * Returns a list of hotels.
+   */
+  public String getHotels(Long cityId, Integer rows, Integer offset) {
+    var queryParams = Map.of(
+        "rows", rows.toString(),
+        "offset", offset.toString(),
+        "city_ids", cityId.toString(),
+        "extras", "hotel_description"
+    );
+    return doRequest("hotels", queryParams);
+  }
 }

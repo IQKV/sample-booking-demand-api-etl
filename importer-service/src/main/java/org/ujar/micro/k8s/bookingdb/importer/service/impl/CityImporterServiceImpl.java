@@ -1,11 +1,13 @@
 package org.ujar.micro.k8s.bookingdb.importer.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.ujar.micro.k8s.bookingdb.apiclient.client.BookingcomNetClient;
@@ -26,35 +28,42 @@ public class CityImporterServiceImpl implements CityImporterService {
   private final CountryRepository countryRepository;
   private final ObjectMapper mapper;
 
-  @SneakyThrows
   @Override
   public void importCities(String countryCode) {
-    var countryId = countryRepository.findOneByCountry(countryCode)
-        .orElseThrow(IllegalArgumentException::new)
-        .getId();
+    var country = countryRepository.findOneByCountry(countryCode)
+        .orElseThrow(IllegalArgumentException::new);
 
     String body;
     List<City> entities;
     int offset = 0;
     do {
       body = client.getCities(countryCode, LIMIT, offset);
-      var nodes = mapper.readTree(body).get("result");
-      entities = mapper.convertValue(nodes,
-          new TypeReference<>() {
-          });
+      JsonNode nodes;
+      try {
+        nodes = mapper.readTree(body).get("result");
+      } catch (JsonProcessingException e) {
+        throw new RuntimeException(e);
+      }
+      entities = mapper.convertValue(nodes, new TypeReference<>() {});
 
       if (entities != null) {
         var internalCityIds = entities.stream().map(City::getCityId).toList();
-        var byCityId = cityRepository.findAllByCityIdIn(internalCityIds).stream().collect(
-            Collectors.toMap(City::getCityId, c -> c));
+        var byCityId = cityRepository.findAllByCityIdIn(internalCityIds)
+            .stream()
+            .collect(Collectors.toMap(City::getCityId, Function.identity()));
+
         entities.forEach(city -> {
           city = byCityId.getOrDefault(city.getCityId(), city);
-          city.setCountryId(countryId);
+          city.setCountryId(country.getId());
           cityRepository.save(city);
         });
+
         cityRepository.flush();
+
         offset += LIMIT;
       }
     } while (entities != null && !entities.isEmpty());
+
+    log.info("Import of cities batch is finished.");
   }
 }

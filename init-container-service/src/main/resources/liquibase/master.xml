@@ -8,5 +8,6 @@
 
     <include file="liquibase/changelog/20220704000000_create_countries_table.xml"/>
     <include file="liquibase/changelog/20220707000000_create_cities_table.xml"/>
+    <include file="liquibase/changelog/20220708000000_create_hotels_table.xml"/>
 
 </databaseChangeLog>

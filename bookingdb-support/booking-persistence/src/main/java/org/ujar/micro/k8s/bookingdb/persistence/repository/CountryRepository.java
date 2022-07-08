@@ -3,6 +3,7 @@ package org.ujar.micro.k8s.bookingdb.persistence.repository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.ujar.micro.k8s.bookingdb.persistence.entity.Country;
 
@@ -11,5 +12,6 @@ public interface CountryRepository
 
   List<Country> findAllByCountryIn(List<String> countryCodes);
 
-  Optional<Country> findOneByCountry(String countryCode);
+  @Query(value = "SELECT * FROM countries c WHERE c.country = :country LIMIT 1", nativeQuery = true)
+  Optional<Country> findOneByCountry(String country);
 }

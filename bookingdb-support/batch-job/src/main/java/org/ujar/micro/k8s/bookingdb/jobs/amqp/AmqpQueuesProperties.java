@@ -20,4 +20,7 @@ public class AmqpQueuesProperties {
 
   @NonNull
   private final String importCitiesQueue;
+
+  @NonNull
+  private final String importHotelsQueue;
 }

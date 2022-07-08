@@ -105,10 +105,11 @@ bookingdb :
     api-path : /{version}/{outputFormat}/{path}
     version: 2.6
     output-format: json
-    connect-timeout : 1  # in sec.
-    request-timeout : 2
+    connect-timeout : 5  # in sec.
+    request-timeout : 20
 
   queues :
     import-exchange: ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
     import-countries-queue: ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
     import-cities-queue: ${IMPORT_CITIES_QUEUE:import-cities-queue}
+    import-hotels-queue: ${IMPORT_HOTELS_QUEUE:import-hotels-queue}

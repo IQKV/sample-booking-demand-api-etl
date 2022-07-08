@@ -12,7 +12,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ujar.boot.starter.cache.CacheSectionProperties;
-import org.ujar.micro.k8s.bookingdb.persistence.entity.Country;
 
 @Configuration
 @EnableCaching
@@ -44,9 +43,11 @@ public class CacheConfig {
 
   @Bean
   JCacheManagerCustomizer cacheManagerCustomizer() {
-    return cm -> createCache(cm,
-          Country.class.getName()
-    );
+    return cm -> {
+      createCache(cm, org.ujar.micro.k8s.bookingdb.persistence.entity.Country.class.getName());
+      createCache(cm, org.ujar.micro.k8s.bookingdb.persistence.entity.City.class.getName());
+      createCache(cm, org.ujar.micro.k8s.bookingdb.persistence.entity.Hotel.class.getName());
+    };
   }
 
   private void createCache(javax.cache.CacheManager cm, String cacheName) {

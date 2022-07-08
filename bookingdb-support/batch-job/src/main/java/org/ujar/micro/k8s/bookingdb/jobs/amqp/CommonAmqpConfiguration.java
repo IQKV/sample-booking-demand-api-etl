@@ -30,12 +30,20 @@ public class CommonAmqpConfiguration {
 
   @Bean
   Queue importCountriesQueue() {
-    return new Queue(queues.getImportCountriesQueue(), true);
+    return new Queue(queues.getImportCountriesQueue(),
+        false, false, true);
   }
 
   @Bean
   Queue importCitiesQueue() {
-    return new Queue(queues.getImportCitiesQueue(), true);
+    return new Queue(queues.getImportCitiesQueue(),
+        false, false, true);
+  }
+
+  @Bean
+  Queue importHotelsQueue() {
+    return new Queue(queues.getImportHotelsQueue(),
+        false, false, true);
   }
 
   @Bean
@@ -46,16 +54,22 @@ public class CommonAmqpConfiguration {
   @Bean
   public Declarables topicBindings(Queue importCountriesQueue,
                                    Queue importCitiesQueue,
+                                   Queue importHotelsQueue,
                                    TopicExchange importTopicExchange) {
     return new Declarables(
         importCountriesQueue,
         importCitiesQueue,
+        importHotelsQueue,
         importTopicExchange,
         BindingBuilder
             .bind(importCountriesQueue)
             .to(importTopicExchange).with("countries"),
         BindingBuilder
             .bind(importCitiesQueue)
-            .to(importTopicExchange).with("cities.country.*"));
+            .to(importTopicExchange).with("cities.country.*"),
+        BindingBuilder
+            .bind(importHotelsQueue)
+            .to(importTopicExchange).with("hotels.city.*")
+    );
   }
 }

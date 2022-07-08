@@ -7,8 +7,11 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class CountriesImportParameters extends AbstractJobParameters {
+public class HotelsImportParameters extends AbstractJobParameters {
+
+  private Long cityId;
 
   @Builder.Default
-  protected final JobType jobType = JobType.IMPORT_COUNTRIES;
+  protected final JobType type = JobType.IMPORT_HOTELS;
+
 }

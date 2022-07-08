@@ -101,5 +101,6 @@ bookingdb :
     import-exchange: ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
     import-countries-queue: ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
     import-cities-queue: ${IMPORT_CITIES_QUEUE:import-cities-queue}
+    import-hotels-queue: ${IMPORT_HOTELS_QUEUE:import-hotels-queue}
 
 
