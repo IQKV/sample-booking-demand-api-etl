@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomi
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ujar.boot.starter.cache.CacheSectionProperties;
+import org.ujar.boot.starter.cache.CacheProperties;
 
 @Configuration
 @EnableCaching
@@ -19,7 +19,7 @@ public class CacheConfig {
 
   private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
-  CacheConfig(CacheSectionProperties cacheProperties) {
+  CacheConfig(CacheProperties cacheProperties) {
     var ehcacheProperties = cacheProperties.getEhcache();
     jcacheConfiguration =
         Eh107Configuration.fromEhcacheCacheConfiguration(
