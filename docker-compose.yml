@@ -1,0 +1,80 @@
+# This configuration is intended for demo purpose
+version : '3.8'
+services :
+  mysql :
+    image : mysql:5.7.34
+    container_name : bookingdb-demo-mysql
+    restart : unless-stopped
+    environment :
+      - MYSQL_DATABASE=demo_db
+      - MYSQL_USER=demo
+      - MYSQL_PASSWORD=demo
+      - MYSQL_ROOT_PASSWORD=demo_root
+      - TZ=UTC
+
+  rabbitmq :
+    container_name : bookingdb-demo-rabbitmq
+    image : rabbitmq:3.8-management-alpine
+    restart : unless-stopped
+    ports :
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    environment :
+      - RABBITMQ_DEFAULT_USER=demo
+      - RABBITMQ_DEFAULT_PASS=demo
+
+
+  bookingdb-init-container-service:
+    image: "docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service:latest"
+    container_name: bookingdb-demo-init-container-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    depends_on :
+      - mysql
+    environment:
+      - DATASOURCE_USERNAME=demo
+      - DATASOURCE_PASSWORD=demo
+      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
+
+  bookingdb-dashboard-service:
+    image: "docker-registry.ujar.org/ujar/micro-k8s-bookingdb-dashboard-service:latest"
+    container_name: bookingdb-demo-dashboard-service
+    restart: unless-stopped
+    depends_on :
+      - mysql
+      - rabbitmq
+      - bookingdb-init-container-service
+    ports :
+      - "8080:8080"
+    environment:
+      - DATASOURCE_USERNAME=demo
+      - DATASOURCE_PASSWORD=demo
+      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
+      - RABBIT_HOST=bookingdb-demo-rabbitmq
+      - RABBIT_PORT=5672
+      - RABBIT_USERNAME=demo
+      - RABBIT_PASSWORD=demo
+
+  bookingdb-importer-service:
+    image: "docker-registry.ujar.org/ujar/micro-k8s-bookingdb-importer-service:latest"
+    container_name: bookingdb-demo-importer-service
+    restart: unless-stopped
+    depends_on :
+      - mysql
+      - rabbitmq
+      - bookingdb-init-container-service
+      - bookingdb-dashboard-service
+    ports :
+      - "8081:8080"
+    environment:
+      - DATASOURCE_USERNAME=demo
+      - DATASOURCE_PASSWORD=demo
+      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
+      - RABBIT_HOST=bookingdb-demo-rabbitmq
+      - RABBIT_PORT=5672
+      - RABBIT_USERNAME=demo
+      - RABBIT_PASSWORD=demo
