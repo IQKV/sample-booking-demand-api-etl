@@ -54,10 +54,10 @@ services :
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
-      - RABBIT_HOST=bookingdb-demo-rabbitmq
-      - RABBIT_PORT=5672
-      - RABBIT_USERNAME=demo
-      - RABBIT_PASSWORD=demo
+      - RABBITMQ_HOST=bookingdb-demo-rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=demo
+      - RABBITMQ_PASSWORD=demo
 
   bookingdb-importer-service:
     image: "docker-registry.ujar.org/ujar/micro-k8s-bookingdb-importer-service:latest"
@@ -74,7 +74,7 @@ services :
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
-      - RABBIT_HOST=bookingdb-demo-rabbitmq
-      - RABBIT_PORT=5672
-      - RABBIT_USERNAME=demo
-      - RABBIT_PASSWORD=demo
+      - RABBITMQ_HOST=bookingdb-demo-rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=demo
+      - RABBITMQ_PASSWORD=demo

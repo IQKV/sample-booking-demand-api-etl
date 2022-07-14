@@ -1,0 +1,93 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata :
+  name : dashboard-service
+  labels :
+    app : dashboard-service
+spec :
+  replicas : 1
+  selector :
+    matchLabels :
+      app : dashboard-service
+  template :
+    metadata :
+      labels :
+        app : dashboard-service
+    spec :
+      containers :
+        - name : dashboard-service
+          image : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-dashboard-service:latest
+          ports :
+            - containerPort : 8080
+          env :
+            - name : DATASOURCE_URL
+              valueFrom :
+                configMapKeyRef :
+                  name : dashboard
+                  key : datasource-url
+            - name : DATASOURCE_USERNAME
+              valueFrom :
+                secretKeyRef :
+                  name : dashboard
+                  key : datasource-username
+            - name : DATASOURCE_PASSWORD
+              valueFrom :
+                secretKeyRef :
+                  name : dashboard
+                  key : datasource-password
+            - name : RABBITMQ_HOST
+              valueFrom :
+                configMapKeyRef :
+                  name : dashboard
+                  key : rabbitmq-host
+            - name : RABBITMQ_PORT
+              valueFrom :
+                configMapKeyRef :
+                  name : dashboard
+                  key : rabbitmq-port
+            - name : RABBITMQ_USERNAME
+              valueFrom :
+                secretKeyRef :
+                  name : dashboard
+                  key : rabbitmq-username
+            - name : RABBITMQ_PASSWORD
+              valueFrom :
+                secretKeyRef :
+                  name : dashboard
+                  key : rabbitmq-password
+          resources :
+            requests :
+              cpu : "0.2"
+              memory : 300Mi
+            limits :
+              cpu : "1.0"
+              memory : 300Mi
+          readinessProbe :
+            tcpSocket :
+              port : 8080
+            initialDelaySeconds : 50
+            timeoutSeconds : 2
+            periodSeconds : 20
+            failureThreshold : 5
+          livenessProbe :
+            tcpSocket :
+              port : 8080
+            initialDelaySeconds : 50
+            timeoutSeconds : 2
+            periodSeconds : 20
+            failureThreshold : 5
+      serviceAccountName : api-service-account
+---
+apiVersion : v1
+kind : Service
+metadata :
+  name : dashboard-service
+  labels :
+    app : dashboard-service
+spec :
+  ports :
+    - port : 8080
+      targetPort : 8080
+      protocol : TCP
+  selector :
+    app : dashboard-service

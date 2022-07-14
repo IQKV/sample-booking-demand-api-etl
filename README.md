@@ -19,14 +19,55 @@ Java 17, Maven 3, Spring Boot 2.7, Spring Cloud 2021.0.3, mysql:5.7.34, rabbitmq
 _Including utils:_ liquibase, WireMock, Mysql testcontainers, docker-compose._dev_.yml,
 logbook, micrometer, _checkstyle_ configuration, SpotBugs, PMD etc.
 
-### Prerequisites
+### Pre-requisites
 
-- Install Docker [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/) - at least 1.6.0
-- Add new version of docker-compose [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-- Spin-up single instance of MySQL by running command:
+- [Docker](https://docs.docker.com/install/)
+- [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+- [Virtualbox](https://www.virtualbox.org/manual/ch02.html)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)- [Apache Maven](https://maven.apache.org/install.html)
+- [HTTPie](https://httpie.org/doc#installation)
+- [tree](http://mama.indstate.edu/users/ice/tree/)
 
+### Start Kubernetes cluster
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./start-cluster.sh
 ```
-docker-compose -f docker-compose.dev.yml up -d
+
+### Configure Kubernetes cluster
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./setup-cluster.sh
+```
+
+### Deploy application to Kubernetes cluster
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./install-all.sh
+```
+
+### Undeploy application from Kubernetes cluster
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./delete-all.sh
+```
+
+### Delete Application specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./destroy-cluster.sh
+```
+
+### Stop Kubernetes cluster
+
+```bash
+cd ./micro-k8s-bookingdb/scripts/
+./stop-cluster.sh
 ```
 
 ### Code conventions
