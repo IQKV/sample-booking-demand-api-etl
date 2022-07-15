@@ -2,8 +2,8 @@
 
 #set -x
 
-export K8S_NAMESPACE=bookingdb
+export K8S_NAMESPACE=bcdb
 
 export SA_NAME=api-service-account
 
-export CLUSTER_NAME=bcd-dev
+export CLUSTER_NAME=bcdb-dev
