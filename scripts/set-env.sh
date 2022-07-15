@@ -6,4 +6,4 @@ export K8S_NAMESPACE=bookingdb
 
 export SA_NAME=api-service-account
 
-export CLUSTER_NAME=minikube-bookingdb-dev-cluster
+export CLUSTER_NAME=bcd-dev
