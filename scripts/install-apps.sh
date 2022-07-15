@@ -22,11 +22,11 @@ kubectl apply -n $K8S_NAMESPACE -f importer/secret.yaml
 kubectl apply -n $K8S_NAMESPACE -f importer/deployment.yaml
 kubectl apply -n $K8S_NAMESPACE -f ingress.yaml
 
-# set Minikupe IP for microservices-cluster.info in /etc/hosts
+# set Minikupe IP for bcdb.local in /etc/hosts
 minikube profile $CLUSTER_NAME
 CLUSTER_IP=$(minikube ip)
 echo $CLUSTER_IP
-sudo sed -i.bak 's/.*microservices-cluster.info/'"$CLUSTER_IP"' microservices-cluster.info/' /etc/hosts && sudo rm /etc/hosts.bak
-echo "$(minikube ip) microservices-cluster.info" | sudo tee -a /etc/hosts
+sudo sed -i.bak 's/.*bcdb.local/'"$CLUSTER_IP"' bcdb.local/' /etc/hosts && sudo rm /etc/hosts.bak
+echo "$(minikube ip) bcdb.local" | sudo tee -a /etc/hosts
 
 cd ../scripts || exit
