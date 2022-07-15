@@ -23,37 +23,37 @@ spec :
             - name : DATASOURCE_URL
               valueFrom :
                 configMapKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : datasource-url
             - name : DATASOURCE_USERNAME
               valueFrom :
                 secretKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : datasource-username
             - name : DATASOURCE_PASSWORD
               valueFrom :
                 secretKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : datasource-password
             - name : RABBITMQ_HOST
               valueFrom :
                 configMapKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : rabbitmq-host
             - name : RABBITMQ_PORT
               valueFrom :
                 configMapKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : rabbitmq-port
             - name : RABBITMQ_USERNAME
               valueFrom :
                 secretKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : rabbitmq-username
             - name : RABBITMQ_PASSWORD
               valueFrom :
                 secretKeyRef :
-                  name : dashboard
+                  name : dashboard-service
                   key : rabbitmq-password
           resources :
             requests :
