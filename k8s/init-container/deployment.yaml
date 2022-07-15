@@ -16,7 +16,7 @@ spec :
     spec :
       containers :
         - name : init-container-service
-          image : docker-registry.ujar.org/ujar/ujar/micro-k8s-bookingdb-init-container-service:latest
+          image : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service:latest
           ports :
             - containerPort : 8080
           env :

@@ -4,7 +4,7 @@ set -x
 
 . ./set-env.sh
 
-. ./delete-app.sh
+. ./delete-apps.sh
 
 . ./delete-infra.sh
 
