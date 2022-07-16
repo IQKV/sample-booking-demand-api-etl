@@ -1,3 +1,8 @@
+build :
+  version : @project.version@
+  description : @project.description@
+  relative-path : ${SWAGGER_RELATIVE_PATH:}
+
 git :
   commit : '@git.commit.id@'
   build_time : '@git.build.time@'
@@ -43,11 +48,11 @@ spring :
       hibernate.query.fail_on_pagination_over_collection_fetch : true
       hibernate.query.in_clause_parameter_padding : true
     show-sql : false
-  rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
-    port: ${RABBITMQ_PORT:5672}
-    username: ${RABBITMQ_USERNAME:sa_test}
-    password: ${RABBITMQ_PASSWORD:sa_test}
+  rabbitmq :
+    host : ${RABBITMQ_HOST:localhost}
+    port : ${RABBITMQ_PORT:5672}
+    username : ${RABBITMQ_USERNAME:sa_test}
+    password : ${RABBITMQ_PASSWORD:sa_test}
   devtools :
     add-properties : false
     restart :
@@ -115,9 +120,9 @@ management :
 
 bookingdb :
   queues :
-    import-exchange: ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
-    import-countries-queue: ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
-    import-cities-queue: ${IMPORT_CITIES_QUEUE:import-cities-queue}
-    import-hotels-queue: ${IMPORT_HOTELS_QUEUE:import-hotels-queue}
+    import-exchange : ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
+    import-countries-queue : ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
+    import-cities-queue : ${IMPORT_CITIES_QUEUE:import-cities-queue}
+    import-hotels-queue : ${IMPORT_HOTELS_QUEUE:import-hotels-queue}
 
 
