@@ -4,9 +4,9 @@ git :
 
 info :
   app :
-    name : @project.name@
-    description : @project.description@
-    version : @project.version@
+    name : '@project.name@'
+    description : '@project.description@'
+    version : '@project.version@'
     git_commit : ${git.commit}
     build_time : ${git.build_time}
 
@@ -59,6 +59,9 @@ server :
   shutdown : graceful
 
 management :
+  info :
+    env :
+      enabled : true
   server :
     add-application-context-header : true
   endpoints :
