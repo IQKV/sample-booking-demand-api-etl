@@ -20,6 +20,11 @@ spec :
           ports :
             - containerPort : 8080
           env :
+            - name : SWAGGER_RELATIVE_PATH
+              valueFrom :
+                configMapKeyRef :
+                  name : dashboard-service
+                  key : swagger-relative-path
             - name : DATASOURCE_URL
               valueFrom :
                 configMapKeyRef :
