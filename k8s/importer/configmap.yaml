@@ -3,7 +3,7 @@ kind : ConfigMap
 metadata :
   name : importer-service
 data :
-  swagger-relative-path : /dashboard
+  swagger-relative-path : /importer/
   datasource-url : jdbc:mysql://mysql:3306/sa_test_db
   rabbitmq-host : rabbitmq
   rabbitmq-port : "5672"
