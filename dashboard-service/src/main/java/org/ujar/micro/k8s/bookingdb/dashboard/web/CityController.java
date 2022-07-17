@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ujar.boot.starter.restful.web.dto.ErrorResponse;
 import org.ujar.boot.starter.restful.web.dto.PageRequestDto;
-import org.ujar.micro.k8s.bookingdb.persistence.entity.Country;
-import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
+import org.ujar.micro.k8s.bookingdb.persistence.entity.City;
+import org.ujar.micro.k8s.bookingdb.persistence.repository.CityRepository;
 
 @RestController
-@Tag(name = "Countries controller", description = "API for countries management")
-@RequestMapping("/api/v1/countries")
+@Tag(name = "Cities controller", description = "API for cities management")
+@RequestMapping("/api/v1/cities")
 @Validated
 @RequiredArgsConstructor
-public class CountryController {
-  private final CountryRepository repository;
+public class CityController {
+  private final CityRepository repository;
 
   @GetMapping("/{id}")
   @Operation(
@@ -46,13 +46,13 @@ public class CountryController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<Country> findById(@PathVariable final Long id) {
+  public ResponseEntity<City> findById(@PathVariable final Long id) {
     return ResponseEntity.of(repository.findById(id));
   }
 
   @GetMapping
   @Operation(
-      description = "Retrieve all countries (with pagination).",
+      description = "Retrieve all cities (with pagination).",
       responses = {
           @ApiResponse(responseCode = "200",
                        description = "Success"),
@@ -63,7 +63,7 @@ public class CountryController {
                        description = "Bad request",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
       })
-  public ResponseEntity<Page<Country>> findAll(@ParameterObject @Valid PageRequestDto request) {
+  public ResponseEntity<Page<City>> findAll(@ParameterObject @Valid PageRequestDto request) {
     final var pageRequest = PageRequest.of(request.getPage(), request.getSize());
     return new ResponseEntity<>(repository.findAll(pageRequest), HttpStatus.OK);
   }
