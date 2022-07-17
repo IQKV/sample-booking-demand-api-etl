@@ -5,7 +5,7 @@ set -x
 
 . ./set-env.sh
 
-minikube start -p $CLUSTER_NAME --memory='4000mb' --cpus=4 --disk-size=25g --insecure-registry=localhost:5000
+minikube start -p $CLUSTER_NAME --memory='4000mb' --cpus=4 --disk-size=25g --vm-driver="virtualbox" --insecure-registry=localhost:5000
 minikube profile $CLUSTER_NAME
 
 minikube addons enable metrics-server
