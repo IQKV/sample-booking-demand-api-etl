@@ -25,6 +25,11 @@ spec :
                 configMapKeyRef :
                   name : dashboard-service
                   key : swagger-relative-path
+            - name : LOGGING_LEVEL_ROOT
+              valueFrom :
+                configMapKeyRef :
+                  name : dashboard-service
+                  key : logging-level-root
             - name : DATASOURCE_URL
               valueFrom :
                 configMapKeyRef :
