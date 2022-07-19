@@ -25,6 +25,7 @@ logbook, micrometer, _checkstyle_ configuration, SpotBugs, PMD etc.
 - [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 - [Virtualbox](https://www.virtualbox.org/manual/ch02.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [Helm](https://helm.sh/docs/intro/install/)
 - [Apache Maven](https://maven.apache.org/install.html)
 - [HTTPie](https://httpie.org/doc#installation)
 - [tree](http://mama.indstate.edu/users/ice/tree/)
