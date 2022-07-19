@@ -95,6 +95,11 @@ logbook :
   minimum-status : ${MINIMUM_STATUS_LOG_BODY:400}
 
 management :
+  health :
+    livenessstate :
+      enabled : true
+    readinessstate :
+      enabled : true
   info :
     env :
       enabled : true

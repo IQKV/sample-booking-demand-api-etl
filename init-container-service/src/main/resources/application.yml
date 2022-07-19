@@ -63,6 +63,11 @@ server :
   shutdown : graceful
 
 management :
+  health :
+    livenessstate :
+      enabled : true
+    readinessstate :
+      enabled : true
   info :
     env :
       enabled : true
