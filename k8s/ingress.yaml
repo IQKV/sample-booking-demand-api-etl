@@ -3,35 +3,34 @@ kind : Ingress
 metadata :
   name : gateway-ingress
   annotations :
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec :
   rules :
     - host : bcdb.local
       http :
         paths :
-          - path : /dashboard/(.*)
+          - path : /dashboard
             pathType : Prefix
             backend :
               service :
                 name : dashboard-service
                 port :
                   number : 8080
-          - path : /importer/(.*)
+          - path : /importer
             pathType : Prefix
             backend :
               service :
                 name : importer-service
                 port :
                   number : 8080
-          - path : /prometheus/(.*)
+          - path : /prometheus
             pathType : Prefix
             backend :
               service :
                 name : prometheus-server-np
                 port :
                   number : 9090
-          - path : /grafana/(.*)
+          - path : /grafana
             pathType : Prefix
             backend :
               service :
