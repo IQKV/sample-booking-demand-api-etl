@@ -6,6 +6,8 @@ metadata :
     app : init-container-service
 spec :
   replicas : 1
+  strategy :
+    type : RollingUpdate
   selector :
     matchLabels :
       app : init-container-service
@@ -17,6 +19,7 @@ spec :
       containers :
         - name : init-container-service
           image : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service:latest
+          imagePullPolicy: Always
           ports :
             - containerPort : 8080
           env :
@@ -43,19 +46,26 @@ spec :
               cpu : "1.0"
               memory : 300Mi
           readinessProbe :
-            tcpSocket :
+            httpGet :
               port : 8080
+              path: /actuator/health/readiness
             initialDelaySeconds : 50
             timeoutSeconds : 2
             periodSeconds : 20
             failureThreshold : 5
           livenessProbe :
-            tcpSocket :
-              port : 8080
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
             initialDelaySeconds : 50
             timeoutSeconds : 2
             periodSeconds : 20
             failureThreshold : 5
+          startupProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+            initialDelaySeconds: 5
       serviceAccountName : api-service-account
 ---
 apiVersion : v1

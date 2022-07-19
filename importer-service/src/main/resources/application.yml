@@ -81,7 +81,6 @@ logbook :
     - /v3/**
     - /swagger-ui/**
     - /swagger-resources/**
-    - /metrics
   filter :
     enabled : true
   format :
