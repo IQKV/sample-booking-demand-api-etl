@@ -3,7 +3,7 @@ kind : ConfigMap
 metadata :
   name : importer-service
 data :
-  swagger-relative-path : /importer
+  servlet-context-path : /importer
   logging-level-root: TRACE
   datasource-url : jdbc:mysql://mysql:3306/sa_test_db
   rabbitmq-host : rabbitmq
