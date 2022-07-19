@@ -24,3 +24,17 @@ spec :
                 name : importer-service
                 port :
                   number : 8080
+          - path : /prometheus/(.*)
+            pathType : Prefix
+            backend :
+              service :
+                name : prometheus-server-np
+                port :
+                  number : 9090
+          - path : /grafana/(.*)
+            pathType : Prefix
+            backend :
+              service :
+                name : grafana-np
+                port :
+                  number : 3000
