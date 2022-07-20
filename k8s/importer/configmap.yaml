@@ -4,7 +4,7 @@ metadata :
   name : importer-service
 data :
   servlet-context-path : ""
-  swagger_relative_path : "/importer/"
+  swagger-ui-relative-path : "/importer/"
   logging-level-root: TRACE
   datasource-url : jdbc:mysql://mysql:3306/sa_test_db
   rabbitmq-host : rabbitmq

@@ -4,7 +4,7 @@ metadata :
   name : dashboard-service
 data :
   servlet-context-path : ""
-  swagger_relative_path : "/dashboard/"
+  swagger-ui-relative-path : "/dashboard/"
   logging-level-root: TRACE
   datasource-url : jdbc:mysql://mysql:3306/sa_test_db
   rabbitmq-host : rabbitmq
