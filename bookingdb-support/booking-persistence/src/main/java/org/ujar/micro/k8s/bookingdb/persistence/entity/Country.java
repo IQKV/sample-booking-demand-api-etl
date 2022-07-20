@@ -1,9 +1,13 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +31,10 @@ public class Country {
   private String name;
 
   private String country;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+  private Set<City> cities;
 
   @Override
   public String toString() {

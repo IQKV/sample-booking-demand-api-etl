@@ -54,7 +54,7 @@ public class CityImporterServiceImpl implements CityImporterService {
 
         entities.forEach(city -> {
           city = byCityId.getOrDefault(city.getCityId(), city);
-          city.setCountryId(country.getId());
+          city.setCountry(country);
           cityRepository.save(city);
         });
 

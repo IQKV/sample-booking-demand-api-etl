@@ -1,5 +1,6 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import javax.persistence.Column;
@@ -7,12 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -20,7 +22,6 @@ import org.hibernate.annotations.Type;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = Hotel.TABLE_NAME)
 public class Hotel {
 
@@ -38,7 +39,25 @@ public class Hotel {
   @Column(name = "hotel_data", columnDefinition = "json")
   private Map<String, String> data;
 
-  private Long cityId;
-
   private Long countryId;
+
+  @ManyToOne
+  @JsonIgnore
+  @JoinColumn(name = "city_id", referencedColumnName = "id")
+  private City city;
+
+  public void setCity(City city) {
+    this.city = city;
+    this.countryId = city.getCountry().getId();
+  }
+
+  @Override
+  public String toString() {
+    return "Hotel{" +
+           "id=" + id +
+           ", hotelId=" + hotelId +
+           ", countryId=" + countryId +
+           ", city=" + city +
+           '}';
+  }
 }

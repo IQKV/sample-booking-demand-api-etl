@@ -1,10 +1,16 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +36,14 @@ public class City {
   @JsonProperty(value = "city_id")
   private Long cityId;
 
-  private Long countryId;
+  @JsonIgnore
+  @ManyToOne
+  @JoinColumn(name = "country_id", referencedColumnName = "id")
+  private Country country;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+  private Set<Hotel> hotels;
 
   @Override
   public String toString() {
@@ -38,7 +51,6 @@ public class City {
            "id=" + id +
            ", name='" + name + '\'' +
            ", cityId=" + cityId +
-           ", countryId='" + countryId + "'" +
            '}';
   }
 }
