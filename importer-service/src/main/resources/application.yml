@@ -109,7 +109,7 @@ management :
     enabled-by-default : false
     web :
       exposure :
-        include : health, prometheus, info
+        include : health, prometheus, info, openapi, swagger-ui
   endpoint :
     health :
       enabled : true
@@ -138,3 +138,9 @@ bookingdb :
     import-countries-queue : ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}
     import-cities-queue : ${IMPORT_CITIES_QUEUE:import-cities-queue}
     import-hotels-queue : ${IMPORT_HOTELS_QUEUE:import-hotels-queue}
+
+springdoc :
+  show-actuator : true
+  swagger-ui :
+    config-url : ${SWAGGER_RELATIVE_PATH:/}v3/api-docs/swagger-config
+    url : ${SWAGGER_RELATIVE_PATH:/}v3/api-docs

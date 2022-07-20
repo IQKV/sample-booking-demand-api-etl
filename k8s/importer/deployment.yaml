@@ -32,7 +32,7 @@ spec :
               valueFrom :
                 configMapKeyRef :
                   name : importer-service
-                  key : servlet-context-path
+                  key : swagger_relative_path
             - name : LOGGING_LEVEL_ROOT
               valueFrom :
                 configMapKeyRef :

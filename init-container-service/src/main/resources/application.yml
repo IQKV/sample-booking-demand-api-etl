@@ -88,3 +88,9 @@ management :
       enabled : true
     info :
       enabled : true
+
+springdoc :
+  show-actuator : true
+  swagger-ui :
+    config-url : ${SWAGGER_RELATIVE_PATH:/}v3/api-docs/swagger-config
+    url : ${SWAGGER_RELATIVE_PATH:/}v3/api-docs
