@@ -42,7 +42,6 @@ public class Hotel {
   private Long countryId;
 
   @ManyToOne
-  @JsonIgnore
   @JoinColumn(name = "city_id", referencedColumnName = "id")
   private City city;
 
@@ -57,7 +56,7 @@ public class Hotel {
            "id=" + id +
            ", hotelId=" + hotelId +
            ", countryId=" + countryId +
-           ", city=" + city +
+           ", city" + city.getName() +
            '}';
   }
 }

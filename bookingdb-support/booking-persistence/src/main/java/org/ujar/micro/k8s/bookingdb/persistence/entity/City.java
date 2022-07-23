@@ -1,6 +1,7 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -36,12 +37,11 @@ public class City {
   @JsonProperty(value = "city_id")
   private Long cityId;
 
-  @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "country_id", referencedColumnName = "id")
   private Country country;
 
-  @JsonIgnore
+  @JsonIgnoreProperties("city")
   @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
   private Set<Hotel> hotels;
 
