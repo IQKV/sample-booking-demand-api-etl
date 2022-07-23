@@ -1,6 +1,5 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import javax.persistence.Column;
