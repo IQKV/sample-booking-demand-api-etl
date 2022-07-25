@@ -49,10 +49,11 @@ public class HotelImporterServiceImpl implements HotelImporterService {
       entities = mapper.convertValue(nodes, new TypeReference<>() {
       });
 
-      if (entities != null) {
+      if (entities != null && !entities.isEmpty()) {
         entities.forEach(hotel -> {
           hotel.setCity(city);
-          hotelRepository.deleteByHotelId(hotel.getHotelId());
+          var hotelId = hotel.getHotelId();
+          hotelRepository.deleteByHotelId(hotelId);
           hotelRepository.saveAndFlush(hotel);
         });
       }

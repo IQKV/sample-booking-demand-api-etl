@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -34,34 +36,36 @@ public class CityImporterServiceImpl implements CityImporterService {
         .orElseThrow(IllegalArgumentException::new);
 
     String body;
-    List<City> entities;
+    List<City> entities = new ArrayList<>();
     int offset = 0;
     do {
       body = client.getCities(countryCode, LIMIT, offset);
       JsonNode nodes;
       try {
         nodes = mapper.readTree(body).get("result");
+
       } catch (JsonProcessingException e) {
         throw new RuntimeException(e);
       }
-      entities = mapper.convertValue(nodes, new TypeReference<>() {});
 
-      if (entities != null) {
-        var internalCityIds = entities.stream().map(City::getCityId).toList();
-        var byCityId = cityRepository.findAllByCityIdIn(internalCityIds)
-            .stream()
-            .collect(Collectors.toMap(City::getCityId, Function.identity()));
-
-        entities.forEach(city -> {
-          city = byCityId.getOrDefault(city.getCityId(), city);
-          city.setCountry(country);
-          cityRepository.save(city);
-        });
-
-        cityRepository.flush();
-
-        offset += LIMIT;
+      for (var node : nodes) {
+        entities.add(new City(null, node.get("name").textValue(), node.get("city_id").longValue(), country, Set.of()));
       }
+
+      var internalCityIds = entities.stream().map(City::getCityId).toList();
+      var byCityId = cityRepository.findAllByCityIdIn(internalCityIds)
+          .stream()
+          .collect(Collectors.toMap(City::getCityId, Function.identity()));
+
+      entities.forEach(city -> {
+        city = byCityId.getOrDefault(city.getCityId(), city);
+        city.setCountry(country);
+        cityRepository.save(city);
+      });
+
+      cityRepository.flush();
+
+      offset += LIMIT;
     } while (entities != null && !entities.isEmpty());
 
     log.info("Import of cities batch is finished.");

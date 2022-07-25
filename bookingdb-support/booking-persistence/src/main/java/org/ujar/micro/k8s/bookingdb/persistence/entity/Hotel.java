@@ -1,8 +1,10 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
+import org.ujar.micro.k8s.bookingdb.persistence.converter.HashMapConverter;
 
 @Entity
 @Getter
@@ -34,12 +36,13 @@ public class Hotel {
   private Long hotelId;
 
   @JsonProperty(value = "hotel_data")
-  @Type(type = "json")
   @Column(name = "hotel_data", columnDefinition = "json")
-  private Map<String, String> data;
+  @Convert(converter = HashMapConverter.class)
+  private Map<String, Object> data;
 
   private Long countryId;
 
+  @JsonIgnoreProperties({"country", "hotels"})
   @ManyToOne
   @JoinColumn(name = "city_id", referencedColumnName = "id")
   private City city;
