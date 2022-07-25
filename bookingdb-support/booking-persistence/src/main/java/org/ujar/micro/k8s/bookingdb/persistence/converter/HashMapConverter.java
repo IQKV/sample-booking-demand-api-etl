@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class HashMapConverter implements AttributeConverter<Map<String, Object>, String> {
+
   private final ObjectMapper objectMapper = new ObjectMapper();
+
   @Override
   public String convertToDatabaseColumn(Map<String, Object> customerInfo) {
 
