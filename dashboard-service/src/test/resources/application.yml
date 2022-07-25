@@ -15,10 +15,10 @@ spring :
 
   datasource :
     type : com.zaxxer.hikari.HikariDataSource
-    driver-class-name : ${DATASOURCE_DRIVER:org.h2.Driver}
-    url : ${DATASOURCE_URL:jdbc:h2:mem:sa_test_db}
-    username : ${DATASOURCE_USERNAME:sa_test}
-    password : ${DATASOURCE_PASSWORD:sa_test}
+    driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    url : ${DATASOURCE_URL:jdbc:mysql://${embedded.mysql.host}:${embedded.mysql.port}/${embedded.mysql.schema}?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
+    username : ${DATASOURCE_USERNAME:${embedded.mysql.user:sa_test}}
+    password : ${DATASOURCE_PASSWORD:${embedded.mysql.password:sa_test}}
     hikari :
       pool-name : Hikari
       auto-commit : false
@@ -42,6 +42,9 @@ spring :
     password: ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:sa_test}}
 
 embedded :
+  mysql :
+    enabled : true
+    reuse-container : true
   rabbitmq :
     enabled : true
     reuse-container : true
