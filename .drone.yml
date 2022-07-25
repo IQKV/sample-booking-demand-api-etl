@@ -23,6 +23,8 @@ steps:
       - name: m2cache
         path: /root/.m2
     environment :
+      DATASOURCE_DRIVER : com.mysql.cj.jdbc.Driver
+      DATASOURCE_URL : jdbc:mysql://db:3306/sa_test_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
@@ -120,3 +122,12 @@ steps:
         exclude:
           - pull_request
 
+services:
+  - name: db
+    image: mysql:5.7.34
+    environment:
+      MYSQL_DATABASE: sa_test_db
+      MYSQL_USER: sa_test
+      MYSQL_PASSWORD: sa_test
+      MYSQL_ROOT_PASSWORD: sa_root
+      TZ: UTC
