@@ -1,27 +1,27 @@
-kind: pipeline
-name: CI
+kind : pipeline
+name : CI
 
 type : docker
 
-trigger:
-  branch:
+trigger :
+  branch :
     - main
     - develop
     - feature/*
-  event:
+  event :
     - push
 
-volumes:
-  - name: m2cache
-    host:
-      path: /volume1/m2cache
-steps:
+volumes :
+  - name : m2cache
+    host :
+      path : /volume1/m2cache
+steps :
 
-  - name: build-and-deploy
-    image: maven:3-openjdk-17-slim
-    volumes:
-      - name: m2cache
-        path: /root/.m2
+  - name : build-and-deploy
+    image: docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    volumes :
+      - name : m2cache
+        path : /root/.m2
     environment :
       DATASOURCE_DRIVER : com.mysql.cj.jdbc.Driver
       DATASOURCE_URL : jdbc:mysql://db:3306/sa_test_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8
@@ -33,124 +33,124 @@ steps:
         from_secret : SONAR_HOST
       SONAR_TOKEN :
         from_secret : SONAR_TOKEN
-    commands:
-      - mvn clean compile test-compile -P default -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
-      #- mvn pmd:check -P default -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
-      #- mvn com.github.spotbugs:spotbugs-maven-plugin:check -P default -Dspotbugs.xmlOutput=true -Dspotbugs.failOnError=true -Dspotbugs.includeTests=true -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
-      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=ujar-org:micro-k8s-bookingdb -B -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
-      - mvn deploy -P default -DskipTests=true -Dcheckstyle.skip=true -s settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
-    when:
-      branch:
-        include:
+    commands :
+      - mvn clean compile test-compile -P default -B -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      #- mvn pmd:check -P default -B -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      #- mvn com.github.spotbugs:spotbugs-maven-plugin:check -P default -Dspotbugs.xmlOutput=true -Dspotbugs.failOnError=true -Dspotbugs.includeTests=true -B -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=ujar-org:micro-k8s-bookingdb -B -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn deploy -P default -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+    when :
+      branch :
+        include :
           - main
           - develop
           - feature/*
-      event:
-        exclude:
+      event :
+        exclude :
           - pull_request
 
-  - name: docker-build-dev-init-container-service
-    image: plugins/docker
-    settings:
-      dockerfile: init-container-service/Dockerfile
-      context: ./init-container-service/
-      storage_driver: vfs
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service
-      registry: docker-registry.ujar.org
+  - name : docker-build-dev-init-container-service
+    image : plugins/docker
+    settings :
+      dockerfile : init-container-service/Dockerfile
+      context : ./init-container-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-init-container-service
+      registry : docker-registry.ujar.org
       tags :
         - latest
-    when:
-      branch:
-        include:
+    when :
+      branch :
+        include :
           - main
           - develop
           - feature/*
-      event:
-        exclude:
+      event :
+        exclude :
           - pull_request
 
-  - name: docker-build-dev-edge-service
-    image: plugins/docker
-    settings:
-      dockerfile: edge-service/Dockerfile
-      context: ./edge-service/
-      storage_driver: vfs
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-edge-service
-      registry: docker-registry.ujar.org
+  - name : docker-build-dev-edge-service
+    image : plugins/docker
+    settings :
+      dockerfile : edge-service/Dockerfile
+      context : ./edge-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-edge-service
+      registry : docker-registry.ujar.org
       tags :
         - latest
-    when:
-      branch:
-        include:
+    when :
+      branch :
+        include :
           - main
           - develop
           - feature/*
-      event:
-        exclude:
+      event :
+        exclude :
           - pull_request
 
-  - name: docker-build-dev-dashboard-service
-    image: plugins/docker
-    settings:
-      dockerfile: dashboard-service/Dockerfile
-      context: ./dashboard-service/
-      storage_driver: vfs
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-dashboard-service
-      registry: docker-registry.ujar.org
+  - name : docker-build-dev-dashboard-service
+    image : plugins/docker
+    settings :
+      dockerfile : dashboard-service/Dockerfile
+      context : ./dashboard-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-dashboard-service
+      registry : docker-registry.ujar.org
       tags :
         - latest
-    when:
-      branch:
-        include:
+    when :
+      branch :
+        include :
           - main
           - develop
           - feature/*
-      event:
-        exclude:
+      event :
+        exclude :
           - pull_request
 
-  - name: docker-build-dev-importer-service
-    image: plugins/docker
-    settings:
-      dockerfile: importer-service/Dockerfile
-      context: ./importer-service/
-      storage_driver: vfs
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-importer-service
-      registry: docker-registry.ujar.org
+  - name : docker-build-dev-importer-service
+    image : plugins/docker
+    settings :
+      dockerfile : importer-service/Dockerfile
+      context : ./importer-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-importer-service
+      registry : docker-registry.ujar.org
       tags :
         - latest
-    when:
-      branch:
-        include:
+    when :
+      branch :
+        include :
           - main
           - develop
           - feature/*
-      event:
-        exclude:
+      event :
+        exclude :
           - pull_request
 
-services:
-  - name: db
-    image: mysql:5.7.34
-    environment:
-      MYSQL_DATABASE: sa_test_db
-      MYSQL_USER: sa_test
-      MYSQL_PASSWORD: sa_test
-      MYSQL_ROOT_PASSWORD: sa_root
-      TZ: UTC
+services :
+  - name : db
+    image : mysql:5.7.34
+    environment :
+      MYSQL_DATABASE : sa_test_db
+      MYSQL_USER : sa_test
+      MYSQL_PASSWORD : sa_test
+      MYSQL_ROOT_PASSWORD : sa_root
+      TZ : UTC
