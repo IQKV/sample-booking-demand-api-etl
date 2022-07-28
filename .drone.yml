@@ -18,7 +18,8 @@ volumes :
 steps :
 
   - name : build-and-deploy
-    image: docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    image : docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    pull : if-not-exists
     volumes :
       - name : m2cache
         path : /root/.m2
