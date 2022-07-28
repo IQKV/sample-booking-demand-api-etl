@@ -12,6 +12,11 @@ kubectl delete -n $K8S_NAMESPACE service importer-service
 kubectl delete -n $K8S_NAMESPACE configmap importer-service
 kubectl delete -n $K8S_NAMESPACE secret importer-service
 
+kubectl delete -n $K8S_NAMESPACE deployment edge-service
+kubectl delete -n $K8S_NAMESPACE service edge-service
+kubectl delete -n $K8S_NAMESPACE configmap edge-service
+kubectl delete -n $K8S_NAMESPACE secret edge-service
+
 kubectl delete -n $K8S_NAMESPACE deployment dashboard-service
 kubectl delete -n $K8S_NAMESPACE service dashboard-service
 kubectl delete -n $K8S_NAMESPACE configmap dashboard-service

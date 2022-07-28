@@ -18,4 +18,4 @@ management :
     enabled-by-default : true
 
 server:
-  port : 2999
+  port : 2998

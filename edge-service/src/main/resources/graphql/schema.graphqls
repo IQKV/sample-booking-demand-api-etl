@@ -1,0 +1,57 @@
+type Query {
+    countries(page: Int, size: Int): CountryPageContent
+    cities(page: Int, size: Int): CityPageContent
+    hotels(page: Int, size: Int): CityPageContent
+}
+
+type Pageable {
+    offset: Int,
+    pageNumber: Int,
+    pageSize: Int,
+}
+
+type CountryPageContent {
+    pageable: Pageable
+    content: [Country]
+    totalPages: Int
+    totalElements: Int
+    size: Int
+    number: Int
+}
+
+type CityPageContent {
+    pageable: Pageable
+    content: [City]
+    totalPages: Int
+    totalElements: Int
+    size: Int
+    number: Int
+}
+
+type HotelPageContent {
+    pageable: Pageable
+    content: [Hotel]
+    totalPages: Int
+    totalElements: Int
+    size: Int
+    number: Int
+}
+
+
+type Country {
+    id: ID
+    name : String
+    country : String
+}
+
+type City {
+    id: ID
+    name : String
+    cityId : Int
+}
+
+type Hotel {
+    id: ID
+    name : String
+    hotelId : Int
+}

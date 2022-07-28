@@ -1,0 +1,74 @@
+git :
+  commit : '@git.commit.id@'
+  build_time : '@git.build.time@'
+
+info :
+  app :
+    name : '@project.name@'
+    description : '@project.description@'
+    version : '@project.version@'
+    git_commit : ${git.commit}
+    build_time : ${git.build_time}
+
+spring :
+  application :
+    name : edge-service
+  lifecycle :
+    timeout-per-shutdown-phase : ${TIMEOUT_PER_SHUTDOWN:20s}
+  graphql :
+    graphiql :
+      enabled : true
+
+logging :
+  level :
+    ROOT : ${LOGGING_LEVEL_ROOT:INFO}
+    org.zalando.logbook.Logbook : TRACE
+
+logbook :
+  filter :
+    enabled : true
+  format :
+    style : json
+  obfuscate :
+    headers :
+      - Authorization
+      - X-Secret
+    parameters :
+      - access_token
+      - password
+  minimum-status : ${MINIMUM_STATUS_LOG_BODY:400}
+
+server :
+  port : ${SERVER_PORT:8080}
+  shutdown : graceful
+
+management :
+  health :
+    livenessstate :
+      enabled : true
+    readinessstate :
+      enabled : true
+  info :
+    env :
+      enabled : true
+  server :
+    add-application-context-header : true
+  endpoints :
+    enabled-by-default : false
+    web :
+      exposure :
+        include : health, prometheus, info
+  endpoint :
+    health :
+      enabled : true
+      show-details : always
+      probes :
+        enabled : true
+    prometheus :
+      enabled : true
+    info :
+      enabled : true
+
+ujar:
+  services:
+    dashboard-service: ${DASHBOARD_SERVICE_URL:http://dashboard-service}

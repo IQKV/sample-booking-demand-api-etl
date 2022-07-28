@@ -39,3 +39,10 @@ spec :
                 name : grafana-np
                 port :
                   number : 3000
+          - path : /proxy(/|$)(.*)
+            pathType : Prefix
+            backend :
+              service :
+                name : edge-service
+                port :
+                  number : 8080

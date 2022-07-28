@@ -14,6 +14,10 @@ kubectl config use-context $CLUSTER_NAME
 kubectl apply -n $K8S_NAMESPACE -f init-container/configmap.yaml
 kubectl apply -n $K8S_NAMESPACE -f init-container/secret.yaml
 kubectl apply -n $K8S_NAMESPACE -f init-container/deployment.yaml
+
+kubectl apply -n $K8S_NAMESPACE -f edge/configmap.yaml
+kubectl apply -n $K8S_NAMESPACE -f edge/deployment.yaml
+
 kubectl apply -n $K8S_NAMESPACE -f dashboard/configmap.yaml
 kubectl apply -n $K8S_NAMESPACE -f dashboard/secret.yaml
 kubectl apply -n $K8S_NAMESPACE -f dashboard/deployment.yaml

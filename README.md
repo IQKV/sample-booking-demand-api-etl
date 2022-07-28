@@ -8,7 +8,8 @@ This project creates a complete microservice demo system in Docker
 containers. The services are implemented in Java using Spring and Spring Cloud.
 
 It uses three microservices:
-- `init-container-service` to ran the database migrations on deploy.
+- `init-container-service` to run the database migrations on deploy.
+- `edge-service` - provide API gateway, which supports reactive http communications to underlying service (dashboard), simple GraphQL interface to fetch countries, cities & hotels data.
 - `importer-service` to handle Booking.com API descriptive data (countries, cities, hotels lists).
 - `dashboard-service` provides API for frontend/end user interactions.
 

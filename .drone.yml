@@ -73,6 +73,29 @@ steps:
         exclude:
           - pull_request
 
+  - name: docker-build-dev-edge-service
+    image: plugins/docker
+    settings:
+      dockerfile: edge-service/Dockerfile
+      context: ./edge-service/
+      storage_driver: vfs
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: docker-registry.ujar.org/ujar/micro-k8s-bookingdb-edge-service
+      registry: docker-registry.ujar.org
+      tags :
+        - latest
+    when:
+      branch:
+        include:
+          - main
+          - develop
+          - feature/*
+      event:
+        exclude:
+          - pull_request
 
   - name: docker-build-dev-dashboard-service
     image: plugins/docker

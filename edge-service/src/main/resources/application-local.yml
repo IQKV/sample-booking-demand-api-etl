@@ -1,0 +1,19 @@
+spring :
+  application :
+    name : edge-service
+  lifecycle :
+    timeout-per-shutdown-phase : ${TIMEOUT_PER_SHUTDOWN:20s}
+  graphql :
+    graphiql :
+      enabled : true
+
+management :
+  endpoints :
+    enabled-by-default : true
+
+server:
+  port : 2999
+
+ujar:
+  services:
+    dashboard-service: http://localhost:3000

@@ -13,6 +13,12 @@ spring :
       enabled : true
     livereload :
       enabled : true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: INFO
+
 management :
   endpoints :
     enabled-by-default : true

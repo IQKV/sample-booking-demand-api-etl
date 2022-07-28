@@ -1,0 +1,7 @@
+spring :
+  application :
+    name : edge-service
+
+ujar:
+  services:
+    dashboard-service: http://dashboard-service
