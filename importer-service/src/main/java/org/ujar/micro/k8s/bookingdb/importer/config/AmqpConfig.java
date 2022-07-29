@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportCitiesConsumer;
 import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportCountriesConsumer;
-import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportHotelsConsumer;
+import org.ujar.micro.k8s.bookingdb.importer.consumer.ImportHotelConsumer;
 import org.ujar.micro.k8s.bookingdb.jobs.amqp.AmqpQueuesProperties;
 
 @Configuration
 @RequiredArgsConstructor
-public class AmqpConfiguration {
+public class AmqpConfig {
 
   private final AmqpQueuesProperties queues;
 
@@ -64,7 +64,7 @@ public class AmqpConfiguration {
   }
 
   @Bean
-  public MessageListenerAdapter importHotelsListenerAdapter(final ImportHotelsConsumer consumer) {
+  public MessageListenerAdapter importHotelsListenerAdapter(final ImportHotelConsumer consumer) {
     return new MessageListenerAdapter(consumer, "consume");
   }
 }

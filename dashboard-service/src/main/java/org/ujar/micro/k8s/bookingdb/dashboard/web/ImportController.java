@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ujar.boot.starter.restful.web.dto.ErrorResponse;
@@ -103,9 +104,9 @@ public class ImportController {
     );
   }
 
-  @PostMapping("/hotels/{cityId}")
+  @PostMapping("/hotels")
   @Operation(
-      description = "Start importing all hotels in the particular city.",
+      description = "Start importing all hotels in the particular cities.",
       responses = {
           @ApiResponse(responseCode = "202",
                        description = "Accepted"),
@@ -119,9 +120,9 @@ public class ImportController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<JobParameters> hotels(@PathVariable Long cityId) {
+  public ResponseEntity<JobParameters> hotels(@RequestBody List<Long> cityIds) {
     return new ResponseEntity<>(
-        producer.startImportHotels(HotelsImportParameters.builder().cityId(cityId).build()),
+        producer.startImportHotels(HotelsImportParameters.builder().cityIds(cityIds).build()),
         HttpStatus.ACCEPTED
     );
   }

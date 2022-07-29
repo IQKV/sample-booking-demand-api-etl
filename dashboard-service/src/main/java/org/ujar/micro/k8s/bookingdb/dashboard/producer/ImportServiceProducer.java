@@ -3,6 +3,7 @@ package org.ujar.micro.k8s.bookingdb.dashboard.producer;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import org.ujar.micro.k8s.bookingdb.jobs.CitiesImportParameters;
+import org.ujar.micro.k8s.bookingdb.jobs.CityHotelsImportParameters;
 import org.ujar.micro.k8s.bookingdb.jobs.CountriesImportParameters;
 import org.ujar.micro.k8s.bookingdb.jobs.HotelsImportParameters;
 import org.ujar.micro.k8s.bookingdb.jobs.JobParameters;
@@ -26,7 +27,13 @@ public class ImportServiceProducer extends AbstractProducer {
   }
 
   public JobParameters startImportHotels(HotelsImportParameters parameters) {
-    super.send(properties.getImportExchange(), "hotels.city." + parameters.getCityId(), parameters);
+    for (Long cityId : parameters.getCityIds()) {
+      super.send(
+          properties.getImportExchange(),
+          "hotels.city." + cityId,
+          CityHotelsImportParameters.builder().cityId(cityId).build()
+      );
+    }
     return parameters;
   }
 }

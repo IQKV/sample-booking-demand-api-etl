@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.ujar.micro.k8s.bookingdb.apiclient.client.BookingcomNetClient;
@@ -32,6 +33,7 @@ public class HotelImporterServiceImpl implements HotelImporterService {
     this.mapper = mapper;
   }
 
+  @Transactional
   @Override
   public void importHotels(Long cityId) {
     City city = cityRepository.findOneByCityId(cityId).orElseThrow(RuntimeException::new);
@@ -45,6 +47,10 @@ public class HotelImporterServiceImpl implements HotelImporterService {
         nodes = mapper.readTree(body).get("result");
       } catch (JsonProcessingException e) {
         throw new RuntimeException(e);
+      }
+
+      if (nodes == null) {
+        break;
       }
       entities = mapper.convertValue(nodes, new TypeReference<>() {
       });

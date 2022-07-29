@@ -1,6 +1,5 @@
 package org.ujar.micro.k8s.bookingdb.jobs;
 
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -8,9 +7,9 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class HotelsImportParameters extends AbstractJobParameters {
+public class CityHotelsImportParameters extends AbstractJobParameters {
 
-  private List<Long> cityIds;
+  private Long cityId;
 
   @Builder.Default
   protected final JobType type = JobType.IMPORT_HOTELS;

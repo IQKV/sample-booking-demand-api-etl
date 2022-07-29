@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.ujar.micro.k8s.bookingdb.apiclient.client.BookingcomNetClient;
@@ -31,6 +32,7 @@ public class CountryImporterServiceImpl implements CountryImporterService {
     this.mapper = mapper;
   }
 
+  @Transactional
   @Override
   public void importCountries() {
     String body;
@@ -43,6 +45,10 @@ public class CountryImporterServiceImpl implements CountryImporterService {
         nodes = mapper.readTree(body).get("result");
       } catch (JsonProcessingException e) {
         throw new RuntimeException(e);
+      }
+
+      if (nodes == null) {
+        break;
       }
       entities = mapper.convertValue(nodes, new TypeReference<>() {
       });

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class CommonAmqpConfiguration {
+public class CommonAmqpConfig {
 
   private final AmqpQueuesProperties queues;
 
@@ -31,19 +31,19 @@ public class CommonAmqpConfiguration {
   @Bean
   Queue importCountriesQueue() {
     return new Queue(queues.getImportCountriesQueue(),
-        false, false, true);
+        true, false, true);
   }
 
   @Bean
   Queue importCitiesQueue() {
     return new Queue(queues.getImportCitiesQueue(),
-        false, false, true);
+        true, false, true);
   }
 
   @Bean
   Queue importHotelsQueue() {
     return new Queue(queues.getImportHotelsQueue(),
-        false, false, true);
+        true, false, true);
   }
 
   @Bean

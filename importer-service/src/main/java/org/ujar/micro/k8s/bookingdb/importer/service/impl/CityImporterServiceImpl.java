@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class CityImporterServiceImpl implements CityImporterService {
   private final CountryRepository countryRepository;
   private final ObjectMapper mapper;
 
+  @Transactional
   @Override
   public void importCities(String countryCode) {
     var country = countryRepository.findOneByCountry(countryCode)
@@ -45,6 +47,10 @@ public class CityImporterServiceImpl implements CityImporterService {
 
       } catch (JsonProcessingException e) {
         throw new RuntimeException(e);
+      }
+
+      if (nodes == null) {
+        break;
       }
 
       for (var node : nodes) {
