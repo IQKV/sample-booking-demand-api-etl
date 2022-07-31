@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ujar.boot.starter.restful.web.dto.ErrorResponse;
 import org.ujar.boot.starter.restful.web.dto.PageRequestDto;
@@ -24,13 +23,12 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CityRepository;
 
 @RestController
 @Tag(name = "Cities controller", description = "API for cities management")
-@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class CityController {
   private final CityRepository repository;
 
-  @GetMapping(name = "/cities/{id}", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(name = "/api/cities/{id}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve country by id.",
       responses = {
@@ -50,7 +48,7 @@ public class CityController {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping(name = "/cities", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(name = "/api/cities", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve all cities (with pagination).",
       responses = {

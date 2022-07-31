@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ujar.boot.starter.restful.web.dto.ErrorResponse;
 import org.ujar.boot.starter.restful.web.dto.PageRequestDto;
@@ -24,13 +23,12 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.HotelRepository;
 
 @RestController
 @Tag(name = "Countries controller", description = "API for hotels management")
-@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class HotelController {
   private final HotelRepository repository;
 
-  @GetMapping(name = "/hotels/{id}", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(name = "/api/hotels/{id}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve hotel by id.",
       responses = {
@@ -50,7 +48,7 @@ public class HotelController {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping(name = "/hotels", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(name = "/api/hotels", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve all hotels (with pagination).",
       responses = {

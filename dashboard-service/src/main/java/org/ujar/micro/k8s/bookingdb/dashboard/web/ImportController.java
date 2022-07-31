@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ujar.boot.starter.restful.web.dto.ErrorResponse;
 import org.ujar.micro.k8s.bookingdb.dashboard.producer.ImportServiceProducer;
@@ -26,7 +25,6 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
 
 @RestController
 @Tag(name = "Import job controller", description = "API for job management")
-@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class ImportController {
@@ -34,7 +32,7 @@ public class ImportController {
   private final ImportServiceProducer producer;
   private final CountryRepository countryRepository;
 
-  @PostMapping(name = "/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(name = "/api/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start countries list import job.",
       responses = {
@@ -57,7 +55,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping(name = "/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(name = "/api/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start all cities list import job.",
       responses = {
@@ -81,7 +79,7 @@ public class ImportController {
     return new ResponseEntity<>(started, HttpStatus.ACCEPTED);
   }
 
-  @PostMapping(name = "/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(name = "/api/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start country cities list import job.",
       responses = {
@@ -104,7 +102,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping(name = "/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(name = "/api/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start importing all hotels in the particular cities.",
       responses = {
