@@ -26,7 +26,7 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
 
 @RestController
 @Tag(name = "Import job controller", description = "API for job management")
-@RequestMapping("/api/v1/import")
+@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class ImportController {
@@ -34,7 +34,7 @@ public class ImportController {
   private final ImportServiceProducer producer;
   private final CountryRepository countryRepository;
 
-  @PostMapping("/countries")
+  @PostMapping(name = "/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start countries list import job.",
       responses = {
@@ -57,7 +57,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping("/cities")
+  @PostMapping(name = "/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start all cities list import job.",
       responses = {
@@ -81,7 +81,7 @@ public class ImportController {
     return new ResponseEntity<>(started, HttpStatus.ACCEPTED);
   }
 
-  @PostMapping("/cities/{country}")
+  @PostMapping(name = "/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start country cities list import job.",
       responses = {
@@ -104,7 +104,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping("/hotels")
+  @PostMapping(name = "/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start importing all hotels in the particular cities.",
       responses = {

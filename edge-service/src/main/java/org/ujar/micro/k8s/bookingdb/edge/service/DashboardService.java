@@ -24,7 +24,7 @@ public class DashboardService {
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder
-            .path("/api/v1/countries")
+            .path("/api/countries")
             .queryParam("page", page)
             .queryParam("size", pageSize)
             .build()
@@ -41,7 +41,7 @@ public class DashboardService {
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder
-            .path("/api/v1/cities")
+            .path("/api/cities")
             .queryParam("page", page)
             .queryParam("size", pageSize)
             .build()
@@ -58,7 +58,7 @@ public class DashboardService {
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder
-            .path("/api/v1/hotels")
+            .path("/api/hotels")
             .queryParam("page", page)
             .queryParam("size", pageSize)
             .build()

@@ -24,13 +24,13 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.HotelRepository;
 
 @RestController
 @Tag(name = "Countries controller", description = "API for hotels management")
-@RequestMapping("/api/v1/hotels")
+@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class HotelController {
   private final HotelRepository repository;
 
-  @GetMapping("/{id}")
+  @GetMapping(name = "/hotels/{id}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve hotel by id.",
       responses = {
@@ -50,7 +50,7 @@ public class HotelController {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping
+  @GetMapping(name = "/hotels", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve all hotels (with pagination).",
       responses = {

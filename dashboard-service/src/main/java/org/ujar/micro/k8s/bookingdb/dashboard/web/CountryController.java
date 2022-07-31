@@ -24,13 +24,13 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
 
 @RestController
 @Tag(name = "Countries controller", description = "API for countries management")
-@RequestMapping("/api/v1/countries")
+@RequestMapping(name = "/api", produces = "application/vnd.bookingdb.api.v1+json")
 @Validated
 @RequiredArgsConstructor
 public class CountryController {
   private final CountryRepository repository;
 
-  @GetMapping("/{id}")
+  @GetMapping(name = "/countries/{id}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve country by id.",
       responses = {
@@ -50,7 +50,7 @@ public class CountryController {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping
+  @GetMapping(name = "/countries", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Retrieve all countries (with pagination).",
       responses = {
