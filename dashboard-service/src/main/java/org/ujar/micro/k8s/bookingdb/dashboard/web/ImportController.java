@@ -32,7 +32,7 @@ public class ImportController {
   private final ImportServiceProducer producer;
   private final CountryRepository countryRepository;
 
-  @PostMapping(name = "/api/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start countries list import job.",
       responses = {
@@ -55,7 +55,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping(name = "/api/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start all cities list import job.",
       responses = {
@@ -79,7 +79,7 @@ public class ImportController {
     return new ResponseEntity<>(started, HttpStatus.ACCEPTED);
   }
 
-  @PostMapping(name = "/api/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start country cities list import job.",
       responses = {
@@ -102,7 +102,7 @@ public class ImportController {
     );
   }
 
-  @PostMapping(name = "/api/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
   @Operation(
       description = "Start importing all hotels in the particular cities.",
       responses = {
