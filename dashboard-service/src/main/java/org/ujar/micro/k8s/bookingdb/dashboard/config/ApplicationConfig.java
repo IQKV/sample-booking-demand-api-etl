@@ -11,5 +11,5 @@ import org.ujar.micro.k8s.bookingdb.persistence.annotation.EnableBookingPersiste
 @LogbookJsonBodyFilter
 @EnableJobSupport
 @EnableBookingPersistence
-public class ApplicationConfig {
+class ApplicationConfig {
 }

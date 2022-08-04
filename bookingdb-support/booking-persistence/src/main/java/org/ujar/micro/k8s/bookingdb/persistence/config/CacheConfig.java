@@ -15,7 +15,7 @@ import org.ujar.boot.starter.cache.CacheProperties;
 
 @Configuration
 @EnableCaching
-public class CacheConfig {
+class CacheConfig {
 
   private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 

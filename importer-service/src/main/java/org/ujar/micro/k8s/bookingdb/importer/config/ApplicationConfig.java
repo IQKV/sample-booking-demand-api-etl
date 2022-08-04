@@ -15,5 +15,5 @@ import org.ujar.micro.k8s.bookingdb.persistence.annotation.EnableBookingPersiste
 @EnableBookingApiClient
 @EnableBookingPersistence
 @EnableTransactionManagement
-public class ApplicationConfig {
+class ApplicationConfig {
 }
