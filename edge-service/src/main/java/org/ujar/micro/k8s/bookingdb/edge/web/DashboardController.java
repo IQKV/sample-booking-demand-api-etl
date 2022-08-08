@@ -13,22 +13,22 @@ import reactor.core.publisher.Mono;
 
 @Controller
 @RequiredArgsConstructor
-public class DashboardController {
+class DashboardController {
 
   private final DashboardService service;
 
   @QueryMapping
-  Mono<CountryPage> countries(@Argument @NonNull Integer page, @Argument Integer size) {
+  Mono<CountryPage> countries(@Argument @NonNull final Integer page, @Argument final Integer size) {
     return service.countries(page, size);
   }
 
   @QueryMapping
-  Mono<CityPage> cities(@Argument @NonNull Integer page, @Argument Integer size) {
+  Mono<CityPage> cities(@Argument @NonNull final Integer page, @Argument final Integer size) {
     return service.cities(page, size);
   }
 
   @QueryMapping
-  Mono<HotelPage> hotels(@Argument @NonNull Integer page, @Argument Integer size) {
+  Mono<HotelPage> hotels(@Argument @NonNull final Integer page, @Argument final Integer size) {
     return service.hotels(page, size);
   }
 }

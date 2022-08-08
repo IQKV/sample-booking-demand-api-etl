@@ -25,7 +25,7 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
 @Tag(name = "Countries controller", description = "API for countries management")
 @Validated
 @RequiredArgsConstructor
-public class CountryController {
+class CountryController {
   private final CountryRepository repository;
 
   @GetMapping(path = "/api/countries/{id}", produces = "application/vnd.bookingdb.api.v1+json")
@@ -44,7 +44,7 @@ public class CountryController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<Country> findById(@PathVariable final Long id) {
+  ResponseEntity<Country> findById(@PathVariable final Long id) {
     return ResponseEntity.of(repository.findById(id));
   }
 
@@ -61,7 +61,7 @@ public class CountryController {
                        description = "Bad request",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
       })
-  public ResponseEntity<Page<Country>> findAll(@ParameterObject @Valid PageRequestDto request) {
+  ResponseEntity<Page<Country>> findAll(@ParameterObject @Valid final PageRequestDto request) {
     final var pageRequest = PageRequest.of(request.getPage(), request.getSize());
     return new ResponseEntity<>(repository.findAll(pageRequest), HttpStatus.OK);
   }

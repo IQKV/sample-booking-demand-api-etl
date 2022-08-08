@@ -25,7 +25,7 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.HotelRepository;
 @Tag(name = "Countries controller", description = "API for hotels management")
 @Validated
 @RequiredArgsConstructor
-public class HotelController {
+class HotelController {
   private final HotelRepository repository;
 
   @GetMapping(path = "/api/hotels/{id}", produces = "application/vnd.bookingdb.api.v1+json")
@@ -44,7 +44,7 @@ public class HotelController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<Hotel> findById(@PathVariable final Long id) {
+  ResponseEntity<Hotel> findById(@PathVariable final Long id) {
     return ResponseEntity.of(repository.findById(id));
   }
 
@@ -61,7 +61,7 @@ public class HotelController {
                        description = "Bad request",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
       })
-  public ResponseEntity<Page<Hotel>> findAll(@ParameterObject @Valid PageRequestDto request) {
+  ResponseEntity<Page<Hotel>> findAll(@ParameterObject @Valid PageRequestDto request) {
     final var pageRequest = PageRequest.of(request.getPage(), request.getSize());
     return new ResponseEntity<>(repository.findAll(pageRequest), HttpStatus.OK);
   }

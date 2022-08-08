@@ -27,7 +27,7 @@ import org.ujar.micro.k8s.bookingdb.persistence.repository.CountryRepository;
 @Tag(name = "Import job controller", description = "API for job management")
 @Validated
 @RequiredArgsConstructor
-public class ImportController {
+class ImportController {
 
   private final ImportServiceProducer producer;
   private final CountryRepository countryRepository;
@@ -48,7 +48,7 @@ public class ImportController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<JobParameters> countries() {
+  ResponseEntity<JobParameters> countries() {
     return new ResponseEntity<>(
         producer.startImportCountries(CountriesImportParameters.builder().build()),
         HttpStatus.ACCEPTED
@@ -71,8 +71,8 @@ public class ImportController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<List<JobParameters>> cities() {
-    var started = countryRepository.findAll().stream()
+  ResponseEntity<List<JobParameters>> cities() {
+    final var started = countryRepository.findAll().stream()
         .map(Country::getCountry)
         .map(this::startCitiesImport)
         .toList();
@@ -95,7 +95,7 @@ public class ImportController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<JobParameters> cities(@PathVariable String country) {
+  ResponseEntity<JobParameters> cities(@PathVariable String country) {
     return new ResponseEntity<>(
         startCitiesImport(country),
         HttpStatus.ACCEPTED
@@ -118,14 +118,14 @@ public class ImportController {
                        description = "Not found",
                        content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
       })
-  public ResponseEntity<JobParameters> hotels(@RequestBody List<Long> cityIds) {
+  ResponseEntity<JobParameters> hotels(@RequestBody final List<Long> cityIds) {
     return new ResponseEntity<>(
         producer.startImportHotels(HotelsImportParameters.builder().cityIds(cityIds).build()),
         HttpStatus.ACCEPTED
     );
   }
 
-  private JobParameters startCitiesImport(String country) {
+  private JobParameters startCitiesImport(final String country) {
     return producer.startImportCities(
         CitiesImportParameters.builder()
         .country(country)
