@@ -1,26 +1,33 @@
 package org.ujar.micro.k8s.bookingdb.jobs.amqp;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
 
-@Data
 @Validated
 @ConstructorBinding
 @ConfigurationProperties(prefix = "bookingdb.queues")
-public class AmqpQueuesProperties {
+public record AmqpQueuesProperties(
+    @NonNull String importExchange,
+    @NonNull String importCountriesQueue,
+    @NonNull String importCitiesQueue,
+    @NonNull String importHotelsQueue
+) {
 
-  @NonNull
-  private final String importExchange;
+  public String getImportExchange() {
+    return importExchange();
+  }
 
-  @NonNull
-  private final String importCountriesQueue;
+  public String getImportCountriesQueue() {
+    return importCountriesQueue();
+  }
 
-  @NonNull
-  private final String importCitiesQueue;
+  public String getImportCitiesQueue() {
+    return importCitiesQueue();
+  }
 
-  @NonNull
-  private final String importHotelsQueue;
+  public String getImportHotelsQueue() {
+    return importHotelsQueue();
+  }
 }
