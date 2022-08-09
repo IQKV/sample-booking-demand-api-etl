@@ -1,6 +1,7 @@
 package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Country {
 
   @JsonIgnoreProperties("country")
   @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-  private Set<City> cities;
+  private Set<City> cities = new HashSet<>();
 
   @Override
   public String toString() {

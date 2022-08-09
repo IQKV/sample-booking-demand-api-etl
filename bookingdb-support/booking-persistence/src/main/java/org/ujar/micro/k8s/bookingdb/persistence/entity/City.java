@@ -2,6 +2,7 @@ package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -42,7 +43,7 @@ public class City {
 
   @JsonIgnoreProperties("city")
   @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-  private Set<Hotel> hotels;
+  private Set<Hotel> hotels = new HashSet<>();
 
   @Override
   public String toString() {

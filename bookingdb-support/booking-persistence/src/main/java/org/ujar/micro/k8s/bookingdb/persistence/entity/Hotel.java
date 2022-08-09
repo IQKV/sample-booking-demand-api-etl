@@ -2,6 +2,7 @@ package org.ujar.micro.k8s.bookingdb.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -38,7 +39,7 @@ public class Hotel {
   @JsonProperty(value = "hotel_data")
   @Column(name = "hotel_data", columnDefinition = "json")
   @Convert(converter = HashMapConverter.class)
-  private Map<String, Object> data;
+  private Map<String, Object> data = new HashMap<>();
 
   private Long countryId;
 
