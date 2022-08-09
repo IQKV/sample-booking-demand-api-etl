@@ -15,7 +15,7 @@ public class BookingcomNetClient extends AbstractNetClient {
    * Returns all counties the where booking.com offers hotels.
    */
   public String getCountries(Integer rows, Integer offset) {
-    var queryParams = Map.of(
+    final var queryParams = Map.of(
         "languages", LANGUAGE_CODE,
         "rows", rows.toString(),
         "offset", offset.toString());
@@ -26,7 +26,7 @@ public class BookingcomNetClient extends AbstractNetClient {
    * Returns a list of cities where Booking.com offers hotels.
    */
   public String getCities(String countryCode, Integer rows, Integer offset) {
-    var queryParams = Map.of(
+    final var queryParams = Map.of(
         "languages", LANGUAGE_CODE,
         "rows", rows.toString(),
         "offset", offset.toString(),
@@ -38,7 +38,7 @@ public class BookingcomNetClient extends AbstractNetClient {
    * Returns a list of hotels.
    */
   public String getHotels(Long cityId, Integer rows, Integer offset) {
-    var queryParams = Map.of(
+    final var queryParams = Map.of(
         "rows", rows.toString(),
         "offset", offset.toString(),
         "city_ids", cityId.toString(),

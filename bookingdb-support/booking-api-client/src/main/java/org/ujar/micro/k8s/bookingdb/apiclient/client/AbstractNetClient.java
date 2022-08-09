@@ -24,20 +24,20 @@ public class AbstractNetClient {
   }
 
   protected String doRequest(String uriPath, Map<String, String> queryParams) {
-    var uriBuilder = UriComponentsBuilder.newInstance()
+    final var uriBuilder = UriComponentsBuilder.newInstance()
         .scheme(properties.getApiSchema())
         .host(properties.apiHost())
         .path(properties.getApiPath());
     for (var queryParam : queryParams.entrySet()) {
       uriBuilder.queryParam(queryParam.getKey(), queryParam.getValue());
     }
-    var uri = uriBuilder.buildAndExpand(
+    final var uri = uriBuilder.buildAndExpand(
         properties.getVersion(), properties.outputFormat(), uriPath
     ).toUri();
-    var auth = properties.getUsername() + ':' + properties.getPassword();
-    var encoded = Base64.getEncoder().encodeToString(auth.getBytes());
+    final var auth = properties.getUsername() + ':' + properties.getPassword();
+    final var encoded = Base64.getEncoder().encodeToString(auth.getBytes());
     int maxAge = 60 * 60 * 5;
-    var request = HttpRequest.newBuilder()
+    final var request = HttpRequest.newBuilder()
         .uri(uri)
         .headers(
             "Content-Type", "text/" + properties.getOutputFormat() + "; charset=utf-8",

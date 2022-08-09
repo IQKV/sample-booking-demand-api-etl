@@ -20,7 +20,7 @@ public class DashboardService {
     if (size == null) {
       size = 10;
     }
-    var pageSize = size;
+    final var pageSize = size;
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder
@@ -37,7 +37,7 @@ public class DashboardService {
     if (size == null) {
       size = 10;
     }
-    var pageSize = size;
+    final var pageSize = size;
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder
@@ -54,7 +54,7 @@ public class DashboardService {
     if (size == null) {
       size = 10;
     }
-    var pageSize = size;
+    final var pageSize = size;
     return WebClient.builder()
         .baseUrl(properties.dashboardService()).build().get()
         .uri(uriBuilder -> uriBuilder

@@ -58,7 +58,7 @@ public class HotelImporterServiceImpl implements HotelImporterService {
       if (entities != null && !entities.isEmpty()) {
         entities.forEach(hotel -> {
           hotel.setCity(city);
-          var hotelId = hotel.getHotelId();
+          final var hotelId = hotel.getHotelId();
           hotelRepository.deleteByHotelId(hotelId);
           hotelRepository.saveAndFlush(hotel);
         });

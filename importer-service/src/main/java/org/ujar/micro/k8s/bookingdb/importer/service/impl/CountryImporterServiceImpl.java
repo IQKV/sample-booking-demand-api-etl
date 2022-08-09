@@ -54,8 +54,8 @@ public class CountryImporterServiceImpl implements CountryImporterService {
       });
 
       if (entities != null) {
-        var countryCodes = entities.stream().map(Country::getCountry).toList();
-        var byCode = countryRepository.findAllByCountryIn(countryCodes)
+        final var countryCodes = entities.stream().map(Country::getCountry).toList();
+        final var byCode = countryRepository.findAllByCountryIn(countryCodes)
             .stream()
             .collect(Collectors.toMap(Country::getCountry, Function.identity()));
 

@@ -32,12 +32,12 @@ public class CityImporterServiceImpl implements CityImporterService {
 
   @Transactional
   @Override
-  public void importCities(String countryCode) {
-    var country = countryRepository.findOneByCountry(countryCode)
+  public void importCities(final String countryCode) {
+    final var country = countryRepository.findOneByCountry(countryCode)
         .orElseThrow(IllegalArgumentException::new);
 
     String body;
-    List<City> entities = new ArrayList<>();
+    final List<City> entities = new ArrayList<>();
     int offset = 0;
     do {
       body = client.getCities(countryCode, LIMIT, offset);
@@ -57,8 +57,8 @@ public class CityImporterServiceImpl implements CityImporterService {
         entities.add(new City(null, node.get("name").textValue(), node.get("city_id").longValue(), country, Set.of()));
       }
 
-      var internalCityIds = entities.stream().map(City::getCityId).toList();
-      var byCityId = cityRepository.findAllByCityIdIn(internalCityIds)
+      final var internalCityIds = entities.stream().map(City::getCityId).toList();
+      final var byCityId = cityRepository.findAllByCityIdIn(internalCityIds)
           .stream()
           .collect(Collectors.toMap(City::getCityId, Function.identity()));
 
