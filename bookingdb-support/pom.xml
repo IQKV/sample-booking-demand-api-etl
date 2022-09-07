@@ -4,14 +4,14 @@
 
     <groupId>org.ujar.micro.k8s.bookingdb</groupId>
     <artifactId>bookingdb-support</artifactId>
-    <version>0.10.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bookingdb-support</name>
     <parent>
         <groupId>org.ujar.micro.k8s.bookingdb</groupId>
         <artifactId>bookingdb</artifactId>
-        <version>0.10.0-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <properties>
