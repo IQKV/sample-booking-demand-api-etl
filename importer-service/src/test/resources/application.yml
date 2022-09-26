@@ -48,7 +48,7 @@ embedded :
   rabbitmq :
     enabled : true
     reuse-container : true
-    docker-image : rabbitmq:3.8-management-alpine
+    docker-image : rabbitmq:3.9-management-alpine
 
 bookingdb :
   net-client :

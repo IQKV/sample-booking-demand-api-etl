@@ -2,7 +2,7 @@
 version : '3.8'
 services :
   mysql :
-    image : mysql:5.7.34
+    image : mysql:5.7.39
     container_name : bookingdb-demo-mysql
     restart : unless-stopped
     environment :
@@ -14,7 +14,7 @@ services :
 
   rabbitmq :
     container_name : bookingdb-demo-rabbitmq
-    image : rabbitmq:3.8-management-alpine
+    image : rabbitmq:3.9-management-alpine
     restart : unless-stopped
     ports :
       # AMQP protocol port
