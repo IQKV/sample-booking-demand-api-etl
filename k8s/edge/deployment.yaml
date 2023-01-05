@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : edge-service
-          image : docker-registry.ujar.org/ujar/micro-k8s-bookingdb-edge-service:latest
+          image : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-edge-service:latest
           imagePullPolicy: Always
           ports :
             - containerPort : 8080

@@ -1,6 +1,6 @@
 ## Booking.com Static Data Handling Microservices
 
-[![Build Status](https://drone.ujar.org/api/badges/ujar-org/micro-k8s-bookingdb/status.svg)](https://drone.ujar.org/ujar-org/micro-k8s-bookingdb)
+[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/micro-k8s-bookingdb/status.svg)](https://drone.c2a2.com/ujar-org/micro-k8s-bookingdb)
 
 This example shows how to create a microservices architecture and deploy it with Kubernetes.
 
@@ -78,7 +78,7 @@ cd ./micro-k8s-bookingdb/scripts/
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Amicro-oss-acmedepartments)
+- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Amicro-oss-acmedepartments)
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)
