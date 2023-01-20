@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : dashboard-service
-          image : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-dashboard-service:latest
+          image : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service:latest
           imagePullPolicy: Always
           ports :
             - containerPort : 8080

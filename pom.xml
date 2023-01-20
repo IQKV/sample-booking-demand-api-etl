@@ -32,7 +32,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/ujar-org/micro-k8s-bookingdb.git</connection>
+        <connection>scm:git:https://github.com/ujar-org/bs-dst-k8s-bookingdb.git</connection>
         <tag>HEAD</tag>
     </scm>
 

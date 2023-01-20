@@ -1,6 +1,6 @@
 ## Booking.com Static Data Handling Microservices
 
-[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/micro-k8s-bookingdb/status.svg)](https://drone.c2a2.com/ujar-org/micro-k8s-bookingdb)
+[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/bs-dst-k8s-bookingdb/status.svg)](https://drone.c2a2.com/ujar-org/bs-dst-k8s-bookingdb)
 
 This example shows how to create a microservices architecture and deploy it with Kubernetes.
 
@@ -34,42 +34,42 @@ logbook, micrometer, _checkstyle_ configuration, SpotBugs, PMD etc.
 ### Start Kubernetes cluster
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./start-cluster.sh
 ```
 
 ### Configure Kubernetes cluster
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./setup-cluster.sh
 ```
 
 ### Deploy application to Kubernetes cluster
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./install-all.sh
 ```
 
 ### Undeploy application from Kubernetes cluster
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./delete-all.sh
 ```
 
 ### Delete Application specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./destroy-cluster.sh
 ```
 
 ### Stop Kubernetes cluster
 
 ```bash
-cd ./micro-k8s-bookingdb/scripts/
+cd ./bs-dst-k8s-bookingdb/scripts/
 ./stop-cluster.sh
 ```
 
@@ -78,7 +78,7 @@ cd ./micro-k8s-bookingdb/scripts/
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Amicro-oss-acmedepartments)
+- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-dst-k8s-bookingdb)
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)

@@ -60,7 +60,7 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-init-container-service
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service
       registry : docker-registry.c2a2.com
       tags :
         - latest
@@ -84,7 +84,7 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-edge-service
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-edge-service
       registry : docker-registry.c2a2.com
       tags :
         - latest
@@ -108,7 +108,7 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-dashboard-service
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service
       registry : docker-registry.c2a2.com
       tags :
         - latest
@@ -132,7 +132,7 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/ujar/micro-k8s-bookingdb-importer-service
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service
       registry : docker-registry.c2a2.com
       tags :
         - latest
