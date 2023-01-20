@@ -26,31 +26,31 @@ services :
       - RABBITMQ_DEFAULT_PASS=demo
 
 
-  bookingdb-init-container-service:
-    image: "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service:latest"
-    container_name: bookingdb-demo-init-container-service
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 3
+  bookingdb-init-container-service :
+    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service:latest"
+    container_name : bookingdb-demo-init-container-service
+    deploy :
+      restart_policy :
+        condition : on-failure
+        max_attempts : 3
     depends_on :
       - mysql
-    environment:
+    environment :
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
 
-  bookingdb-dashboard-service:
-    image: "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service:latest"
-    container_name: bookingdb-demo-dashboard-service
-    restart: unless-stopped
+  bookingdb-dashboard-service :
+    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service:latest"
+    container_name : bookingdb-demo-dashboard-service
+    restart : unless-stopped
     depends_on :
       - mysql
       - rabbitmq
       - bookingdb-init-container-service
     ports :
       - "8080:8080"
-    environment:
+    environment :
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
@@ -59,10 +59,10 @@ services :
       - RABBITMQ_USERNAME=demo
       - RABBITMQ_PASSWORD=demo
 
-  bookingdb-importer-service:
-    image: "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service:latest"
-    container_name: bookingdb-demo-importer-service
-    restart: unless-stopped
+  bookingdb-importer-service :
+    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service:latest"
+    container_name : bookingdb-demo-importer-service
+    restart : unless-stopped
     depends_on :
       - mysql
       - rabbitmq
@@ -70,7 +70,7 @@ services :
       - bookingdb-dashboard-service
     ports :
       - "8081:8080"
-    environment:
+    environment :
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db

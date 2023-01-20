@@ -11,9 +11,9 @@ management :
   endpoints :
     enabled-by-default : true
 
-server:
+server :
   port : 2999
 
-ujar:
-  services:
-    dashboard-service: http://localhost:3000
+ujar :
+  services :
+    dashboard-service : http://localhost:3000

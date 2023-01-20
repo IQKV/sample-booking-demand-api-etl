@@ -69,6 +69,6 @@ management :
     info :
       enabled : true
 
-ujar:
-  services:
-    dashboard-service: ${DASHBOARD_SERVICE_URL:http://dashboard-service}
+ujar :
+  services :
+    dashboard-service : ${DASHBOARD_SERVICE_URL:http://dashboard-service}

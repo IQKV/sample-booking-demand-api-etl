@@ -17,5 +17,5 @@ management :
   endpoints :
     enabled-by-default : true
 
-server:
+server :
   port : 2998

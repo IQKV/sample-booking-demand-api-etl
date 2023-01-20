@@ -35,11 +35,11 @@ spring :
       hibernate.cache.use_query_cache : false
       hibernate.generate_statistics : false
     show-sql : false
-  rabbitmq:
-    host: ${RABBITMQ_HOST:${embedded.rabbitmq.host:localhost}}
-    port: ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
-    username: ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:sa_test}}
-    password: ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:sa_test}}
+  rabbitmq :
+    host : ${RABBITMQ_HOST:${embedded.rabbitmq.host:localhost}}
+    port : ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
+    username : ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:sa_test}}
+    password : ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:sa_test}}
 
 embedded :
   mysql :
@@ -52,18 +52,18 @@ embedded :
 
 bookingdb :
   net-client :
-    username:
-    password:
+    username :
+    password :
     api-host : distribution-xml.booking.com
     api-schema : https
     api-path : /{version}/{outputFormat}/{path}
-    version: 2.6
-    output-format: json
+    version : 2.6
+    output-format : json
     connect-timeout : 1  # in sec.
     request-timeout : 2
 
   queues :
-    import-exchange: import-jobs-exchange
-    import-countries-queue: import-countries-queue
-    import-cities-queue: import-cities-queue
-    import-hotels-queue: import-hotels-queue
+    import-exchange : import-jobs-exchange
+    import-countries-queue : import-countries-queue
+    import-cities-queue : import-cities-queue
+    import-hotels-queue : import-hotels-queue
