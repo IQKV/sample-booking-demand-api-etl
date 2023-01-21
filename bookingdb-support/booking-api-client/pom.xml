@@ -11,7 +11,7 @@
 
 
     <parent>
-        <groupId>org.ujar.bs.dst.k8s</groupId>
+        <groupId>org.ujar.bs.dst</groupId>
         <artifactId>bookingdb-support</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
