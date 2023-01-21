@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dashboard-service</artifactId>
+    <artifactId>bs-dst-k8s-dashboard-service</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>dashboard-service</name>
+    <name>dbs-dst-k8s-ashboard-service</name>
     <description>Admin REST API Service</description>
 
     <parent>
