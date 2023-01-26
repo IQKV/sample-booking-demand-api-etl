@@ -1,6 +1,6 @@
 ## Booking.com Static Data Handling Microservices
 
-[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/bs-dst-k8s-bookingdb/status.svg)](https://drone.c2a2.com/ujar-org/bs-dst-k8s-bookingdb)
+[![Build Status](http://iaolg9igjr3tghootxslfe.webrelay.io/api/badges/ujar-org/bs-dst-k8s-bookingdb/status.svg)](http://iaolg9igjr3tghootxslfe.webrelay.io/ujar-org/bs-dst-k8s-bookingdb)
 
 This example shows how to create a microservices architecture and deploy it with Kubernetes.
 
