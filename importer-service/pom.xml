@@ -10,7 +10,7 @@
     <description>Import GEO data form Booking.com API</description>
 
     <parent>
-        <groupId>org.ujar.bs.dst</groupId>
+        <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
         <artifactId>bs-dst-k8s-bookingdb</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
@@ -24,17 +24,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ujar.bs.dst</groupId>
+            <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
             <artifactId>booking-api-client</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.ujar.bs.dst</groupId>
+            <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
             <artifactId>batch-job</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.ujar.bs.dst</groupId>
+            <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
             <artifactId>booking-persistence</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

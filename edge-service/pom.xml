@@ -10,7 +10,7 @@
     <description>Update database structure using Liquibase</description>
 
     <parent>
-        <groupId>org.ujar.bs.dst</groupId>
+        <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
         <artifactId>bs-dst-k8s-bookingdb</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
