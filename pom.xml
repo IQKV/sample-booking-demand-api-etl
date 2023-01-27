@@ -31,11 +31,6 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:https://github.com/ujar-org/bs-dst-k8s-bookingdb.git</connection>
-        <tag>HEAD</tag>
-    </scm>
-
     <parent>
         <groupId>org.ujar.parent</groupId>
         <artifactId>ujar-parent-pom</artifactId>
