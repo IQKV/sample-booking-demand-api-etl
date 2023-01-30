@@ -77,7 +77,7 @@ cd ./bs-dst-k8s-bookingdb/scripts/
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-dst-k8s-bookingdb)
+- Sonarqube
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)
