@@ -53,7 +53,7 @@ steps :
   - name : docker-build-dev-init-container-service
     image : plugins/docker
     settings :
-      dockerfile : init-container-service/Dockerfile
+      dockerfile : .drone/c2a2/Dockerfile
       context : ./init-container-service/
       storage_driver : vfs
       username :
@@ -77,7 +77,7 @@ steps :
   - name : docker-build-dev-edge-service
     image : plugins/docker
     settings :
-      dockerfile : edge-service/Dockerfile
+      dockerfile : .drone/c2a2/Dockerfile
       context : ./edge-service/
       storage_driver : vfs
       username :
@@ -101,7 +101,7 @@ steps :
   - name : docker-build-dev-dashboard-service
     image : plugins/docker
     settings :
-      dockerfile : dashboard-service/Dockerfile
+      dockerfile : .drone/c2a2/Dockerfile
       context : ./dashboard-service/
       storage_driver : vfs
       username :
@@ -125,7 +125,7 @@ steps :
   - name : docker-build-dev-importer-service
     image : plugins/docker
     settings :
-      dockerfile : importer-service/Dockerfile
+      dockerfile : .drone/c2a2/Dockerfile
       context : ./importer-service/
       storage_driver : vfs
       username :
