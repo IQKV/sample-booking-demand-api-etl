@@ -5,7 +5,6 @@ type : docker
 
 trigger :
   branch :
-    - main
     - develop
     - feature/*
   event :
@@ -43,7 +42,6 @@ steps :
     when :
       branch :
         include :
-          - main
           - develop
           - feature/*
       event :
@@ -67,7 +65,6 @@ steps :
     when :
       branch :
         include :
-          - main
           - develop
           - feature/*
       event :
@@ -91,7 +88,6 @@ steps :
     when :
       branch :
         include :
-          - main
           - develop
           - feature/*
       event :
@@ -115,7 +111,6 @@ steps :
     when :
       branch :
         include :
-          - main
           - develop
           - feature/*
       event :
@@ -139,7 +134,6 @@ steps :
     when :
       branch :
         include :
-          - main
           - develop
           - feature/*
       event :
