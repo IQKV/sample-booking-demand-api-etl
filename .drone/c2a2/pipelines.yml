@@ -16,7 +16,7 @@ volumes :
       path : /app/.m2
 steps :
 
-  - name : build-and-deploy
+  - name : CI
     image : docker-registry.c2a2.com/ujar/maven:3-openjdk-17-slim
     pull : if-not-exists
     volumes :
