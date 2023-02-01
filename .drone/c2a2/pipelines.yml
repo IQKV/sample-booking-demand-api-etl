@@ -4,11 +4,9 @@ name : CI
 type : docker
 
 trigger :
-  branch :
-    - develop
-    - feature/*
   event :
     - push
+    - tag
 
 volumes :
   - name : m2cache

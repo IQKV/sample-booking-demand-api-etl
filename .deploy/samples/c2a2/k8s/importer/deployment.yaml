@@ -19,7 +19,7 @@ spec :
       containers :
         - name : importer-service
           image : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service:latest
-          imagePullPolicy: Always
+          imagePullPolicy : Always
           ports :
             - containerPort : 8080
           env :
@@ -78,24 +78,24 @@ spec :
           readinessProbe :
             httpGet :
               port : 8080
-              path: /actuator/health/readiness
+              path : /actuator/health/readiness
             initialDelaySeconds : 120
             timeoutSeconds : 120
             periodSeconds : 50
             failureThreshold : 10
           livenessProbe :
-            httpGet:
-              port: 8080
-              path: /actuator/health/liveness
+            httpGet :
+              port : 8080
+              path : /actuator/health/liveness
             initialDelaySeconds : 120
             timeoutSeconds : 120
             periodSeconds : 50
             failureThreshold : 10
-          startupProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health/readiness
-            initialDelaySeconds: 120
+          startupProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 120
       serviceAccountName : api-service-account
 ---
 apiVersion : v1

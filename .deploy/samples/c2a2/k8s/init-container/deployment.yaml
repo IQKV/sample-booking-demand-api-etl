@@ -19,7 +19,7 @@ spec :
       containers :
         - name : init-container-service
           image : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service:latest
-          imagePullPolicy: Always
+          imagePullPolicy : Always
           ports :
             - containerPort : 8080
           env :
@@ -48,24 +48,24 @@ spec :
           readinessProbe :
             httpGet :
               port : 8080
-              path: /actuator/health/readiness
+              path : /actuator/health/readiness
             initialDelaySeconds : 50
             timeoutSeconds : 2
             periodSeconds : 20
             failureThreshold : 5
           livenessProbe :
-            httpGet:
-              port: 8080
-              path: /actuator/health/liveness
+            httpGet :
+              port : 8080
+              path : /actuator/health/liveness
             initialDelaySeconds : 50
             timeoutSeconds : 2
             periodSeconds : 20
             failureThreshold : 5
-          startupProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health/readiness
-            initialDelaySeconds: 5
+          startupProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 5
       serviceAccountName : api-service-account
 ---
 apiVersion : v1
