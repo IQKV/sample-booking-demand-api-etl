@@ -14,7 +14,7 @@ volumes :
       path : /app/.m2
 steps :
 
-  - name : build-and-publish
+  - name : build-and-publish-snapshot
     image : docker-registry.c2a2.com/ujar/maven:3-openjdk-17-slim
     pull : if-not-exists
     volumes :
@@ -46,7 +46,7 @@ steps :
         exclude :
           - pull_request
 
-  - name : docker-build-dev-init-container-service
+  - name : build-container-snapshot-init-container-service
     image : plugins/docker
     settings :
       dockerfile : .drone/c2a2/Dockerfile
@@ -69,7 +69,7 @@ steps :
         exclude :
           - pull_request
 
-  - name : docker-build-dev-edge-service
+  - name : build-container-snapshot-edge-service
     image : plugins/docker
     settings :
       dockerfile : .drone/c2a2/Dockerfile
@@ -92,7 +92,7 @@ steps :
         exclude :
           - pull_request
 
-  - name : docker-build-dev-dashboard-service
+  - name : build-container-snapshot-dashboard-service
     image : plugins/docker
     settings :
       dockerfile : .drone/c2a2/Dockerfile
@@ -115,7 +115,7 @@ steps :
         exclude :
           - pull_request
 
-  - name : docker-build-dev-importer-service
+  - name : build-container-snapshot-importer-service
     image : plugins/docker
     settings :
       dockerfile : .drone/c2a2/Dockerfile
