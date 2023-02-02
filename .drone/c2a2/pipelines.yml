@@ -42,9 +42,6 @@ steps :
         include :
           - develop
           - feature/*
-      event :
-        exclude :
-          - pull_request
 
   - name : build-container-snapshot-init-container-service
     image : plugins/docker
@@ -65,9 +62,6 @@ steps :
         include :
           - develop
           - feature/*
-      event :
-        exclude :
-          - pull_request
 
   - name : build-container-snapshot-edge-service
     image : plugins/docker
@@ -88,9 +82,6 @@ steps :
         include :
           - develop
           - feature/*
-      event :
-        exclude :
-          - pull_request
 
   - name : build-container-snapshot-dashboard-service
     image : plugins/docker
@@ -111,9 +102,6 @@ steps :
         include :
           - develop
           - feature/*
-      event :
-        exclude :
-          - pull_request
 
   - name : build-container-snapshot-importer-service
     image : plugins/docker
@@ -134,9 +122,78 @@ steps :
         include :
           - develop
           - feature/*
-      event :
-        exclude :
-          - pull_request
+
+  - name : build-container-release-init-container-service
+    image : plugins/docker
+    settings :
+      dockerfile : .drone/c2a2/Dockerfile
+      context : ./init-container-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service
+      registry : docker-registry.c2a2.com
+      tags :
+        - 0.1.0
+    when :
+      ref :
+        - refs/tags/*
+
+  - name : build-container-release-edge-service
+    image : plugins/docker
+    settings :
+      dockerfile : .drone/c2a2/Dockerfile
+      context : ./edge-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-edge-service
+      registry : docker-registry.c2a2.com
+      tags :
+        - 0.1.0
+    when :
+      ref :
+        - refs/tags/*
+
+  - name : build-container-release-dashboard-service
+    image : plugins/docker
+    settings :
+      dockerfile : .drone/c2a2/Dockerfile
+      context : ./dashboard-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service
+      registry : docker-registry.c2a2.com
+      tags :
+        - 0.1.0
+    when :
+      ref :
+        - refs/tags/*
+
+  - name : build-container-release-importer-service
+    image : plugins/docker
+    settings :
+      dockerfile : .drone/c2a2/Dockerfile
+      context : ./importer-service/
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service
+      registry : docker-registry.c2a2.com
+      tags :
+        - 0.1.0
+    when :
+      ref :
+        - refs/tags/*
 
 services :
   - name : db
