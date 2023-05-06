@@ -13,12 +13,14 @@ spring :
     livereload :
       enabled : false
 
+  liquibase :
+    change-log : migrations/master.xml
   datasource :
     type : com.zaxxer.hikari.HikariDataSource
     driver-class-name : ${DATASOURCE_DRIVER:org.h2.Driver}
-    url : ${DATASOURCE_URL:jdbc:h2:mem:sa_test_db}
-    username : ${DATASOURCE_USERNAME:sa_test}
-    password : ${DATASOURCE_PASSWORD:sa_test}
+    url : ${DATASOURCE_URL:jdbc:h2:mem:svc_testing_db}
+    username : ${DATASOURCE_USERNAME:svc_testing}
+    password : ${DATASOURCE_PASSWORD:svc_testing}
     hikari :
       pool-name : Hikari
       auto-commit : false
@@ -26,7 +28,7 @@ spring :
     hibernate :
       ddl-auto : none
       naming :
-        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     open-in-view : true
     properties :

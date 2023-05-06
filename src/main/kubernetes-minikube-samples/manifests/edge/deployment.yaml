@@ -1,0 +1,73 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata :
+  name : edge-service
+  labels :
+    app : edge-service
+spec :
+  replicas : 1
+  strategy :
+    type : RollingUpdate
+  selector :
+    matchLabels :
+      app : edge-service
+  template :
+    metadata :
+      labels :
+        app : edge-service
+    spec :
+      containers :
+        - name : edge-service
+          image : docker-registry.continuousdelivery.store/sample-bookingdb-mix-edge-service:latest
+          imagePullPolicy : Always
+          ports :
+            - containerPort : 8080
+          env :
+            - name : DASHBOARD_SERVICE_URL
+              valueFrom :
+                configMapKeyRef :
+                  name : edge-service
+                  key : dashboard-service-url
+          resources :
+            requests :
+              cpu : "0.2"
+              memory : 300Mi
+            limits :
+              cpu : "1.0"
+              memory : 300Mi
+          readinessProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 50
+            timeoutSeconds : 2
+            periodSeconds : 20
+            failureThreshold : 5
+          livenessProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/liveness
+            initialDelaySeconds : 50
+            timeoutSeconds : 2
+            periodSeconds : 20
+            failureThreshold : 5
+          startupProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 5
+      serviceAccountName : api-service-account
+---
+apiVersion : v1
+kind : Service
+metadata :
+  name : edge-service
+  labels :
+    app : edge-service
+spec :
+  ports :
+    - port : 8080
+      targetPort : 8080
+      protocol : TCP
+  selector :
+    app : edge-service

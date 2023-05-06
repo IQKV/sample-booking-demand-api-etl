@@ -2,17 +2,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bs-dst-k8s-batch-job</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <artifactId>batch-job</artifactId>
+    <version>23.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>bs-dst-k8s-batch-job</name>
+    <name>batch-job</name>
     <description>Batch Jobs Support</description>
 
     <parent>
-        <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
-        <artifactId>bs-dst-k8s-bookingdb-support</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+        <artifactId>bookingdb-support</artifactId>
+        <version>23.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -24,12 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-amqp</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>annotations</artifactId>
+            <artifactId>boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,5 +1,5 @@
 git :
-  commit : '@git.commit.id@'
+  commit : '@git.commit.id.abbrev@'
   build_time : '@git.build.time@'
 
 info :
@@ -22,21 +22,7 @@ spring :
 logging :
   level :
     ROOT : ${LOGGING_LEVEL_ROOT:INFO}
-    org.zalando.logbook.Logbook : TRACE
 
-logbook :
-  filter :
-    enabled : true
-  format :
-    style : json
-  obfuscate :
-    headers :
-      - Authorization
-      - X-Secret
-    parameters :
-      - access_token
-      - password
-  minimum-status : ${MINIMUM_STATUS_LOG_BODY:400}
 
 server :
   port : ${SERVER_PORT:8080}
@@ -64,11 +50,10 @@ management :
       show-details : always
       probes :
         enabled : true
-    prometheus :
-      enabled : true
     info :
       enabled : true
-
+    prometheus :
+      enabled : true
 ujar :
   services :
     dashboard-service : ${DASHBOARD_SERVICE_URL:http://dashboard-service}

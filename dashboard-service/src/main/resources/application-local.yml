@@ -25,3 +25,6 @@ management :
 
 server :
   port : 3000
+
+springdoc :
+  show-actuator : true

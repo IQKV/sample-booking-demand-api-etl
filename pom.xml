@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar.bs.dst.k8s.bookingdb</groupId>
-    <artifactId>bs-dst-k8s-bookingdb</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+    <artifactId>bookingdb</artifactId>
+    <version>23.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>bs-dst-k8s-bookingdb</name>
+    <name>bookingdb</name>
     <description>Sample Spring Boot application that uses some features provided by Spring Cloud, deployed on Kubernetes</description>
     <licenses>
         <license>
@@ -32,9 +32,9 @@
     </developers>
 
     <parent>
-        <groupId>org.ujar.parent</groupId>
-        <artifactId>ujar-parent-pom</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <groupId>org.ujar.boot</groupId>
+        <artifactId>boot-parent-pom</artifactId>
+        <version>23.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -51,30 +51,27 @@
         <module>importer-service</module>
     </modules>
 
+    <dependencyManagement>
+     <dependencies>
+         <dependency>
+             <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+             <artifactId>batch-job</artifactId>
+             <version>${project.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+             <artifactId>booking-persistence</artifactId>
+             <version>${project.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+             <artifactId>booking-api-client</artifactId>
+             <version>${project.version}</version>
+         </dependency>
+     </dependencies>
+    </dependencyManagement>
+
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <release>${java.version}</release>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

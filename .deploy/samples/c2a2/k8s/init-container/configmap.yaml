@@ -1,6 +1,0 @@
-apiVersion : v1
-kind : ConfigMap
-metadata :
-  name : init-container-service
-data :
-  datasource-url : jdbc:mysql://mysql:3306/sa_test_db

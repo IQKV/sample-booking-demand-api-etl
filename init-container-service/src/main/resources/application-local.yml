@@ -19,3 +19,6 @@ management :
 
 server :
   port : 2998
+
+springdoc :
+  show-actuator : true

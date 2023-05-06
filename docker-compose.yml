@@ -2,7 +2,7 @@
 version : '3.8'
 services :
   mysql :
-    image : mysql:5.7.39
+    image : mysql:5.7.41
     container_name : bookingdb-demo-mysql
     restart : unless-stopped
     environment :
@@ -14,7 +14,7 @@ services :
 
   rabbitmq :
     container_name : bookingdb-demo-rabbitmq
-    image : rabbitmq:3.9-management-alpine
+    image : rabbitmq:3.11-management-alpine
     restart : unless-stopped
     ports :
       # AMQP protocol port
@@ -27,7 +27,7 @@ services :
 
 
   bookingdb-init-container-service :
-    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-init-container-service:latest"
+    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-init-container-service:latest"
     container_name : bookingdb-demo-init-container-service
     deploy :
       restart_policy :
@@ -41,7 +41,7 @@ services :
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
 
   bookingdb-dashboard-service :
-    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-dashboard-service:latest"
+    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-dashboard-service:latest"
     container_name : bookingdb-demo-dashboard-service
     restart : unless-stopped
     depends_on :
@@ -60,7 +60,7 @@ services :
       - RABBITMQ_PASSWORD=demo
 
   bookingdb-importer-service :
-    image : "docker-registry.c2a2.com/ujar/bs-dst-k8s-bookingdb-importer-service:latest"
+    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-importer-service:latest"
     container_name : bookingdb-demo-importer-service
     restart : unless-stopped
     depends_on :

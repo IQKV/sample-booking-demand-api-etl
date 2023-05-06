@@ -4,7 +4,7 @@ build :
   version : '@project.version@'
 
 git :
-  commit : '@git.commit.id@'
+  commit : '@git.commit.id.abbrev@'
   build_time : '@git.build.time@'
 
 info :
@@ -18,11 +18,13 @@ info :
 spring :
   application :
     name : init-container-service
+  liquibase :
+    change-log : migrations/master.xml
   datasource :
     type : com.zaxxer.hikari.HikariDataSource
-    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/sa_test_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
-    username : ${DATASOURCE_USERNAME:sa_test}
-    password : ${DATASOURCE_PASSWORD:sa_test}
+    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/svc_testing_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
+    username : ${DATASOURCE_USERNAME:svc_testing}
+    password : ${DATASOURCE_PASSWORD:svc_testing}
     driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
     hikari :
       pool-name : Hikari
@@ -31,7 +33,7 @@ spring :
     hibernate :
       ddl-auto : none
       naming :
-        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     open-in-view : true
     properties :
@@ -56,7 +58,6 @@ spring :
 logging :
   level :
     ROOT : ${LOGGING_LEVEL_ROOT:INFO}
-    org.zalando.logbook.Logbook : TRACE
 
 server :
   port : ${SERVER_PORT:8080}
@@ -84,13 +85,13 @@ management :
       show-details : always
       probes :
         enabled : true
-    prometheus :
-      enabled : true
     info :
+      enabled : true
+    prometheus :
       enabled : true
 
 springdoc :
-  show-actuator : true
+  show-actuator : false
   swagger-ui :
     config-url : ${SWAGGER_UI_RELATIVE_PATH:/}v3/api-docs/swagger-config
     url : ${SWAGGER_UI_RELATIVE_PATH:/}v3/api-docs

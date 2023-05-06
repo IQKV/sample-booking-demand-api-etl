@@ -1,6 +1,0 @@
-apiVersion : v1
-kind : ConfigMap
-metadata :
-  name : edge-service
-data :
-  dashboard-service-url : http://dashboard-service

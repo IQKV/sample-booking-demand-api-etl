@@ -1,8 +1,3 @@
-build :
-  description : '@project.description@'
-  relative-path : ''
-  version : '@project.version@'
-
 spring :
   application :
     name : importer-service
@@ -17,8 +12,8 @@ spring :
     type : com.zaxxer.hikari.HikariDataSource
     driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
     url : ${DATASOURCE_URL:jdbc:mysql://${embedded.mysql.host}:${embedded.mysql.port}/${embedded.mysql.schema}?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
-    username : ${DATASOURCE_USERNAME:${embedded.mysql.user:sa_test}}
-    password : ${DATASOURCE_PASSWORD:${embedded.mysql.password:sa_test}}
+    username : ${DATASOURCE_USERNAME:${embedded.mysql.user:svc_testing}}
+    password : ${DATASOURCE_PASSWORD:${embedded.mysql.password:svc_testing}}
     hikari :
       pool-name : Hikari
       auto-commit : false
@@ -26,7 +21,7 @@ spring :
     hibernate :
       ddl-auto : none
       naming :
-        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     open-in-view : true
     properties :
@@ -38,8 +33,8 @@ spring :
   rabbitmq :
     host : ${RABBITMQ_HOST:${embedded.rabbitmq.host:localhost}}
     port : ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
-    username : ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:sa_test}}
-    password : ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:sa_test}}
+    username : ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:svc_testing}}
+    password : ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:svc_testing}}
 
 embedded :
   mysql :
@@ -48,7 +43,13 @@ embedded :
   rabbitmq :
     enabled : true
     reuse-container : true
-    docker-image : rabbitmq:3.9-management-alpine
+    docker-image : rabbitmq:3.11-management-alpine
+
+ujar :
+  build :
+    description : '@project.description@'
+    relative-path : ''
+    version : '@project.version@'
 
 bookingdb :
   net-client :

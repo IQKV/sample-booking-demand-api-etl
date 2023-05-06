@@ -1,10 +1,5 @@
-build :
-  description : '@project.description@'
-  relative-path : ${SWAGGER_UI_RELATIVE_PATH:}
-  version : '@project.version@'
-
 git :
-  commit : '@git.commit.id@'
+  commit : '@git.commit.id.abbrev@'
   build_time : '@git.build.time@'
 
 info :
@@ -20,9 +15,9 @@ spring :
     name : importer-service
   datasource :
     type : com.zaxxer.hikari.HikariDataSource
-    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/sa_test_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
-    username : ${DATASOURCE_USERNAME:sa_test}
-    password : ${DATASOURCE_PASSWORD:sa_test}
+    url : ${DATASOURCE_URL:jdbc:mysql://localhost:3306/svc_testing_db?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
+    username : ${DATASOURCE_USERNAME:svc_testing}
+    password : ${DATASOURCE_PASSWORD:svc_testing}
     driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
     hikari :
       pool-name : Hikari
@@ -31,7 +26,7 @@ spring :
     hibernate :
       ddl-auto : none
       naming :
-        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     open-in-view : true
     properties :
@@ -51,8 +46,8 @@ spring :
   rabbitmq :
     host : ${RABBITMQ_HOST:localhost}
     port : ${RABBITMQ_PORT:5672}
-    username : ${RABBITMQ_USERNAME:sa_test}
-    password : ${RABBITMQ_PASSWORD:sa_test}
+    username : ${RABBITMQ_USERNAME:svc_testing}
+    password : ${RABBITMQ_PASSWORD:svc_testing}
   devtools :
     add-properties : false
     restart :
@@ -68,31 +63,10 @@ spring :
 logging :
   level :
     ROOT : ${LOGGING_LEVEL_ROOT:INFO}
-    org.zalando.logbook.Logbook : TRACE
 
 server :
   port : ${SERVER_PORT:8080}
   shutdown : graceful
-
-
-logbook :
-  exclude :
-    - /actuator/**
-    - /v3/**
-    - /swagger-ui/**
-    - /swagger-resources/**
-  filter :
-    enabled : true
-  format :
-    style : json
-  obfuscate :
-    headers :
-      - Authorization
-      - X-Secret
-    parameters :
-      - access_token
-      - password
-  minimum-status : ${MINIMUM_STATUS_LOG_BODY:400}
 
 management :
   health :
@@ -116,10 +90,16 @@ management :
       show-details : always
       probes :
         enabled : true
-    prometheus :
-      enabled : true
     info :
       enabled : true
+    prometheus :
+      enabled : true
+
+ujar :
+  build :
+    description : '@project.description@'
+    relative-path : ${SWAGGER_UI_RELATIVE_PATH:}
+    version : '@project.version@'
 
 bookingdb :
   net-client :
@@ -140,7 +120,7 @@ bookingdb :
     import-hotels-queue : ${IMPORT_HOTELS_QUEUE:import-hotels-queue}
 
 springdoc :
-  show-actuator : true
+  show-actuator : false
   swagger-ui :
     config-url : ${SWAGGER_UI_RELATIVE_PATH:/}v3/api-docs/swagger-config
     url : ${SWAGGER_UI_RELATIVE_PATH:/}v3/api-docs

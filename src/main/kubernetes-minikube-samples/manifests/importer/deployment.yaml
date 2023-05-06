@@ -1,0 +1,113 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata :
+  name : importer-service
+  labels :
+    app : importer-service
+spec :
+  replicas : 1
+  strategy :
+    type : RollingUpdate
+  selector :
+    matchLabels :
+      app : importer-service
+  template :
+    metadata :
+      labels :
+        app : importer-service
+    spec :
+      containers :
+        - name : importer-service
+          image : docker-registry.continuousdelivery.store/sample-bookingdb-mix-importer-service:latest
+          imagePullPolicy : Always
+          ports :
+            - containerPort : 8080
+          env :
+            - name : SWAGGER_UI_RELATIVE_PATH
+              valueFrom :
+                configMapKeyRef :
+                  name : importer-service
+                  key : swagger-ui-relative-path
+            - name : LOGGING_LEVEL_ROOT
+              valueFrom :
+                configMapKeyRef :
+                  name : importer-service
+                  key : logging-level-root
+            - name : DATASOURCE_URL
+              valueFrom :
+                configMapKeyRef :
+                  name : importer-service
+                  key : datasource-url
+            - name : DATASOURCE_USERNAME
+              valueFrom :
+                secretKeyRef :
+                  name : importer-service
+                  key : datasource-username
+            - name : DATASOURCE_PASSWORD
+              valueFrom :
+                secretKeyRef :
+                  name : importer-service
+                  key : datasource-password
+            - name : RABBITMQ_HOST
+              valueFrom :
+                configMapKeyRef :
+                  name : importer-service
+                  key : rabbitmq-host
+            - name : RABBITMQ_PORT
+              valueFrom :
+                configMapKeyRef :
+                  name : importer-service
+                  key : rabbitmq-port
+            - name : RABBITMQ_USERNAME
+              valueFrom :
+                secretKeyRef :
+                  name : importer-service
+                  key : rabbitmq-username
+            - name : RABBITMQ_PASSWORD
+              valueFrom :
+                secretKeyRef :
+                  name : importer-service
+                  key : rabbitmq-password
+          resources :
+            requests :
+              cpu : "0.2"
+              memory : 600Mi
+            limits :
+              cpu : "1.0"
+              memory : 600Mi
+          readinessProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 120
+            timeoutSeconds : 120
+            periodSeconds : 50
+            failureThreshold : 10
+          livenessProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/liveness
+            initialDelaySeconds : 120
+            timeoutSeconds : 120
+            periodSeconds : 50
+            failureThreshold : 10
+          startupProbe :
+            httpGet :
+              port : 8080
+              path : /actuator/health/readiness
+            initialDelaySeconds : 120
+      serviceAccountName : api-service-account
+---
+apiVersion : v1
+kind : Service
+metadata :
+  name : importer-service
+  labels :
+    app : importer-service
+spec :
+  ports :
+    - port : 8080
+      targetPort : 8080
+      protocol : TCP
+  selector :
+    app : importer-service
