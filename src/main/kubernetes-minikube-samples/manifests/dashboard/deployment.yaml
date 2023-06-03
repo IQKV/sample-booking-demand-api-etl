@@ -18,16 +18,11 @@ spec :
     spec :
       containers :
         - name : dashboard-service
-          image : docker-registry.continuousdelivery.store/sample-bookingdb-mix-dashboard-service:latest
+          image : know-how.store/ujar-org/sample-bookingdb-mix-dashboard-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080
           env :
-            - name : SWAGGER_UI_RELATIVE_PATH
-              valueFrom :
-                configMapKeyRef :
-                  name : dashboard-service
-                  key : swagger-ui-relative-path
             - name : LOGGING_LEVEL_ROOT
               valueFrom :
                 configMapKeyRef :

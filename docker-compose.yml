@@ -2,7 +2,7 @@
 version : '3.8'
 services :
   mysql :
-    image : mysql:5.7.41
+    image : mysql:5.7.42
     container_name : bookingdb-demo-mysql
     restart : unless-stopped
     environment :
@@ -27,7 +27,7 @@ services :
 
 
   bookingdb-init-container-service :
-    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-init-container-service:latest"
+    image : "know-how.store/sample-bookingdb-mix-init-container-service:latest"
     container_name : bookingdb-demo-init-container-service
     deploy :
       restart_policy :
@@ -41,7 +41,7 @@ services :
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
 
   bookingdb-dashboard-service :
-    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-dashboard-service:latest"
+    image : "know-how.store/sample-bookingdb-mix-dashboard-service:latest"
     container_name : bookingdb-demo-dashboard-service
     restart : unless-stopped
     depends_on :
@@ -60,7 +60,7 @@ services :
       - RABBITMQ_PASSWORD=demo
 
   bookingdb-importer-service :
-    image : "docker-registry.continuousdelivery.store/sample-bookingdb-mix-importer-service:latest"
+    image : "know-how.store/sample-bookingdb-mix-importer-service:latest"
     container_name : bookingdb-demo-importer-service
     restart : unless-stopped
     depends_on :

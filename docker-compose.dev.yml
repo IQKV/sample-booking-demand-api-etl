@@ -2,7 +2,7 @@
 version : '3.8'
 services :
   mysql :
-    image : mysql:5.7.41
+    image : mysql:5.7.42
     container_name : bookingdb-mysql
     restart : unless-stopped
     ports :
@@ -29,7 +29,7 @@ services :
 
   prometheus :
     container_name : bookingdb-prometheus
-    image : prom/prometheus:v2.42.0
+    image : prom/prometheus:v2.44.0
     volumes :
       - ./src/main/docker/prometheus/:/etc/prometheus/
     command :
@@ -39,7 +39,7 @@ services :
     network_mode : 'host' # to test locally running service
   grafana :
     container_name : bookingdb-grafana
-    image : grafana/grafana:9.3.6
+    image : grafana/grafana:9.5.2
     volumes :
       - ./src/main/docker/grafana/provisioning/:/etc/grafana/provisioning/
     environment :

@@ -3,7 +3,6 @@ kind : ConfigMap
 metadata :
   name : dashboard-service
 data :
-  swagger-ui-relative-path : "/dashboard/"
   logging-level-root : "TRACE"
   datasource-url : "jdbc:mysql://mysql:3306/svc_testing_db"
   rabbitmq-host : "rabbitmq"

@@ -18,16 +18,11 @@ spec :
     spec :
       containers :
         - name : importer-service
-          image : docker-registry.continuousdelivery.store/sample-bookingdb-mix-importer-service:latest
+          image : know-how.store/ujar-org/sample-bookingdb-mix-importer-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080
           env :
-            - name : SWAGGER_UI_RELATIVE_PATH
-              valueFrom :
-                configMapKeyRef :
-                  name : importer-service
-                  key : swagger-ui-relative-path
             - name : LOGGING_LEVEL_ROOT
               valueFrom :
                 configMapKeyRef :
