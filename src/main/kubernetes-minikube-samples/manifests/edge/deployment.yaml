@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : edge-service
-          image : know-how.store/ujar-org/sample-bookingdb-mix-edge-service:latest
+          image : know-how.download/ujar-org/sample-bookingdb-mix-edge-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080
