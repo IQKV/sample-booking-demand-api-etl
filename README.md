@@ -14,7 +14,7 @@ It uses three microservices:
 
 ### Technology stack
 
-Java 17, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.41, rabbitmq:3.8
+java 21, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.41, rabbitmq:3.8
 
 _Including utils:_ liquibase, WireMock, Mysql testcontainers, docker-compose._dev_.yml,
 _checkstyle_ configuration, SpotBugs, PMD etc.
