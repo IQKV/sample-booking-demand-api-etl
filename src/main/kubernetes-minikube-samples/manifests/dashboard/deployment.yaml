@@ -63,6 +63,8 @@ spec :
                 secretKeyRef :
                   name : dashboard-service
                   key : rabbitmq-password
+            - name : SPRING_AMQP_DESERIALIZATION_TRUST_ALL
+              value: "true"
           resources :
             requests :
               cpu : "0.2"

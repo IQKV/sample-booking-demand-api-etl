@@ -35,10 +35,6 @@ spring :
     port : ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
     username : ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:svc_testing}}
     password : ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:svc_testing}}
-  amqp :
-    deserialization :
-      trust :
-        all : true
 embedded :
   mysql :
     enabled : true
