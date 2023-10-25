@@ -14,7 +14,7 @@ services :
 
   rabbitmq :
     container_name : bookingdb-demo-rabbitmq
-    image : rabbitmq:3.11-management-alpine
+    image : rabbitmq:3.12-management-alpine
     restart : unless-stopped
     ports :
       # AMQP protocol port

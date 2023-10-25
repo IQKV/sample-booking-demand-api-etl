@@ -43,7 +43,7 @@ embedded :
   rabbitmq :
     enabled : true
     reuse-container : true
-    docker-image : rabbitmq:3.11-management-alpine
+    docker-image : rabbitmq:3.12-management-alpine
 
 ujar :
   build :
