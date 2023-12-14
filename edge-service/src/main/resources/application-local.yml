@@ -14,6 +14,7 @@ management :
 server :
   port : 2999
 
-ujar :
-  services :
-    dashboard-service : http://localhost:3000
+iqkv :
+  service-discovery :
+    services :
+      dashboard-service : http://localhost:3000

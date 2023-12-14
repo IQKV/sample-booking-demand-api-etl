@@ -1,5 +1,5 @@
 {
-    "name": "sample-bookingdb-mix-rest-graphql-amqp",
+    "name": "@know-how-spring-boot/sample-bookingdb-mix-rest-graphql-amqp",
     "version": "23.0.0",
     "description": "Provide an optional Git commit hooks.",
     "private": true,

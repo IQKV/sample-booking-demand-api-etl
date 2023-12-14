@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : importer-service
-          image : know-how.download/uJarOrg/sample-bookingdb-mix-importer-service:latest
+          image : know-how.download/KnowHowSpringBoot/sample-bookingdb-mix-importer-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080
@@ -64,7 +64,7 @@ spec :
                   name : importer-service
                   key : rabbitmq-password
             - name : SPRING_AMQP_DESERIALIZATION_TRUST_ALL
-              value: "true"
+              value : "true"
           resources :
             requests :
               cpu : "0.2"

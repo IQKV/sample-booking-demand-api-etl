@@ -5,7 +5,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 
-    <changeSet id="20220707000001" author="ujar">
+    <changeSet id="20220707000001" author="knowhowto">
         <createTable tableName="cities">
             <column name="id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -24,7 +24,7 @@
             <append value="ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
         </modifySql>
     </changeSet>
-    <changeSet id="20220707000002" author="ujar">
+    <changeSet id="20220707000002" author="knowhowto">
         <addForeignKeyConstraint baseColumnNames="country_id"
                                  baseTableName="cities"
                                  constraintName="fk_country_city_id"

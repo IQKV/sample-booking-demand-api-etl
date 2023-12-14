@@ -11,7 +11,7 @@
     <description>Common repositories and entities</description>
 
     <parent>
-        <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+        <groupId>dev.knowhowto.sample-bookingdb-mix-rest-graphql-amqp</groupId>
         <artifactId>bookingdb-support</artifactId>
         <version>23.0.0-SNAPSHOT</version>
     </parent>
@@ -24,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ujar.boot</groupId>
+            <groupId>org.iqkv.boot</groupId>
             <artifactId>boot-starter-cache</artifactId>
         </dependency>
         <dependency>

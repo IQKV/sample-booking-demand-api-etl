@@ -11,7 +11,7 @@
     <description>Update database structure using Liquibase</description>
 
     <parent>
-        <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+        <groupId>dev.knowhowto.sample-bookingdb-mix-rest-graphql-amqp</groupId>
         <artifactId>bookingdb</artifactId>
         <version>23.0.0-SNAPSHOT</version>
     </parent>
@@ -22,7 +22,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <checkstyle.skip>false</checkstyle.skip>
         <maven.gitcommitid.skip>false</maven.gitcommitid.skip>
-        <start-class>org.ujar.bookingdb.init.InitContainerApplication</start-class>
+        <start-class>dev.knowhowto.bookingdb.init.InitContainerApplication</start-class>
     </properties>
 
     <dependencies>
@@ -31,7 +31,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ujar.boot</groupId>
+            <groupId>org.iqkv.boot</groupId>
             <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>
@@ -130,7 +130,7 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                           <minimum>0.8</minimum>
+                                            <minimum>0.8</minimum>
                                         </limit>
                                         <limit>
                                             <counter>CLASS</counter>

@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+    <groupId>dev.knowhowto.sample-bookingdb-mix-rest-graphql-amqp</groupId>
     <artifactId>bookingdb-support</artifactId>
     <version>23.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bookingdb-support</name>
     <parent>
-        <groupId>org.ujar.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+        <groupId>dev.knowhowto.sample-bookingdb-mix-rest-graphql-amqp</groupId>
         <artifactId>bookingdb</artifactId>
         <version>23.0.0-SNAPSHOT</version>
     </parent>
