@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableJobSupport
 @EnableBookingPersistence
-@OpenAPIDefinition(info = @Info(title = "Bookingdb Dashboard API", version = "23.0.0"))
+@OpenAPIDefinition(info = @Info(title = "Bookingdb Dashboard API", version = "24.0.0"))
 class ApplicationConfig {
 }
