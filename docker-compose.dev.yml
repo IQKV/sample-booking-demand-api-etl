@@ -29,7 +29,7 @@ services :
 
   prometheus :
     container_name : bookingdb-prometheus
-    image : prom/prometheus:v2.48.1
+    image : prom/prometheus:v2.54.1
     volumes :
       - ./src/main/docker/prometheus/:/etc/prometheus/
     command :
@@ -39,7 +39,7 @@ services :
     network_mode : 'host' # to test locally running service
   grafana :
     container_name : bookingdb-grafana
-    image : grafana/grafana:10.2.2
+    image : grafana/grafana:11.2.0
     volumes :
       - ./src/main/docker/grafana/provisioning/:/etc/grafana/provisioning/
     environment :
