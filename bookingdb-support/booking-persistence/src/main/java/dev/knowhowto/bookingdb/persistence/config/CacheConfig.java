@@ -2,6 +2,7 @@ package dev.knowhowto.bookingdb.persistence.config;
 
 import java.time.Duration;
 
+import com.iqkv.boot.cache.CacheProperties;
 import dev.knowhowto.bookingdb.persistence.entity.City;
 import dev.knowhowto.bookingdb.persistence.entity.Country;
 import dev.knowhowto.bookingdb.persistence.entity.Hotel;
@@ -10,7 +11,6 @@ import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
-import com.iqkv.boot.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.cache.annotation.EnableCaching;

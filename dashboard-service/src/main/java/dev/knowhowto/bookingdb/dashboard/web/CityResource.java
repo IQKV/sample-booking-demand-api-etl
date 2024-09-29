@@ -2,6 +2,8 @@ package dev.knowhowto.bookingdb.dashboard.web;
 
 import jakarta.validation.Valid;
 
+import com.iqkv.boot.web.rest.ApiError;
+import com.iqkv.boot.web.rest.PaginationRequest;
 import dev.knowhowto.bookingdb.persistence.entity.City;
 import dev.knowhowto.bookingdb.persistence.repository.CityRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,8 +12,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import com.iqkv.boot.web.rest.ApiError;
-import com.iqkv.boot.web.rest.PaginationRequest;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

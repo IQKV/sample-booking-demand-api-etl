@@ -2,6 +2,7 @@ package dev.knowhowto.bookingdb.dashboard.web;
 
 import java.util.List;
 
+import com.iqkv.boot.web.rest.ApiError;
 import dev.knowhowto.bookingdb.dashboard.producer.ImportServiceProducer;
 import dev.knowhowto.bookingdb.jobs.CitiesImportParameters;
 import dev.knowhowto.bookingdb.jobs.CountriesImportParameters;
@@ -15,7 +16,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import com.iqkv.boot.web.rest.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
