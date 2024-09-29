@@ -42,7 +42,7 @@ embedded :
   rabbitmq :
     enabled : true
     reuse-container : true
-    docker-image : rabbitmq:3.12-management-alpine
+    docker-image : rabbitmq:management-alpine
 
 iqkv :
   build :

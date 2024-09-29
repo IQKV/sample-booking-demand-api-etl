@@ -16,7 +16,7 @@ services :
 
   rabbitmq :
     container_name : bookingdb-rabbitmq
-    image : rabbitmq:3.12-management-alpine
+    image : rabbitmq:management-alpine
     restart : unless-stopped
     environment :
       - RABBITMQ_DEFAULT_USER=svc_testing
