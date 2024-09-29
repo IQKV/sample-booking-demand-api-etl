@@ -39,7 +39,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-mvc-rest</artifactId>
         </dependency>
         <dependency>
@@ -52,11 +52,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>

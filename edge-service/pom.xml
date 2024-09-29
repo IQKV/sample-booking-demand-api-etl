@@ -27,7 +27,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>
