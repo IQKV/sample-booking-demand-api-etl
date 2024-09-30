@@ -1,9 +1,9 @@
 # This configuration is intended for dev purpose
-version : '3.8'
+name : dev-bookingdb
 services :
   mysql :
     image : mysql:5.7.44
-    container_name : bookingdb-mysql
+    container_name : dev-bookingdb-mysql
     restart : unless-stopped
     ports :
       - 3306:3306
@@ -15,7 +15,7 @@ services :
       - TZ=UTC
 
   rabbitmq :
-    container_name : bookingdb-rabbitmq
+    container_name : dev-bookingdb-rabbitmq
     image : rabbitmq:management-alpine
     restart : unless-stopped
     environment :
@@ -28,7 +28,7 @@ services :
       - '15672:15672'
 
   prometheus :
-    container_name : bookingdb-prometheus
+    container_name : dev-bookingdb-prometheus
     image : prom/prometheus:v2.54.1
     volumes :
       - ./src/main/docker/prometheus/:/etc/prometheus/
@@ -38,7 +38,7 @@ services :
     # docker/grafana/provisioning/datasources/datasource.yml
     network_mode : 'host' # to test locally running service
   grafana :
-    container_name : bookingdb-grafana
+    container_name : dev-bookingdb-grafana
     image : grafana/grafana:11.2.0
     volumes :
       - ./src/main/docker/grafana/provisioning/:/etc/grafana/provisioning/
