@@ -11,7 +11,7 @@
     <description>Batch Jobs Support</description>
 
     <parent>
-        <groupId>dev.knowhowto.sample-bookingdb-mix-rest-graphql-amqp</groupId>
+        <groupId>dev.knowhowto.sample.bookingdb</groupId>
         <artifactId>bookingdb-support</artifactId>
         <version>24.0.0-SNAPSHOT</version>
     </parent>
