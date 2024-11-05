@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.iqkv.incubator.sample.bookingdb</groupId>
-    <artifactId>bookingdb</artifactId>
+    <artifactId>sample-bookingdb</artifactId>
     <version>24.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
