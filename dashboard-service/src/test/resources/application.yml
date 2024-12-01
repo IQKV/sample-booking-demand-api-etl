@@ -45,7 +45,7 @@ embedded :
     docker-image : rabbitmq:management-alpine
 
 iqkv :
-  build :
+  info :
     description : '@project.description@'
     relative-path : '/'
     version : '@project.version@'
