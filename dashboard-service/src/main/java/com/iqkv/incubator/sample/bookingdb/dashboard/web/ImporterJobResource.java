@@ -2,7 +2,7 @@ package com.iqkv.incubator.sample.bookingdb.dashboard.web;
 
 import java.util.List;
 
-import com.iqkv.boot.web.rest.ApiError;
+import com.iqkv.boot.mvc.rest.ApiError;
 import com.iqkv.incubator.sample.bookingdb.dashboard.producer.ImportServiceProducer;
 import com.iqkv.incubator.sample.bookingdb.jobs.CitiesImportParameters;
 import com.iqkv.incubator.sample.bookingdb.jobs.CountriesImportParameters;

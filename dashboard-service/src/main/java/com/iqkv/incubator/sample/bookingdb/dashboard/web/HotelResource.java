@@ -2,8 +2,8 @@ package com.iqkv.incubator.sample.bookingdb.dashboard.web;
 
 import jakarta.validation.Valid;
 
-import com.iqkv.boot.web.rest.ApiError;
-import com.iqkv.boot.web.rest.PaginationRequest;
+import com.iqkv.boot.mvc.rest.ApiError;
+import com.iqkv.boot.mvc.rest.PaginationRequest;
 import com.iqkv.incubator.sample.bookingdb.persistence.entity.Hotel;
 import com.iqkv.incubator.sample.bookingdb.persistence.repository.HotelRepository;
 import io.swagger.v3.oas.annotations.Operation;
