@@ -1,7 +1,9 @@
 spring :
   application :
     name : edge-service
-
+  cloud :
+    compatibility-verifier :
+      enabled: false
 iqkv :
   service-discovery :
     services :

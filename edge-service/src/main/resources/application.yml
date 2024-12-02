@@ -11,6 +11,9 @@ info :
     build_time : ${git.build_time}
 
 spring :
+  cloud :
+    compatibility-verifier :
+      enabled: false
   application :
     name : edge-service
   lifecycle :

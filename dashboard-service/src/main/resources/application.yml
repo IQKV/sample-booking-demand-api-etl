@@ -60,6 +60,9 @@ spring :
   lifecycle :
     timeout-per-shutdown-phase : ${TIMEOUT_PER_SHUTDOWN:20s}
 
+  cloud :
+    compatibility-verifier :
+      enabled: false
 logging :
   pattern :
     level : '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
