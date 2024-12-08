@@ -6,8 +6,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <include file="migrations/changelog/20220704000000_create_countries_table.xml"/>
-    <include file="migrations/changelog/20220707000000_create_cities_table.xml"/>
-    <include file="migrations/changelog/20220708000000_create_hotels_table.xml"/>
+    <include file="migrations/changelog/20240704000000_create_countries_table.xml"/>
+    <include file="migrations/changelog/20240707000000_create_cities_table.xml"/>
+    <include file="migrations/changelog/20240708000000_create_hotels_table.xml"/>
 
 </databaseChangeLog>

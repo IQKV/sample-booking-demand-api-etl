@@ -5,14 +5,15 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 
-    <changeSet id="20220707000001" author="developer">
-        <createTable tableName="cities">
+    <changeSet id="20240708000001" author="dev-team">
+        <createTable tableName="hotels">
             <column name="id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
+            <column name="hotel_id" type="int">
                 <constraints nullable="false"/>
             </column>
+            <column name="hotel_data" type="json"/>
             <column name="city_id" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -24,11 +25,16 @@
             <append value="ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci"/>
         </modifySql>
     </changeSet>
-    <changeSet id="20220707000002" author="developer">
+    <changeSet id="20240708000002" author="dev-team">
         <addForeignKeyConstraint baseColumnNames="country_id"
-                                 baseTableName="cities"
-                                 constraintName="fk_country_city_id"
+                                 baseTableName="hotels"
+                                 constraintName="fk_country_hotel_id"
                                  referencedColumnNames="id"
                                  referencedTableName="countries"/>
+        <addForeignKeyConstraint baseColumnNames="city_id"
+                                 baseTableName="hotels"
+                                 constraintName="fk_city_hotel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cities"/>
     </changeSet>
 </databaseChangeLog>
