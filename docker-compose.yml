@@ -1,56 +1,55 @@
 # This configuration is intended for demo purpose
-version : '3.8'
-services :
-  mysql :
-    image : mysql:5.7.44
-    container_name : bookingdb-demo-mysql
-    restart : unless-stopped
-    environment :
+version: "3.8"
+services:
+  mysql:
+    image: mysql:5.7.44
+    container_name: bookingdb-demo-mysql
+    restart: unless-stopped
+    environment:
       - MYSQL_DATABASE=demo_db
       - MYSQL_USER=demo
       - MYSQL_PASSWORD=demo
       - MYSQL_ROOT_PASSWORD=demo_root
       - TZ=UTC
 
-  rabbitmq :
-    container_name : bookingdb-demo-rabbitmq
-    image : rabbitmq:management-alpine
-    restart : unless-stopped
-    ports :
+  rabbitmq:
+    container_name: bookingdb-demo-rabbitmq
+    image: rabbitmq:management-alpine
+    restart: unless-stopped
+    ports:
       # AMQP protocol port
-      - '5672:5672'
+      - "5672:5672"
       # HTTP management UI
-      - '15672:15672'
-    environment :
+      - "15672:15672"
+    environment:
       - RABBITMQ_DEFAULT_USER=demo
       - RABBITMQ_DEFAULT_PASS=demo
 
-
-  bookingdb-init-container-service :
-    image : "know-how.download/sample-bookingdb-mix-init-container-service:latest"
-    container_name : bookingdb-demo-init-container-service
-    deploy :
-      restart_policy :
-        condition : on-failure
-        max_attempts : 3
-    depends_on :
+  bookingdb-init-container-service:
+    image: "know-how.download/sample-bookingdb-mix-init-container-service:latest"
+    container_name: bookingdb-demo-init-container-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    depends_on:
       - mysql
-    environment :
+    environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
 
-  bookingdb-dashboard-service :
-    image : "know-how.download/sample-bookingdb-mix-dashboard-service:latest"
-    container_name : bookingdb-demo-dashboard-service
-    restart : unless-stopped
-    depends_on :
+  bookingdb-dashboard-service:
+    image: "know-how.download/sample-bookingdb-mix-dashboard-service:latest"
+    container_name: bookingdb-demo-dashboard-service
+    restart: unless-stopped
+    depends_on:
       - mysql
       - rabbitmq
       - bookingdb-init-container-service
-    ports :
+    ports:
       - "8080:8080"
-    environment :
+    environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
@@ -59,18 +58,18 @@ services :
       - RABBITMQ_USERNAME=demo
       - RABBITMQ_PASSWORD=demo
 
-  bookingdb-importer-service :
-    image : "know-how.download/sample-bookingdb-mix-importer-service:latest"
-    container_name : bookingdb-demo-importer-service
-    restart : unless-stopped
-    depends_on :
+  bookingdb-importer-service:
+    image: "know-how.download/sample-bookingdb-mix-importer-service:latest"
+    container_name: bookingdb-demo-importer-service
+    restart: unless-stopped
+    depends_on:
       - mysql
       - rabbitmq
       - bookingdb-init-container-service
       - bookingdb-dashboard-service
-    ports :
+    ports:
       - "8081:8080"
-    environment :
+    environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
       - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
