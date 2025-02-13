@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : init-container-service
-          image : know-how.download/KnowHowSpringBoot/sample-bookingdb-mix-init-container-service:latest
+          image : know-how.download/iqkv/sample-bookingdb-mix-init-container-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080

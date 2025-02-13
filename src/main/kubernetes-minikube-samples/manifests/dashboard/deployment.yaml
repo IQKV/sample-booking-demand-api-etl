@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : dashboard-service
-          image : know-how.download/KnowHowSpringBoot/sample-bookingdb-mix-dashboard-service:latest
+          image : know-how.download/iqkv/sample-bookingdb-mix-dashboard-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080
