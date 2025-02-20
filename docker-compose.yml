@@ -4,7 +4,7 @@ services:
   mysql:
     image: mysql:5.7.44
     container_name: bookingdb-demo-mysql
-    restart: unless-stopped
+    restart: no
     environment:
       - MYSQL_DATABASE=demo_db
       - MYSQL_USER=demo
@@ -15,7 +15,7 @@ services:
   rabbitmq:
     container_name: bookingdb-demo-rabbitmq
     image: rabbitmq:management-alpine
-    restart: unless-stopped
+    restart: no
     ports:
       # AMQP protocol port
       - "5672:5672"
@@ -42,7 +42,7 @@ services:
   bookingdb-dashboard-service:
     image: "know-how.download/sample-bookingdb-mix-dashboard-service:latest"
     container_name: bookingdb-demo-dashboard-service
-    restart: unless-stopped
+    restart: no
     depends_on:
       - mysql
       - rabbitmq
@@ -61,7 +61,7 @@ services:
   bookingdb-importer-service:
     image: "know-how.download/sample-bookingdb-mix-importer-service:latest"
     container_name: bookingdb-demo-importer-service
-    restart: unless-stopped
+    restart: no
     depends_on:
       - mysql
       - rabbitmq
