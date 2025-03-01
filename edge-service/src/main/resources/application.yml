@@ -87,7 +87,7 @@ management :
       show-values : always
     prometheus :
       enabled : true
-iqkv :
+application-settings :
   service-discovery :
     services :
       dashboard-service : ${DASHBOARD_SERVICE_URL:http://dashboard-service}

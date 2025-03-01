@@ -4,7 +4,7 @@ spring :
   cloud :
     compatibility-verifier :
       enabled: false
-iqkv :
+application-settings :
   service-discovery :
     services :
       dashboard-service : http://dashboard-service

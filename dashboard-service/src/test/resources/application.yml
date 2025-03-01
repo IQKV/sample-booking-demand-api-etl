@@ -48,7 +48,7 @@ embedded :
     reuse-container : true
     docker-image : rabbitmq:management-alpine
 
-iqkv :
+application-settings :
   info :
     description : '@project.description@'
     relative-path : '/'
