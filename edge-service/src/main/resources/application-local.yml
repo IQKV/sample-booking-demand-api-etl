@@ -14,7 +14,7 @@ management :
 server :
   port : 2999
 
-application-settings :
+expertness :
   service-discovery :
     services :
       dashboard-service : http://localhost:3000

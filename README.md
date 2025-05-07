@@ -14,7 +14,7 @@ It uses three microservices:
 
 ### Technology stack
 
-java 21, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.43, rabbitmq:3.8
+java 21, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.44, rabbitmq:3.8
 
 _Including utils:_ liquibase, WireMock, Mysql testcontainers, docker-compose._dev_.yml,
 _checkstyle_ configuration, SpotBugs, PMD etc.
@@ -30,45 +30,45 @@ _checkstyle_ configuration, SpotBugs, PMD etc.
 - [HTTPie](https://httpie.org/doc#installation)
 - [tree](http://mama.indstate.edu/users/ice/tree/)
 
-### Start Kubernetes cluster
+### Start Minkkube Kubernetes cluster
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./start-cluster.sh
 ```
 
 ### Configure Kubernetes cluster
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./setup-cluster.sh
 ```
 
 ### Deploy application to Kubernetes cluster
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./install-all.sh
 ```
 
 ### Undeploy application from Kubernetes cluster
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./delete-all.sh
 ```
 
 ### Delete Application specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./destroy-cluster.sh
 ```
 
 ### Stop Kubernetes cluster
 
 ```bash
-cd ./src/main/kubernetes-minikube-samples/scripts/
+cd ./src/main/minikube/scripts/
 ./stop-cluster.sh
 ```
 
