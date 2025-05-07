@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dashboard-service</artifactId>
+    <artifactId>sample-mix-bookingdb-dashboard-service</artifactId>
     <version>25.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -11,7 +11,7 @@
     <description>Admin REST API Service</description>
 
     <parent>
-        <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
+        <groupId>com.iqkv</groupId>
         <artifactId>sample-mix-bookingdb</artifactId>
         <version>25.0.0-SNAPSHOT</version>
     </parent>
@@ -22,17 +22,17 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <checkstyle.skip>false</checkstyle.skip>
         <maven.gitcommitid.skip>false</maven.gitcommitid.skip>
-        <start-class>com.iqkv.incubator.sample.mixbookingdb.dashboard.DashboardApplication</start-class>
+        <start-class>com.iqkv.sample.mixbookingdb.dashboard.DashboardApplication</start-class>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
-            <artifactId>batch-job</artifactId>
+            <groupId>com.iqkv</groupId>
+            <artifactId>sample-mix-bookingdb-batch-job</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
-            <artifactId>booking-persistence</artifactId>
+            <groupId>com.iqkv</groupId>
+            <artifactId>sample-mix-bookingdb-persistence</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,7 +49,7 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.iqkv.boot</groupId>
+            <groupId>expertness</groupId>
             <artifactId>boot-starter-mvc-rest</artifactId>
         </dependency>
         <dependency>
@@ -62,7 +62,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.iqkv.boot</groupId>
+            <groupId>expertness</groupId>
             <artifactId>boot-starter-amqp</artifactId>
         </dependency>
         <dependency>

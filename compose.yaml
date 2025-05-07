@@ -49,3 +49,16 @@ services:
     # On MacOS, remove next line and replace localhost by host.docker.internal in src/main/docker/prometheus/prometheus.yml and
     # docker/grafana/provisioning/datasources/datasource.yml
     network_mode: "host" # to test locally running service
+
+  sonar:
+    container_name: dev-bookingdb-sonarqube
+    image: sonarqube:25.3.0.104237-community
+    # Forced authentication redirect for UI is turned off for out of the box experience while trying out SonarQube
+    # For real use cases delete SONAR_FORCEAUTHENTICATION variable or set SONAR_FORCEAUTHENTICATION=true
+    environment:
+      - SONAR_FORCEAUTHENTICATION=false
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:9001:9000
+      - 127.0.0.1:9000:9000

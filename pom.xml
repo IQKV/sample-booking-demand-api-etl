@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
+    <groupId>com.iqkv</groupId>
     <artifactId>sample-mix-bookingdb</artifactId>
     <version>25.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -32,7 +32,7 @@
     </developers>
 
     <parent>
-        <groupId>com.iqkv.boot</groupId>
+        <groupId>expertness</groupId>
         <artifactId>boot-parent-pom</artifactId>
         <version>25.0.0-SNAPSHOT</version>
     </parent>
@@ -54,18 +54,18 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
-                <artifactId>batch-job</artifactId>
+                <groupId>com.iqkv</groupId>
+                <artifactId>sample-mix-bookingdb-batch-job</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
-                <artifactId>booking-persistence</artifactId>
+                <groupId>com.iqkv</groupId>
+                <artifactId>sample-mix-bookingdb-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iqkv.incubator.sample.mixbookingdb</groupId>
-                <artifactId>booking-api-client</artifactId>
+                <groupId>com.iqkv</groupId>
+                <artifactId>sample-mix-bookingdb-api-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
