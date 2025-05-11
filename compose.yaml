@@ -1,4 +1,4 @@
-# This configuration is intended for dev purpose
+# This configuration is intended for development purposes
 name: dev-bookingdb
 services:
   mysql:
