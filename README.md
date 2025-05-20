@@ -85,9 +85,9 @@ quality is measured by:
 
 ### Tests
 
-This project has standard JUnit tests. To run them execute this command:
+This project contains a JUnit tests, Hamcrest matchers, Mockito test doubles, Wiremock stubs, etc. You can run the test suite using
 
-```text
+```bash
 ./mvnw verify -P use-testcontainers
 ```
 
