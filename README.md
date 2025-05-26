@@ -14,7 +14,7 @@ It uses three microservices:
 
 ### Technology stack
 
-java 21, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.44, rabbitmq:3.8
+Java 21, Maven 3, Spring Boot, Spring Cloud, mysql:5.7.44, rabbitmq:3.8
 
 _Including utils:_ liquibase, WireMock, Mysql testcontainers, docker-compose._dev_.yml,
 _checkstyle_ configuration, SpotBugs, PMD etc.
@@ -85,7 +85,7 @@ quality is measured by:
 
 ### Tests
 
-This project contains a JUnit tests, Hamcrest matchers, Mockito test doubles, Wiremock stubs, etc. You can run the test suite using
+This project contains JUnit tests, Hamcrest matchers, Mockito test doubles, Wiremock stubs, etc. You can run the test suite using
 
 ```bash
 ./mvnw verify -P use-testcontainers
