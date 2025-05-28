@@ -18,9 +18,8 @@ package com.iqkv.sample.mixbookingdb.dashboard.web;
 
 import jakarta.validation.Valid;
 
-import expert.uses.boot.mvc.rest.ApiError;
-import expert.uses.boot.mvc.rest.PaginationRequest;
-
+import com.iqkv.boot.mvc.rest.ApiError;
+import com.iqkv.boot.mvc.rest.PaginationRequest;
 import com.iqkv.sample.mixbookingdb.persistence.entity.Hotel;
 import com.iqkv.sample.mixbookingdb.persistence.repository.HotelRepository;
 import io.swagger.v3.oas.annotations.Operation;

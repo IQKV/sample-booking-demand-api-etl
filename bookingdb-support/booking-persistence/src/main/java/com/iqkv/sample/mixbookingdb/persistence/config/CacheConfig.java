@@ -18,8 +18,7 @@ package com.iqkv.sample.mixbookingdb.persistence.config;
 
 import java.time.Duration;
 
-import expert.uses.boot.cache.CacheProperties;
-
+import com.iqkv.boot.cache.CacheProperties;
 import com.iqkv.sample.mixbookingdb.persistence.entity.City;
 import com.iqkv.sample.mixbookingdb.persistence.entity.Country;
 import com.iqkv.sample.mixbookingdb.persistence.entity.Hotel;
