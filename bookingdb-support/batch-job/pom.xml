@@ -24,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>expertness</groupId>
+            <groupId>com.iqkv</groupId>
             <artifactId>boot-starter-amqp</artifactId>
         </dependency>
         <dependency>

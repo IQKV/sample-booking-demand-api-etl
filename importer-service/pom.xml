@@ -53,11 +53,11 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
-            <groupId>expertness</groupId>
+            <groupId>com.iqkv</groupId>
             <artifactId>boot-starter-cache</artifactId>
         </dependency>
         <dependency>
-            <groupId>expertness</groupId>
+            <groupId>com.iqkv</groupId>
             <artifactId>boot-starter-mvc-rest</artifactId>
         </dependency>
         <dependency>
@@ -74,7 +74,7 @@
             <artifactId>hibernate-types-60</artifactId>
         </dependency>
         <dependency>
-            <groupId>expertness</groupId>
+            <groupId>com.iqkv</groupId>
             <artifactId>boot-starter-amqp</artifactId>
         </dependency>
         <dependency>

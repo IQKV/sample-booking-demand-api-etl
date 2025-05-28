@@ -18,8 +18,7 @@ package com.iqkv.sample.mixbookingdb.dashboard.web;
 
 import java.util.List;
 
-import expert.uses.boot.mvc.rest.ApiError;
-
+import com.iqkv.boot.mvc.rest.ApiError;
 import com.iqkv.sample.mixbookingdb.dashboard.producer.ImportServiceProducer;
 import com.iqkv.sample.mixbookingdb.jobs.CitiesImportParameters;
 import com.iqkv.sample.mixbookingdb.jobs.CountriesImportParameters;
