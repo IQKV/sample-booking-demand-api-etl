@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sample-mix-bookingdb-batch-job</artifactId>
+    <artifactId>sample-bookingdb-batch-job</artifactId>
     <version>25.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -12,7 +12,7 @@
 
     <parent>
         <groupId>com.iqkv</groupId>
-        <artifactId>sample-mix-bookingdb-support</artifactId>
+        <artifactId>sample-bookingdb-support</artifactId>
         <version>25.0.0-SNAPSHOT</version>
     </parent>
 
