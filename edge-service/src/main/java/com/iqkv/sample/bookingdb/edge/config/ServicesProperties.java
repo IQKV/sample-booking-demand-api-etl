@@ -18,6 +18,6 @@ package com.iqkv.sample.bookingdb.edge.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "expertness.service-discovery.services")
+@ConfigurationProperties(prefix = "application-configuration.service-discovery.services")
 public record ServicesProperties(String dashboardService) {
 }
