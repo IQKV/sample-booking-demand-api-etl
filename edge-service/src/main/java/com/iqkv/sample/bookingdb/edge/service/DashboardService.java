@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.edge.service;
+package com.iqkv.sample.bookingdemandapietl.edge.service;
 
-import com.iqkv.sample.bookingdb.edge.config.ServicesProperties;
-import com.iqkv.sample.bookingdb.edge.model.CityPage;
-import com.iqkv.sample.bookingdb.edge.model.CountryPage;
-import com.iqkv.sample.bookingdb.edge.model.HotelPage;
+import com.iqkv.sample.bookingdemandapietl.edge.config.ServicesProperties;
+import com.iqkv.sample.bookingdemandapietl.edge.model.CityPage;
+import com.iqkv.sample.bookingdemandapietl.edge.model.CountryPage;
+import com.iqkv.sample.bookingdemandapietl.edge.model.HotelPage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

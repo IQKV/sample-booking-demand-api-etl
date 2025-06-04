@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.init.config;
+package com.iqkv.sample.bookingdemandapietl.init.config;
 
 import org.springframework.context.annotation.Configuration;
 

@@ -18,7 +18,7 @@ spec :
     spec :
       containers :
         - name : importer-service
-          image : know-how.download/iqkv/sample-bookingdb-mix-importer-service:latest
+          image : know-how.download/iqkv/sample-booking-demand-api-etl-mix-importer-service:latest
           imagePullPolicy : Always
           ports :
             - containerPort : 8080

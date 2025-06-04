@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.dashboard.web;
+package com.iqkv.sample.bookingdemandapietl.dashboard.web;
 
 import jakarta.validation.Valid;
 
 import com.iqkv.boot.mvc.rest.ApiError;
 import com.iqkv.boot.mvc.rest.PaginationRequest;
-import com.iqkv.sample.bookingdb.persistence.entity.Hotel;
-import com.iqkv.sample.bookingdb.persistence.repository.HotelRepository;
+import com.iqkv.sample.bookingdemandapietl.persistence.entity.Hotel;
+import com.iqkv.sample.bookingdemandapietl.persistence.repository.HotelRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 class HotelResource {
   private final HotelRepository repository;
 
-  @GetMapping(path = "/api/hotels/{id}", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(path = "/api/hotels/{id}", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Retrieve hotel by id.",
       responses = {
@@ -65,7 +65,7 @@ class HotelResource {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping(path = "/api/hotels", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(path = "/api/hotels", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Retrieve all hotels (with pagination).",
       responses = {

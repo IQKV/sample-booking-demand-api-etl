@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.importer.config;
+package com.iqkv.sample.bookingdemandapietl.importer.config;
 
-import com.iqkv.sample.bookingdb.importer.consumer.ImportCitiesConsumer;
-import com.iqkv.sample.bookingdb.importer.consumer.ImportCountriesConsumer;
-import com.iqkv.sample.bookingdb.importer.consumer.ImportHotelConsumer;
-import com.iqkv.sample.bookingdb.jobs.amqp.AmqpQueuesProperties;
+import com.iqkv.sample.bookingdemandapietl.importer.consumer.ImportCitiesConsumer;
+import com.iqkv.sample.bookingdemandapietl.importer.consumer.ImportCountriesConsumer;
+import com.iqkv.sample.bookingdemandapietl.importer.consumer.ImportHotelConsumer;
+import com.iqkv.sample.bookingdemandapietl.jobs.amqp.AmqpQueuesProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

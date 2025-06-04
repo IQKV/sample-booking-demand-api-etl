@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.importer.consumer;
+package com.iqkv.sample.bookingdemandapietl.importer.consumer;
 
-import com.iqkv.sample.bookingdb.importer.service.HotelImporterService;
-import com.iqkv.sample.bookingdb.jobs.CityHotelsImportParameters;
+import com.iqkv.sample.bookingdemandapietl.importer.service.HotelImporterService;
+import com.iqkv.sample.bookingdemandapietl.jobs.CityHotelsImportParameters;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

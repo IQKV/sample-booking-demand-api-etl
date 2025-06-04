@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.dashboard.web;
+package com.iqkv.sample.bookingdemandapietl.dashboard.web;
 
 import java.util.List;
 
 import com.iqkv.boot.mvc.rest.ApiError;
-import com.iqkv.sample.bookingdb.dashboard.producer.ImportServiceProducer;
-import com.iqkv.sample.bookingdb.jobs.CitiesImportParameters;
-import com.iqkv.sample.bookingdb.jobs.CountriesImportParameters;
-import com.iqkv.sample.bookingdb.jobs.HotelsImportParameters;
-import com.iqkv.sample.bookingdb.jobs.JobParameters;
-import com.iqkv.sample.bookingdb.persistence.entity.Country;
-import com.iqkv.sample.bookingdb.persistence.repository.CountryRepository;
+import com.iqkv.sample.bookingdemandapietl.dashboard.producer.ImportServiceProducer;
+import com.iqkv.sample.bookingdemandapietl.jobs.CitiesImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.CountriesImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.HotelsImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.JobParameters;
+import com.iqkv.sample.bookingdemandapietl.persistence.entity.Country;
+import com.iqkv.sample.bookingdemandapietl.persistence.repository.CountryRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -49,7 +49,7 @@ class ImporterJobResource {
   private final ImportServiceProducer producer;
   private final CountryRepository countryRepository;
 
-  @PostMapping(path = "/api/import/countries", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/countries", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Start countries list import job.",
       responses = {
@@ -72,7 +72,7 @@ class ImporterJobResource {
     );
   }
 
-  @PostMapping(path = "/api/import/cities", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/cities", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Start all cities list import job.",
       responses = {
@@ -96,7 +96,7 @@ class ImporterJobResource {
     return new ResponseEntity<>(started, HttpStatus.ACCEPTED);
   }
 
-  @PostMapping(path = "/api/import/cities/{country}", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/cities/{country}", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Start country cities list import job.",
       responses = {
@@ -119,7 +119,7 @@ class ImporterJobResource {
     );
   }
 
-  @PostMapping(path = "/api/import/hotels", produces = "application/vnd.bookingdb.api.v1+json")
+  @PostMapping(path = "/api/import/hotels", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Start importing all hotels in the particular cities.",
       responses = {

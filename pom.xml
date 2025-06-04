@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.iqkv</groupId>
-    <artifactId>sample-bookingdb</artifactId>
+    <artifactId>sample-booking-demand-api-etl</artifactId>
     <version>25.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>bookingdb</name>
+    <name>sample-booking-demand-api-etl</name>
     <description>Sample Spring Boot application that uses some features provided by Spring Cloud, deployed on Kubernetes</description>
     <licenses>
         <license>
@@ -45,7 +45,7 @@
 
     <modules>
         <module>edge-service</module>
-        <module>bookingdb-support</module>
+        <module>booking-demand-api-etl-support</module>
         <module>dashboard-service</module>
         <module>init-container-service</module>
         <module>importer-service</module>
@@ -55,17 +55,17 @@
         <dependencies>
             <dependency>
                 <groupId>com.iqkv</groupId>
-                <artifactId>sample-bookingdb-batch-job</artifactId>
+                <artifactId>sample-booking-demand-api-etl-batch-job</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.iqkv</groupId>
-                <artifactId>sample-bookingdb-persistence</artifactId>
+                <artifactId>sample-booking-demand-api-etl-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.iqkv</groupId>
-                <artifactId>sample-bookingdb-api-client</artifactId>
+                <artifactId>sample-booking-demand-api-etl-api-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

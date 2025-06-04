@@ -133,7 +133,7 @@ application-configuration :
     description : '@project.description@'
     relative-path : ${SERVER_SERVLET_CONTEXT_PATH:/}
     version : '@project.version@'
-bookingdb :
+bookingdemandapietl :
   queues :
     import-exchange : ${IMPORT_JOBS_EXCHANGE:import-jobs-exchange}
     import-countries-queue : ${IMPORT_COUNTRIES_QUEUE:import-countries-queue}

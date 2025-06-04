@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.edge.config;
+package com.iqkv.sample.bookingdemandapietl.edge.config;
 
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;

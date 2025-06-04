@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mysql:
     image: mysql:5.7.44
-    container_name: bookingdb-demo-mysql
+    container_name: bookingdemandapietl-demo-mysql
     restart: no
     environment:
       - MYSQL_DATABASE=demo_db
@@ -13,7 +13,7 @@ services:
       - TZ=UTC
 
   rabbitmq:
-    container_name: bookingdb-demo-rabbitmq
+    container_name: bookingdemandapietl-demo-rabbitmq
     image: rabbitmq:management-alpine
     restart: no
     ports:
@@ -25,9 +25,9 @@ services:
       - RABBITMQ_DEFAULT_USER=demo
       - RABBITMQ_DEFAULT_PASS=demo
 
-  bookingdb-init-container-service:
-    image: "know-how.download/sample-bookingdb-mix-init-container-service:latest"
-    container_name: bookingdb-demo-init-container-service
+  bookingdemandapietl-init-container-service:
+    image: "know-how.download/sample-booking-demand-api-etl-mix-init-container-service:latest"
+    container_name: bookingdemandapietl-demo-init-container-service
     deploy:
       restart_policy:
         condition: on-failure
@@ -37,43 +37,43 @@ services:
     environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
-      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
+      - DATASOURCE_URL=jdbc:mysql://bookingdemandapietl-demo-mysql:3306/demo_db
 
-  bookingdb-dashboard-service:
-    image: "know-how.download/sample-bookingdb-mix-dashboard-service:latest"
-    container_name: bookingdb-demo-dashboard-service
+  bookingdemandapietl-dashboard-service:
+    image: "know-how.download/sample-booking-demand-api-etl-mix-dashboard-service:latest"
+    container_name: bookingdemandapietl-demo-dashboard-service
     restart: no
     depends_on:
       - mysql
       - rabbitmq
-      - bookingdb-init-container-service
+      - bookingdemandapietl-init-container-service
     ports:
       - "8080:8080"
     environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
-      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
-      - RABBITMQ_HOST=bookingdb-demo-rabbitmq
+      - DATASOURCE_URL=jdbc:mysql://bookingdemandapietl-demo-mysql:3306/demo_db
+      - RABBITMQ_HOST=bookingdemandapietl-demo-rabbitmq
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=demo
       - RABBITMQ_PASSWORD=demo
 
-  bookingdb-importer-service:
-    image: "know-how.download/sample-bookingdb-mix-importer-service:latest"
-    container_name: bookingdb-demo-importer-service
+  bookingdemandapietl-importer-service:
+    image: "know-how.download/sample-booking-demand-api-etl-mix-importer-service:latest"
+    container_name: bookingdemandapietl-demo-importer-service
     restart: no
     depends_on:
       - mysql
       - rabbitmq
-      - bookingdb-init-container-service
-      - bookingdb-dashboard-service
+      - bookingdemandapietl-init-container-service
+      - bookingdemandapietl-dashboard-service
     ports:
       - "8081:8080"
     environment:
       - DATASOURCE_USERNAME=demo
       - DATASOURCE_PASSWORD=demo
-      - DATASOURCE_URL=jdbc:mysql://bookingdb-demo-mysql:3306/demo_db
-      - RABBITMQ_HOST=bookingdb-demo-rabbitmq
+      - DATASOURCE_URL=jdbc:mysql://bookingdemandapietl-demo-mysql:3306/demo_db
+      - RABBITMQ_HOST=bookingdemandapietl-demo-rabbitmq
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=demo
       - RABBITMQ_PASSWORD=demo

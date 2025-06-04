@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.init;
+package com.iqkv.sample.bookingdemandapietl.init;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

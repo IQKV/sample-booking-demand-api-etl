@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.importer.config;
+package com.iqkv.sample.bookingdemandapietl.importer.config;
 
-import com.iqkv.sample.bookingdb.apiclient.annotation.EnableBookingApiClient;
-import com.iqkv.sample.bookingdb.jobs.annotation.EnableJobSupport;
-import com.iqkv.sample.bookingdb.persistence.annotation.EnableBookingPersistence;
+import com.iqkv.sample.bookingdemandapietl.apiclient.annotation.EnableBookingApiClient;
+import com.iqkv.sample.bookingdemandapietl.jobs.annotation.EnableJobSupport;
+import com.iqkv.sample.bookingdemandapietl.persistence.annotation.EnableBookingPersistence;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 

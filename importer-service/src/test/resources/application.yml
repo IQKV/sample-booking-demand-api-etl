@@ -53,7 +53,7 @@ application-configuration :
     relative-path : '/'
     version : '@project.version@'
 
-bookingdb :
+bookingdemandapietl :
   net-client :
     username :
     password :

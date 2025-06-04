@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.edge.model;
+package com.iqkv.sample.bookingdemandapietl.edge.model;
 
 import java.util.List;
 
