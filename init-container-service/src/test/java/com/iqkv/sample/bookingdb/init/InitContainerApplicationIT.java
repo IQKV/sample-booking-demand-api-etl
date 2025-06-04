@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.init;
+package com.iqkv.sample.bookingdemandapietl.init;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

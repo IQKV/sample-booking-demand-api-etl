@@ -53,7 +53,7 @@ application-configuration :
     description : '@project.description@'
     relative-path : '/'
     version : '@project.version@'
-bookingdb :
+bookingdemandapietl :
   queues :
     import-exchange : import-jobs-exchange
     import-countries-queue : import-countries-queue

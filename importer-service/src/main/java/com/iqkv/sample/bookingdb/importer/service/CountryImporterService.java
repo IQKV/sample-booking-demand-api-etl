@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.importer.service;
+package com.iqkv.sample.bookingdemandapietl.importer.service;
 
 import org.springframework.stereotype.Service;
 

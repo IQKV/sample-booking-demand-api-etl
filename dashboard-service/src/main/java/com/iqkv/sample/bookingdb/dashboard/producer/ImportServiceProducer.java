@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.dashboard.producer;
+package com.iqkv.sample.bookingdemandapietl.dashboard.producer;
 
-import com.iqkv.sample.bookingdb.jobs.CitiesImportParameters;
-import com.iqkv.sample.bookingdb.jobs.CityHotelsImportParameters;
-import com.iqkv.sample.bookingdb.jobs.CountriesImportParameters;
-import com.iqkv.sample.bookingdb.jobs.HotelsImportParameters;
-import com.iqkv.sample.bookingdb.jobs.JobParameters;
-import com.iqkv.sample.bookingdb.jobs.amqp.AbstractProducer;
-import com.iqkv.sample.bookingdb.jobs.amqp.AmqpQueuesProperties;
+import com.iqkv.sample.bookingdemandapietl.jobs.CitiesImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.CityHotelsImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.CountriesImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.HotelsImportParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.JobParameters;
+import com.iqkv.sample.bookingdemandapietl.jobs.amqp.AbstractProducer;
+import com.iqkv.sample.bookingdemandapietl.jobs.amqp.AmqpQueuesProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 

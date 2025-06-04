@@ -134,7 +134,7 @@ application-configuration :
     relative-path : ${SERVER_SERVLET_CONTEXT_PATH:/}
     version : '@project.version@'
 
-bookingdb :
+bookingdemandapietl :
   net-client :
     username : ${BOOCKINGCOM_USERNAME:}
     password : ${BOOCKINGCOM_PASSWORD:}

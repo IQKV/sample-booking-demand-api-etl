@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.importer.service.impl;
+package com.iqkv.sample.bookingdemandapietl.importer.service.impl;
 
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iqkv.sample.bookingdb.apiclient.client.BookingcomNetClient;
-import com.iqkv.sample.bookingdb.importer.service.CityImporterService;
-import com.iqkv.sample.bookingdb.persistence.entity.City;
-import com.iqkv.sample.bookingdb.persistence.repository.CityRepository;
-import com.iqkv.sample.bookingdb.persistence.repository.CountryRepository;
+import com.iqkv.sample.bookingdemandapietl.apiclient.client.BookingcomNetClient;
+import com.iqkv.sample.bookingdemandapietl.importer.service.CityImporterService;
+import com.iqkv.sample.bookingdemandapietl.persistence.entity.City;
+import com.iqkv.sample.bookingdemandapietl.persistence.repository.CityRepository;
+import com.iqkv.sample.bookingdemandapietl.persistence.repository.CountryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

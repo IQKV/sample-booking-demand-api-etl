@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.dashboard.config;
+package com.iqkv.sample.bookingdemandapietl.dashboard.config;
 
-import com.iqkv.sample.bookingdb.jobs.annotation.EnableJobSupport;
-import com.iqkv.sample.bookingdb.persistence.annotation.EnableBookingPersistence;
+import com.iqkv.sample.bookingdemandapietl.jobs.annotation.EnableJobSupport;
+import com.iqkv.sample.bookingdemandapietl.persistence.annotation.EnableBookingPersistence;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +25,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableJobSupport
 @EnableBookingPersistence
-@OpenAPIDefinition(info = @Info(title = "Bookingdb Dashboard API", version = "25.0.0"))
+@OpenAPIDefinition(info = @Info(title = "bookingdemandapietl Dashboard API", version = "25.0.0"))
 class ApplicationConfig {
 }

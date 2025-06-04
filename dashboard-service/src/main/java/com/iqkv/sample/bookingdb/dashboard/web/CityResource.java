@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.dashboard.web;
+package com.iqkv.sample.bookingdemandapietl.dashboard.web;
 
 import jakarta.validation.Valid;
 
 import com.iqkv.boot.mvc.rest.ApiError;
 import com.iqkv.boot.mvc.rest.PaginationRequest;
-import com.iqkv.sample.bookingdb.persistence.entity.City;
-import com.iqkv.sample.bookingdb.persistence.repository.CityRepository;
+import com.iqkv.sample.bookingdemandapietl.persistence.entity.City;
+import com.iqkv.sample.bookingdemandapietl.persistence.repository.CityRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.RestController;
 class CityResource {
   private final CityRepository repository;
 
-  @GetMapping(path = "/api/cities/{id}", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(path = "/api/cities/{id}", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Retrieve country by id.",
       responses = {
@@ -65,7 +65,7 @@ class CityResource {
     return ResponseEntity.of(repository.findById(id));
   }
 
-  @GetMapping(path = "/api/cities", produces = "application/vnd.bookingdb.api.v1+json")
+  @GetMapping(path = "/api/cities", produces = "application/vnd.bookingdemandapietl.api.v1+json")
   @Operation(
       description = "Retrieve all cities (with pagination).",
       responses = {

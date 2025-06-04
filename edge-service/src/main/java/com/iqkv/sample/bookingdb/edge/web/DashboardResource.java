@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.iqkv.sample.bookingdb.edge.web;
+package com.iqkv.sample.bookingdemandapietl.edge.web;
 
 import jakarta.validation.constraints.NotNull;
 
-import com.iqkv.sample.bookingdb.edge.model.CityPage;
-import com.iqkv.sample.bookingdb.edge.model.CountryPage;
-import com.iqkv.sample.bookingdb.edge.model.HotelPage;
-import com.iqkv.sample.bookingdb.edge.service.DashboardService;
+import com.iqkv.sample.bookingdemandapietl.edge.model.CityPage;
+import com.iqkv.sample.bookingdemandapietl.edge.model.CountryPage;
+import com.iqkv.sample.bookingdemandapietl.edge.model.HotelPage;
+import com.iqkv.sample.bookingdemandapietl.edge.service.DashboardService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
