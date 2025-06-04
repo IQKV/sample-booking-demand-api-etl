@@ -136,8 +136,8 @@ application-configuration :
 
 bookingdb :
   net-client :
-    username : ${BOOLINGCOM_USERNAME:}
-    password : ${BOOLINGCOM_PASSWORD:}
+    username : ${BOOCKINGCOM_USERNAME:}
+    password : ${BOOCKINGCOM_PASSWORD:}
     api-host : distribution-xml.booking.com
     api-schema : https
     api-path : /{version}/{outputFormat}/{path}
