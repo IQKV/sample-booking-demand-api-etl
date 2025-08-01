@@ -8,9 +8,9 @@ containers. The services are implemented in Java using Spring and Spring Cloud.
 It uses three microservices:
 
 - `init-container-service` to run the database migrations on deploy.
-- `edge-service` - provide API gateway, which supports reactive http communications to underlying service (dashboard), simple GraphQL interface to fetch countries, cities & hotels data.
-- `importer-service` to handle Booking.com API descriptive data (countries, cities, hotels lists).
-- `dashboard-service` provides API for frontend/end user interactions.
+- `edge-service` - provide an API gateway, which supports reactive HTTP communications to the underlying service (dashboard), a simple GraphQL interface to fetch countries, cities & hotels data.
+- `importer-service` to handle Booking.com API descriptive data (countries, cities, hotel lists).
+- `dashboard-service` provides an API for frontend/end user interactions.
 
 ### Technology stack
 
@@ -58,14 +58,14 @@ cd ./src/main/minikube/scripts/
 ./delete-all.sh
 ```
 
-### Delete Application specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
+### Delete Application-specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
 
 ```bash
 cd ./src/main/minikube/scripts/
 ./destroy-cluster.sh
 ```
 
-### Stop Kubernetes cluster
+### Stop the Kubernetes cluster
 
 ```bash
 cd ./src/main/minikube/scripts/
