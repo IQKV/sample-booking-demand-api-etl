@@ -48,7 +48,7 @@ Including utilities: Liquibase, WireMock, MySQL Testcontainers, Docker Compose, 
 
 From the repository root:
 
-```bash
+```shell script
 docker compose up -d
 # or
 docker-compose up -d
@@ -56,7 +56,7 @@ docker-compose up -d
 
 To stop and remove containers:
 
-```bash
+```shell script
 docker compose down -v
 ```
 
@@ -64,7 +64,7 @@ docker compose down -v
 
 Use the helper scripts in `src/main/minikube/scripts/`.
 
-```bash
+```shell script
 cd src/main/minikube/scripts/
 
 # Start Minikube
@@ -93,13 +93,13 @@ kubectl get pods -A | cat
 
 Build everything:
 
-```bash
+```shell script
 ./mvnw -q -DskipTests package
 ```
 
 Run individual services (examples):
 
-```bash
+```shell script
 # Edge (GraphQL/REST gateway)
 ./mvnw -pl edge-service spring-boot:run -Dspring-boot.run.profiles=local
 
@@ -121,7 +121,7 @@ The GraphQL schema is located at `edge-service/src/main/resources/graphql/schema
 
 Example query with HTTPie (adjust URL/port to your runtime):
 
-```bash
+```shell script
 http POST :8080/graphql query='{ countries { code name } }'
 ```
 
@@ -148,7 +148,7 @@ The code adheres to the [Google Java Style Guide](https://google.github.io/style
 
 JUnit, Hamcrest, Mockito, WireMock, and Testcontainers are used.
 
-```bash
+```shell script
 ./mvnw verify -P use-testcontainers
 ```
 
