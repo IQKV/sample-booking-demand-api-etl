@@ -18,7 +18,7 @@ package com.iqkv.sample.bookingdemandapietl.dashboard.web;
 
 import java.util.List;
 
-import com.iqkv.boot.mvc.rest.ApiError;
+import com.github.dimdnk.boot.mvc.rest.ApiError;
 import com.iqkv.sample.bookingdemandapietl.dashboard.producer.ImportServiceProducer;
 import com.iqkv.sample.bookingdemandapietl.jobs.CitiesImportParameters;
 import com.iqkv.sample.bookingdemandapietl.jobs.CountriesImportParameters;

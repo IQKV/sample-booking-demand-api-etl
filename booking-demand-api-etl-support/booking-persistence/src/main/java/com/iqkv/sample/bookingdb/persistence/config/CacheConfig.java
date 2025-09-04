@@ -18,7 +18,7 @@ package com.iqkv.sample.bookingdemandapietl.persistence.config;
 
 import java.time.Duration;
 
-import com.iqkv.boot.cache.CacheProperties;
+import com.github.dimdnk.boot.cache.CacheProperties;
 import com.iqkv.sample.bookingdemandapietl.persistence.entity.City;
 import com.iqkv.sample.bookingdemandapietl.persistence.entity.Country;
 import com.iqkv.sample.bookingdemandapietl.persistence.entity.Hotel;

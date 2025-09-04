@@ -18,8 +18,8 @@ package com.iqkv.sample.bookingdemandapietl.dashboard.web;
 
 import jakarta.validation.Valid;
 
-import com.iqkv.boot.mvc.rest.ApiError;
-import com.iqkv.boot.mvc.rest.PaginationRequest;
+import com.github.dimdnk.boot.mvc.rest.ApiError;
+import com.github.dimdnk.boot.mvc.rest.PaginationRequest;
 import com.iqkv.sample.bookingdemandapietl.persistence.entity.City;
 import com.iqkv.sample.bookingdemandapietl.persistence.repository.CityRepository;
 import io.swagger.v3.oas.annotations.Operation;
