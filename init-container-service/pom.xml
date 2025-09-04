@@ -11,7 +11,7 @@
     <description>Update database structure using Liquibase</description>
 
     <parent>
-        <groupId>com.iqkv</groupId>
+        <groupId>com.github.dimdnk</groupId>
         <artifactId>sample-booking-demand-api-etl</artifactId>
         <version>25.0.0-SNAPSHOT</version>
     </parent>

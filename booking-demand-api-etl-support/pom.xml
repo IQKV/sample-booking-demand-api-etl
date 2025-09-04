@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.iqkv</groupId>
+    <groupId>com.github.dimdnk</groupId>
     <artifactId>sample-booking-demand-api-etl-support</artifactId>
     <version>25.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bookingdemandapietl-support</name>
     <parent>
-        <groupId>com.iqkv</groupId>
+        <groupId>com.github.dimdnk</groupId>
         <artifactId>sample-booking-demand-api-etl</artifactId>
         <version>25.0.0-SNAPSHOT</version>
     </parent>
