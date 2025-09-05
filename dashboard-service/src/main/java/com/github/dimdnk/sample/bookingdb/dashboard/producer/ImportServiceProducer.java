@@ -1,0 +1,55 @@
+/*
+ * Copyright 2025 KnowHowToDev Team.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.github.dimdnk.sample.bookingdemandapietl.dashboard.producer;
+
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.CitiesImportParameters;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.CityHotelsImportParameters;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.CountriesImportParameters;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.HotelsImportParameters;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.JobParameters;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.amqp.AbstractProducer;
+import com.github.dimdnk.sample.bookingdemandapietl.jobs.amqp.AmqpQueuesProperties;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ImportServiceProducer extends AbstractProducer {
+  public ImportServiceProducer(RabbitTemplate template, AmqpQueuesProperties properties) {
+    super(template, properties);
+  }
+
+  public JobParameters startImportCountries(CountriesImportParameters parameters) {
+    super.send(properties.getImportExchange(), "countries", parameters);
+    return parameters;
+  }
+
+  public JobParameters startImportCities(CitiesImportParameters parameters) {
+    super.send(properties.getImportExchange(), "cities.country." + parameters.getCountry(), parameters);
+    return parameters;
+  }
+
+  public JobParameters startImportHotels(HotelsImportParameters parameters) {
+    for (Long cityId : parameters.getCityIds()) {
+      super.send(
+          properties.getImportExchange(),
+          "hotels.city." + cityId,
+          CityHotelsImportParameters.builder().cityId(cityId).build()
+      );
+    }
+    return parameters;
+  }
+}
