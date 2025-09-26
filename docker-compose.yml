@@ -26,7 +26,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=demo
 
   bookingdemandapietl-init-container-service:
-    image: "know-how.download/sample-booking-demand-api-etl-mix-init-container-service:latest"
+    image: "know-how.download/iqkv/sample-booking-demand-api-etl-mix-init-container-service:latest"
     container_name: bookingdemandapietl-demo-init-container-service
     deploy:
       restart_policy:
@@ -40,7 +40,7 @@ services:
       - DATASOURCE_URL=jdbc:mysql://bookingdemandapietl-demo-mysql:3306/demo_db
 
   bookingdemandapietl-dashboard-service:
-    image: "know-how.download/sample-booking-demand-api-etl-mix-dashboard-service:latest"
+    image: "know-how.download/iqkv/sample-booking-demand-api-etl-mix-dashboard-service:latest"
     container_name: bookingdemandapietl-demo-dashboard-service
     restart: no
     depends_on:
@@ -59,7 +59,7 @@ services:
       - RABBITMQ_PASSWORD=demo
 
   bookingdemandapietl-importer-service:
-    image: "know-how.download/sample-booking-demand-api-etl-mix-importer-service:latest"
+    image: "know-how.download/iqkv/sample-booking-demand-api-etl-mix-importer-service:latest"
     container_name: bookingdemandapietl-demo-importer-service
     restart: no
     depends_on:

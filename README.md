@@ -6,7 +6,7 @@ A production-like microservices demo that ingests, stores, and exposes Booking.c
 
 - **End-to-end system**: database migrations, ingestion, APIs, gateway
 - **Multiple runtimes**: Docker Compose and Minikube/Kubernetes
-- **Modern stack**: Java 21, Spring Boot, Spring Cloud, RabbitMQ, MySQL
+- **Modern stack**: Java 25, Spring Boot, Spring Cloud, RabbitMQ, MySQL
 - **Batteries included**: Testcontainers, WireMock, code quality tools, and scripts
 
 ### Services
@@ -26,7 +26,7 @@ A production-like microservices demo that ingests, stores, and exposes Booking.c
 
 ### Technology stack
 
-Java 21, Maven 3, Spring Boot, Spring Cloud, MySQL 5.7.44, RabbitMQ 3.8
+Java 25, Maven 3, Spring Boot, Spring Cloud, MySQL 5.7.44, RabbitMQ 3.8
 
 Including utilities: Liquibase, WireMock, MySQL Testcontainers, Docker Compose, Checkstyle, SpotBugs, PMD, Qulice.
 

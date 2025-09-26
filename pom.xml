@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.dimdnk</groupId>
+    <groupId>com.iqkv</groupId>
     <artifactId>sample-booking-demand-api-etl</artifactId>
-    <version>25.0.0-SNAPSHOT</version>
+    <version>0.25.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>sample-booking-demand-api-etl</name>
@@ -32,13 +32,13 @@
     </developers>
 
     <parent>
-        <groupId>com.github.dimdnk</groupId>
+        <groupId>com.iqkv</groupId>
         <artifactId>boot-parent-pom</artifactId>
-        <version>25.0.0-SNAPSHOT</version>
+        <version>0.25.0-SNAPSHOT</version>
     </parent>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -54,17 +54,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.github.dimdnk</groupId>
+                <groupId>com.iqkv</groupId>
                 <artifactId>sample-booking-demand-api-etl-batch-job</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.dimdnk</groupId>
+                <groupId>com.iqkv</groupId>
                 <artifactId>sample-booking-demand-api-etl-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.dimdnk</groupId>
+                <groupId>com.iqkv</groupId>
                 <artifactId>sample-booking-demand-api-etl-api-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
