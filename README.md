@@ -151,15 +151,6 @@ JUnit, Hamcrest, Mockito, WireMock, and Testcontainers are used.
 ```shell script
 ./mvnw verify -P use-testcontainers
 ```
-
-> ### Versioning
->
-> This project uses [CalVer](https://calver.org/) with the format `YY.MM.MICRO`.
->
-> 1. YY — short year (e.g., 25)
-> 2. MM — short month (1–12)
-> 3. MICRO — patch increment within the month
-
 ## Troubleshooting
 
 - **Minikube resources**: If pods are Pending or OOMKilled, increase CPU/RAM for Minikube.
