@@ -62,10 +62,10 @@ docker compose down -v
 
 ### Option B: Run on Minikube/Kubernetes
 
-Use the helper scripts in `src/main/minikube/scripts/`.
+Use the helper scripts in `minikube/scripts/`.
 
 ```shell script
-cd src/main/minikube/scripts/
+cd minikube/scripts/
 
 # Start Minikube
 ./start-cluster.sh
@@ -127,10 +127,10 @@ http POST :8080/graphql query='{ countries { code name } }'
 
 ## Observability
 
-Provisioning for Prometheus and Grafana is available under `src/main/docker/`.
+Provisioning for Prometheus and Grafana is available under `docker/`.
 
-- Prometheus config: `src/main/docker/prometheus/prometheus.yml`
-- Grafana dashboards and data sources: `src/main/docker/grafana/provisioning/`
+- Prometheus config: `docker/prometheus/prometheus.yml`
+- Grafana dashboards and data sources: `docker/grafana/provisioning/`
 
 You can integrate or extend these when running via Docker or Kubernetes according to your environment.
 
