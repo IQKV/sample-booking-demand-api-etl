@@ -151,6 +151,7 @@ JUnit, Hamcrest, Mockito, WireMock, and Testcontainers are used.
 ```shell script
 ./mvnw verify -P use-testcontainers
 ```
+
 ## Troubleshooting
 
 - **Minikube resources**: If pods are Pending or OOMKilled, increase CPU/RAM for Minikube.
