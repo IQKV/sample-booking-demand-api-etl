@@ -19,7 +19,7 @@
     </licenses>
     <organization>
         <name>IQKV Foundation</name>
-        <url>https://knowhowto.dev</url>
+        <url>https://iqkv.com/</url>
     </organization>
     <developers>
         <developer>
@@ -38,7 +38,7 @@
     </parent>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
