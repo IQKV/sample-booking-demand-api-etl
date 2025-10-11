@@ -27,7 +27,7 @@ A production-like microservices demo that ingests, stores, and exposes Booking.c
 ### Services
 
 - **init-container-service**: Applies Liquibase migrations during deployment.
-- **importer-service**: Imports Booking.com descriptive data (countries, cities, hotels) and publishes/consumes messages.
+- **ingestor-service**: Imports Booking.com descriptive data (countries, cities, hotels) and publishes/consumes messages.
 - **dashboard-service**: Backend API for UI/end-user interactions.
 - **edge-service**: API gateway with reactive HTTP to downstream services and a GraphQL interface for querying countries, cities, and hotels.
 
@@ -35,7 +35,7 @@ A production-like microservices demo that ingests, stores, and exposes Booking.c
 
 - Client → `edge-service` (REST/GraphQL)
 - `edge-service` → `dashboard-service` (HTTP)
-- `importer-service` ↔ RabbitMQ (asynchronous ingestion pipeline)
+- `ingestor-service` ↔ RabbitMQ (asynchronous ingestion pipeline)
 - `init-container-service` → MySQL (Liquibase migrations on deploy)
 - Shared MySQL database for descriptive data
 
@@ -118,8 +118,8 @@ Run individual services (examples):
 # Edge (GraphQL/REST gateway)
 ./mvnw -pl edge-service spring-boot:run -Dspring-boot.run.profiles=local
 
-# Importer (ingestion pipeline)
-./mvnw -pl importer-service spring-boot:run -Dspring-boot.run.profiles=local
+# Ingestor (ingestion pipeline)
+./mvnw -pl ingestor-service spring-boot:run -Dspring-boot.run.profiles=local
 
 # Dashboard (backend API)
 ./mvnw -pl dashboard-service spring-boot:run -Dspring-boot.run.profiles=local

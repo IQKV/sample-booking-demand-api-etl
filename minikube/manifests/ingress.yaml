@@ -18,11 +18,11 @@ spec:
                 name: dashboard-service
                 port:
                   number: 8080
-          - path: /importer(/|$)(.*)
+          - path: /ingestor(/|$)(.*)
             pathType: Prefix
             backend:
               service:
-                name: importer-service
+                name: ingestor-service
                 port:
                   number: 8080
           - path: /prometheus(/|$)(.*)

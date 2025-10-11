@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingestor-service
+  labels:
+    app: ingestor-service
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ingestor-service
+  template:
+    metadata:
+      labels:
+        app: ingestor-service
+    spec:
+      containers:
+        - name: ingestor-service
+          image: know-how.download/iqkv/sample-booking-demand-api-etl-mix-ingestor-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LOGGING_LEVEL_ROOT
+              valueFrom:
+                configMapKeyRef:
+                  name: ingestor-service
+                  key: logging-level-root
+            - name: DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: ingestor-service
+                  key: datasource-url
+            - name: DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ingestor-service
+                  key: datasource-username
+            - name: DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ingestor-service
+                  key: datasource-password
+            - name: RABBITMQ_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ingestor-service
+                  key: rabbitmq-host
+            - name: RABBITMQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ingestor-service
+                  key: rabbitmq-port
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ingestor-service
+                  key: rabbitmq-username
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ingestor-service
+                  key: rabbitmq-password
+            - name: SPRING_AMQP_DESERIALIZATION_TRUST_ALL
+              value: "true"
+          resources:
+            requests:
+              cpu: "0.2"
+              memory: 600Mi
+            limits:
+              cpu: "1.0"
+              memory: 600Mi
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+            initialDelaySeconds: 120
+            timeoutSeconds: 120
+            periodSeconds: 50
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+            initialDelaySeconds: 120
+            timeoutSeconds: 120
+            periodSeconds: 50
+            failureThreshold: 10
+          startupProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+            initialDelaySeconds: 120
+      serviceAccountName: api-service-account
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingestor-service
+  labels:
+    app: ingestor-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: ingestor-service

@@ -7,10 +7,10 @@ set -x
 kubectl config set-context $CLUSTER_NAME
 kubectl config use-context $CLUSTER_NAME
 
-kubectl delete -n $K8S_NAMESPACE deployment importer-service
-kubectl delete -n $K8S_NAMESPACE service importer-service
-kubectl delete -n $K8S_NAMESPACE configmap importer-service
-kubectl delete -n $K8S_NAMESPACE secret importer-service
+kubectl delete -n $K8S_NAMESPACE deployment ingestor-service
+kubectl delete -n $K8S_NAMESPACE service ingestor-service
+kubectl delete -n $K8S_NAMESPACE configmap ingestor-service
+kubectl delete -n $K8S_NAMESPACE secret ingestor-service
 
 kubectl delete -n $K8S_NAMESPACE deployment edge-service
 kubectl delete -n $K8S_NAMESPACE service edge-service

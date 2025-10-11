@@ -10,7 +10,7 @@ This project supports multiple deployment strategies for the Booking Demand API 
 
 - **edge-service**: API Gateway with GraphQL interface (Port: 8080)
 - **dashboard-service**: Backend REST API (Port: 8080)
-- **importer-service**: Data ingestion service (Port: 8080)
+- **ingestor-service**: Data ingestion service (Port: 8080)
 - **init-container-service**: Database migration service
 
 ### Infrastructure Components
@@ -39,7 +39,7 @@ docker compose up -d mysql rabbitmq prometheus grafana
 ./mvnw -pl init-container-service spring-boot:run -Dspring-boot.run.profiles=local
 ./mvnw -pl dashboard-service spring-boot:run -Dspring-boot.run.profiles=local
 ./mvnw -pl edge-service spring-boot:run -Dspring-boot.run.profiles=local
-./mvnw -pl importer-service spring-boot:run -Dspring-boot.run.profiles=local
+./mvnw -pl ingestor-service spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 **Access Points:**
@@ -67,7 +67,7 @@ docker-compose logs -f [service-name]
 **Access Points:**
 
 - Dashboard Service: http://localhost:8080
-- Importer Service: http://localhost:8081
+- Ingestor Service: http://localhost:8081
 - RabbitMQ Management: http://localhost:15672 (demo/demo)
 
 ### 2. Kubernetes Deployment
@@ -475,7 +475,7 @@ booking-demand-api-etl/
     ├── secret.yaml
     ├── dashboard-service/
     ├── edge-service/
-    ├── importer-service/
+    ├── ingestor-service/
     └── infrastructure/
 ```
 
@@ -492,7 +492,7 @@ global:
 replicaCount:
   dashboardService: 3
   edgeService: 2
-  importerService: 2
+  ingestorService: 2
 
 resources:
   dashboardService:
@@ -590,11 +590,11 @@ spec:
                 name: edge-service
                 port:
                   number: 8080
-          - path: /api/importer(/|$)(.*)
+          - path: /api/ingestor(/|$)(.*)
             pathType: Prefix
             backend:
               service:
-                name: importer-service
+                name: ingestor-service
                 port:
                   number: 8080
 ```
@@ -782,13 +782,13 @@ management:
 # Build Docker images
 docker build -t your-registry/dashboard-service:latest dashboard-service/
 docker build -t your-registry/edge-service:latest edge-service/
-docker build -t your-registry/importer-service:latest importer-service/
+docker build -t your-registry/ingestor-service:latest ingestor-service/
 docker build -t your-registry/init-container-service:latest init-container-service/
 
 # Push to registry
 docker push your-registry/dashboard-service:latest
 docker push your-registry/edge-service:latest
-docker push your-registry/importer-service:latest
+docker push your-registry/ingestor-service:latest
 docker push your-registry/init-container-service:latest
 ```
 
@@ -881,7 +881,7 @@ Pre-configured dashboards are available in `docker/grafana/provisioning/dashboar
 # Scale services in Kubernetes
 kubectl scale deployment dashboard-service --replicas=3
 kubectl scale deployment edge-service --replicas=2
-kubectl scale deployment importer-service --replicas=2
+kubectl scale deployment ingestor-service --replicas=2
 
 # Scale with Docker Compose
 docker-compose up -d --scale dashboard-service=3
@@ -1291,13 +1291,13 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: importer-service-hpa
+  name: ingestor-service-hpa
   namespace: booking-demand-api-etl-prod
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: importer-service
+    name: ingestor-service
   minReplicas: 1
   maxReplicas: 5
   metrics:
@@ -1632,7 +1632,7 @@ kind: Kustomization
 resources:
   - dashboard-service.yaml
   - edge-service.yaml
-  - importer-service.yaml
+  - ingestor-service.yaml
   - mysql.yaml
   - rabbitmq.yaml
 

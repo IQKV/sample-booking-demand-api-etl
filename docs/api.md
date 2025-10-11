@@ -182,7 +182,7 @@ GET /api/hotels?city={cityName}
 http GET :8080/api/hotels city=="New York"
 ```
 
-## Data Import API (importer-service)
+## Data Import API (ingestor-service)
 
 **Base URL**: `http://localhost:8081` (Docker) or `http://localhost:8080` (local)
 

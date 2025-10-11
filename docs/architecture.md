@@ -20,7 +20,7 @@ This project demonstrates a production-ready microservices architecture using Sp
                                 │                        ▲
                                 ▼                        │
                        ┌──────────────────┐             │
-                       │  importer-service│─────────────┘
+                       │  ingestor-service│─────────────┘
                        │ (Data Ingestion) │
                        └──────────────────┘
                                 │
@@ -53,7 +53,7 @@ This project demonstrates a production-ready microservices architecture using Sp
   - Direct database access for CRUD operations
   - Integration with message queues for async operations
 
-#### importer-service (Data Ingestion)
+#### ingestor-service (Data Ingestion)
 
 - **Technology**: Spring Boot, Spring Batch, RabbitMQ
 - **Port**: 8080 (configurable)
@@ -73,7 +73,7 @@ This project demonstrates a production-ready microservices architecture using Sp
 
 ### Data Flow
 
-1. **Data Ingestion**: `importer-service` fetches data from Booking.com APIs
+1. **Data Ingestion**: `ingestor-service` fetches data from Booking.com APIs
 2. **Message Processing**: Async processing via RabbitMQ queues
 3. **Data Storage**: Processed data stored in shared MySQL database
 4. **API Access**: Clients access data through `edge-service` GraphQL/REST endpoints

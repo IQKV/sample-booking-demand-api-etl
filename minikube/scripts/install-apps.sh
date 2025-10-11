@@ -21,9 +21,9 @@ kubectl apply -n $K8S_NAMESPACE -f edge/deployment.yaml
 kubectl apply -n $K8S_NAMESPACE -f dashboard/configmap.yaml
 kubectl apply -n $K8S_NAMESPACE -f dashboard/secret.yaml
 kubectl apply -n $K8S_NAMESPACE -f dashboard/deployment.yaml
-kubectl apply -n $K8S_NAMESPACE -f importer/configmap.yaml
-kubectl apply -n $K8S_NAMESPACE -f importer/secret.yaml
-kubectl apply -n $K8S_NAMESPACE -f importer/deployment.yaml
+kubectl apply -n $K8S_NAMESPACE -f ingestor/configmap.yaml
+kubectl apply -n $K8S_NAMESPACE -f ingestor/secret.yaml
+kubectl apply -n $K8S_NAMESPACE -f ingestor/deployment.yaml
 kubectl apply -n $K8S_NAMESPACE -f ingress.yaml
 
 # set Minikupe IP for bcdb.info in /etc/hosts

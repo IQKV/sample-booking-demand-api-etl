@@ -58,9 +58,9 @@ services:
       - RABBITMQ_USERNAME=demo
       - RABBITMQ_PASSWORD=demo
 
-  bookingdemandapietl-importer-service:
-    image: "know-how.download/iqkv/sample-booking-demand-api-etl-mix-importer-service:latest"
-    container_name: bookingdemandapietl-demo-importer-service
+  bookingdemandapietl-ingestor-service:
+    image: "know-how.download/iqkv/sample-booking-demand-api-etl-mix-ingestor-service:latest"
+    container_name: bookingdemandapietl-demo-ingestor-service
     restart: no
     depends_on:
       - mysql

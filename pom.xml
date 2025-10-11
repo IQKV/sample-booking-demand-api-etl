@@ -48,7 +48,7 @@
         <module>booking-demand-api-etl-support</module>
         <module>dashboard-service</module>
         <module>init-container-service</module>
-        <module>importer-service</module>
+        <module>ingestor-service</module>
     </modules>
 
     <dependencyManagement>

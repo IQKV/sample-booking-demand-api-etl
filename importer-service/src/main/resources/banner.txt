@@ -1,5 +1,0 @@
-${AnsiColor.BLUE} ===============================
-${AnsiColor.BLUE} Importer
-${AnsiColor.BLUE} Running Spring Boot ${spring-boot.version}
-${AnsiColor.BLUE} ===============================
-${AnsiColor.DEFAULT}

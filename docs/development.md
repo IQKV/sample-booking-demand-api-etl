@@ -26,7 +26,7 @@ sample-booking-demand-api-etl/
 │   └── booking-persistence/            # Data access layer
 ├── dashboard-service/                  # Backend REST API
 ├── edge-service/                       # API Gateway & GraphQL
-├── importer-service/                   # Data ingestion service
+├── ingestor-service/                   # Data ingestion service
 ├── init-container-service/             # Database migration service
 ├── docker/                             # Docker configurations
 ├── minikube/                           # Kubernetes manifests
@@ -77,10 +77,10 @@ Run database migrations:
 ./mvnw -pl edge-service spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
-**Importer Service** (Data Ingestion):
+**Ingestor Service** (Data Ingestion):
 
 ```bash
-./mvnw -pl importer-service spring-boot:run -Dspring-boot.run.profiles=local
+./mvnw -pl ingestor-service spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 ### 4. Development Profiles
