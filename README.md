@@ -9,6 +9,21 @@ A production-like microservices demo that ingests, stores, and exposes Booking.c
 - **Modern stack**: Java 25, Spring Boot, Spring Cloud, RabbitMQ, MySQL
 - **Batteries included**: Testcontainers, WireMock, code quality tools, and scripts
 
+## 📚 Documentation
+
+### Core Documentation
+
+- **[Architecture Overview](docs/architecture.md)** - System design, service interactions, and architectural patterns
+- **[API Documentation](docs/api.md)** - REST and GraphQL API reference with examples
+- **[Deployment Guide](docs/deployment.md)** - Docker Compose and Kubernetes deployment instructions
+- **[Development Guide](docs/development.md)** - Local development setup and best practices
+
+### Project Information
+
+- **[Contributing Guidelines](.github/CONTRIBUTING.md)** - How to contribute to the project
+- **[Commit Conventions](.github/COMMIT_CONVENTION.md)** - Git commit message standards
+- **[Changelog](CHANGELOG.md)** - Project version history and changes
+
 ### Services
 
 - **init-container-service**: Applies Liquibase migrations during deployment.
