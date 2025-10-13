@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    
+    <!-- Spring properties -->
+    <springProperty name="application_name" source="spring.application.name" defaultValue="unknown-service"/>
+    <springProperty name="log_level" source="logging.level.root" defaultValue="INFO"/>
+    <springProperty name="log_pattern" source="logging.pattern.console" defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+    
+    <!-- Environment-specific configuration -->
+    <springProperty name="log_path" source="logging.file.path" defaultValue="./logs"/>
+    <springProperty name="log_file" source="logging.file.name" defaultValue="${application_name}"/>
+    <springProperty name="max_file_size" source="logging.logback.rollingpolicy.max-file-size" defaultValue="100MB"/>
+    <springProperty name="max_history" source="logging.logback.rollingpolicy.max-history" defaultValue="30"/>
+    <springProperty name="total_size_cap" source="logging.logback.rollingpolicy.total-size-cap" defaultValue="1GB"/>
+    
+    <!-- Status listener for debugging logback configuration -->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <!-- Console Appender - Colored output for development -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%15.15t]){blue} %clr(%-5p){magenta} %clr([%X{traceId:-},%X{spanId:-}]){yellow} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- JSON Console Appender - For production/structured logging -->
+    <appender name="CONSOLE_JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <version/>
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <mdc/>
+                <arguments/>
+                <message/>
+                <pattern>
+                    <pattern>
+                        {
+                            "service": "${application_name:-unknown}",
+                            "traceId": "%X{traceId:-}",
+                            "spanId": "%X{spanId:-}",
+                            "thread": "%thread",
+                            "class": "%class",
+                            "method": "%method",
+                            "line": "%line",
+                            "hostname": "${HOSTNAME:-unknown}",
+                            "environment": "${SPRING_PROFILES_ACTIVE:-default}"
+                        }
+                    </pattern>
+                </pattern>
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>2048</maxLength>
+                        <rootCauseFirst>true</rootCauseFirst>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- File Appender with rolling policy -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_path}/${log_file}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_path}/${log_file}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${max_file_size}</maxFileSize>
+            <maxHistory>${max_history}</maxHistory>
+            <totalSizeCap>${total_size_cap}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <version/>
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <mdc/>
+                <arguments/>
+                <message/>
+                <pattern>
+                    <pattern>
+                        {
+                            "service": "${application_name:-unknown}",
+                            "traceId": "%X{traceId:-}",
+                            "spanId": "%X{spanId:-}",
+                            "thread": "%thread",
+                            "class": "%class",
+                            "method": "%method",
+                            "line": "%line",
+                            "hostname": "${HOSTNAME:-unknown}",
+                            "environment": "${SPRING_PROFILES_ACTIVE:-default}"
+                        }
+                    </pattern>
+                </pattern>
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>2048</maxLength>
+                        <rootCauseFirst>true</rootCauseFirst>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- Async appender for better performance -->
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE"/>
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <!-- Profile-specific configurations -->
+    <springProfile name="local,dev">
+        <root level="${log_level}">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ASYNC_FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="staging,prod">
+        <root level="${log_level}">
+            <appender-ref ref="CONSOLE_JSON"/>
+            <appender-ref ref="ASYNC_FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- Default profile (when no profile is active) -->
+    <springProfile name="!local & !dev & !staging & !prod">
+        <root level="${log_level}">
+            <appender-ref ref="${LOGBACK_APPENDER:-CONSOLE}"/>
+        </root>
+    </springProfile>
+
+    <!-- Logger configurations for specific packages -->
+    <logger name="com.iqkv.sample.bookingdemandapietl" level="DEBUG" additivity="false">
+        <appender-ref ref="${LOGBACK_APPENDER:-CONSOLE}"/>
+        <appender-ref ref="ASYNC_FILE"/>
+    </logger>
+
+    <!-- Third-party library logging levels -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.security" level="DEBUG"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springframework.cloud.sleuth" level="INFO"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="com.zaxxer.hikari" level="INFO"/>
+    <logger name="org.apache.http" level="INFO"/>
+    <logger name="httpclient.wire" level="INFO"/>
+    <logger name="org.springframework.amqp" level="INFO"/>
+    <logger name="org.springframework.batch" level="INFO"/>
+
+    <!-- Actuator endpoints logging -->
+    <logger name="org.springframework.boot.actuate" level="INFO"/>
+    
+    <!-- Micrometer metrics logging -->
+    <logger name="io.micrometer" level="INFO"/>
+</configuration>

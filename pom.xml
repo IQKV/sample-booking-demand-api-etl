@@ -68,6 +68,16 @@
                 <artifactId>sample-booking-demand-api-etl-api-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.iqkv</groupId>
+                <artifactId>sample-booking-demand-api-etl-logging-configuration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>8.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

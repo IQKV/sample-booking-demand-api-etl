@@ -1,0 +1,42 @@
+# Staging environment logging configuration
+iqkv:
+  logging:
+    structured: true
+    correlation-id: true
+    tracing: true
+    application-log-level: DEBUG
+    spring-log-level: INFO
+    database-log-level: INFO
+    performance-logging: true
+    slow-operation-threshold-ms: 3000
+    security-logging: true
+    business-event-logging: true
+
+logging:
+  level:
+    root: INFO
+    com.iqkv.sample.bookingdemandapietl: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+  file:
+    path: /var/log/app
+    name: ${spring.application.name:app}
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 14
+      total-size-cap: 500MB
+
+# Extended actuator endpoints for staging testing
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers,env,configprops
+  endpoint:
+    loggers:
+      enabled: true
+    health:
+      show-details: always
