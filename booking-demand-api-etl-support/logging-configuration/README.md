@@ -5,6 +5,7 @@ This module provides a centralized logging configuration for all microservices i
 ## Features
 
 ### 🎯 Core Features
+
 - **Centralized Configuration**: Single logback configuration shared across all services
 - **Environment-Specific Settings**: Different configurations for dev, staging, and production
 - **Structured Logging**: JSON output support for production environments
@@ -13,6 +14,7 @@ This module provides a centralized logging configuration for all microservices i
 - **Security Event Logging**: Dedicated security event logging capabilities
 
 ### 🔧 Technical Features
+
 - **Async Logging**: Non-blocking async appenders for better performance
 - **Rolling File Policy**: Automatic log rotation based on size and time
 - **MDC Integration**: Mapped Diagnostic Context for enriched log messages
@@ -54,24 +56,19 @@ import com.iqkv.sample.bookingdemandapietl.logging.StructuredLogging;
 @Service
 @Slf4j
 public class MyService {
-    
-    public void businessOperation(String userId) {
-        // Set user context
-        CorrelationIdUtils.setUserId(userId);
-        
-        // Log business event
-        StructuredLogging.logBusinessEvent(
-            log, 
-            "USER_REGISTRATION", 
-            "User registered successfully",
-            Map.of("userId", userId, "source", "web")
-        );
-        
-        // Performance logging
-        StructuredLogging.loggedOperation(log, "database-query", () -> {
-            return performDatabaseQuery();
-        });
-    }
+
+  public void businessOperation(String userId) {
+    // Set user context
+    CorrelationIdUtils.setUserId(userId);
+
+    // Log business event
+    StructuredLogging.logBusinessEvent(log, "USER_REGISTRATION", "User registered successfully", Map.of("userId", userId, "source", "web"));
+
+    // Performance logging
+    StructuredLogging.loggedOperation(log, "database-query", () -> {
+      return performDatabaseQuery();
+    });
+  }
 }
 ```
 
@@ -80,18 +77,21 @@ public class MyService {
 ### Environment Profiles
 
 #### Development (`application-dev.yml`)
+
 - Colored console output
 - Debug level logging for application packages
 - File logging enabled
 - Extended actuator endpoints
 
 #### Staging (`application-staging.yml`)
+
 - JSON structured logging
 - Info level logging
 - Performance monitoring enabled
 - Testing-friendly actuator endpoints
 
 #### Production (`application-prod.yml`)
+
 - JSON structured logging only
 - Warn level for framework logging
 - Minimal actuator endpoints
@@ -104,29 +104,29 @@ You can override default settings using application properties:
 ```yaml
 iqkv:
   logging:
-    structured: true                          # Enable JSON format
-    correlation-id: true                      # Enable correlation IDs
-    tracing: true                            # Enable distributed tracing
-    application-log-level: INFO             # App package log level
-    spring-log-level: WARN                  # Spring framework log level
-    database-log-level: INFO               # Database query log level
-    performance-logging: true               # Enable performance logs
-    slow-operation-threshold-ms: 5000       # Slow operation threshold
-    security-logging: true                  # Enable security event logs
-    business-event-logging: true            # Enable business event logs
-    additional-mdc-fields:                  # Additional MDC fields
+    structured: true # Enable JSON format
+    correlation-id: true # Enable correlation IDs
+    tracing: true # Enable distributed tracing
+    application-log-level: INFO # App package log level
+    spring-log-level: WARN # Spring framework log level
+    database-log-level: INFO # Database query log level
+    performance-logging: true # Enable performance logs
+    slow-operation-threshold-ms: 5000 # Slow operation threshold
+    security-logging: true # Enable security event logs
+    business-event-logging: true # Enable business event logs
+    additional-mdc-fields: # Additional MDC fields
       datacenter: "us-east-1"
       version: "${spring.application.version}"
 
 logging:
   file:
-    path: "/var/log/app"                    # Log file directory
-    name: "${spring.application.name}"      # Log file name
+    path: "/var/log/app" # Log file directory
+    name: "${spring.application.name}" # Log file name
   logback:
     rollingpolicy:
-      max-file-size: 100MB                  # Max file size before rotation
-      max-history: 30                       # Days to keep old files
-      total-size-cap: 1GB                   # Total size cap for all files
+      max-file-size: 100MB # Max file size before rotation
+      max-history: 30 # Days to keep old files
+      total-size-cap: 1GB # Total size cap for all files
 ```
 
 ## Utility Classes
@@ -162,33 +162,33 @@ Provides structured logging patterns:
 ```java
 // Business event logging
 StructuredLogging.logBusinessEvent(
-    logger, 
-    "ORDER_CREATED", 
+    logger,
+    "ORDER_CREATED",
     "New order created",
     Map.of("orderId", "12345", "amount", 99.99)
 );
 
 // Performance logging
 StructuredLogging.logPerformanceEvent(
-    logger, 
-    "database-query", 
+    logger,
+    "database-query",
     Duration.ofMillis(150),
     Map.of("query", "SELECT * FROM orders")
 );
 
 // Technical event logging
 StructuredLogging.logTechnicalEvent(
-    logger, 
-    "cache-refresh", 
-    "redis-cache", 
+    logger,
+    "cache-refresh",
+    "redis-cache",
     "Cache refreshed successfully",
     Map.of("cacheSize", 1000)
 );
 
 // Security event logging
 StructuredLogging.logSecurityEvent(
-    logger, 
-    "FAILED_LOGIN", 
+    logger,
+    "FAILED_LOGIN",
     "Failed login attempt",
     Map.of("ip", "192.168.1.1", "username", "admin")
 );
@@ -202,11 +202,13 @@ Result result = StructuredLogging.loggedOperation(logger, "api-call", () -> {
 ## Log Format
 
 ### Development Environment
+
 ```
 2025-01-15 10:30:45.123 [  main] INFO  [trace123,span456] c.i.s.b.service.UserService : Business event: USER_REGISTRATION - User registered successfully
 ```
 
 ### Production Environment
+
 ```json
 {
   "timestamp": "2025-01-15T10:30:45.123Z",
@@ -231,6 +233,7 @@ Result result = StructuredLogging.loggedOperation(logger, "api-call", () -> {
 ### Correlation ID Header
 
 The logging module automatically handles the `X-Correlation-ID` header:
+
 - Extracts correlation ID from incoming requests
 - Generates new correlation ID if not present
 - Adds correlation ID to response headers
@@ -239,6 +242,7 @@ The logging module automatically handles the `X-Correlation-ID` header:
 ### Spring Cloud Sleuth
 
 Integrates with Spring Cloud Sleuth for distributed tracing:
+
 - Automatic span creation
 - Trace and span ID propagation
 - Integration with Zipkin/Jaeger
@@ -246,6 +250,7 @@ Integrates with Spring Cloud Sleuth for distributed tracing:
 ### Actuator Endpoints
 
 Provides enhanced actuator endpoints for monitoring:
+
 - `/actuator/loggers` - Runtime log level management
 - `/actuator/logfile` - Access to log files
 - `/actuator/metrics` - Performance metrics
@@ -253,9 +258,10 @@ Provides enhanced actuator endpoints for monitoring:
 ## Best Practices
 
 ### 1. Use Structured Logging Methods
+
 ```java
 // Good: Use structured logging
-StructuredLogging.logBusinessEvent(log, "USER_LOGIN", "User logged in", 
+StructuredLogging.logBusinessEvent(log, "USER_LOGIN", "User logged in",
     Map.of("userId", userId, "source", "mobile"));
 
 // Avoid: Plain log messages without context
@@ -263,6 +269,7 @@ log.info("User logged in: " + userId);
 ```
 
 ### 2. Set Proper Context
+
 ```java
 // Set user context at the beginning of operations
 CorrelationIdUtils.setUserId(getCurrentUserId());
@@ -272,6 +279,7 @@ CorrelationIdUtils.clearAll();
 ```
 
 ### 3. Use Performance Logging
+
 ```java
 // Wrap expensive operations
 return StructuredLogging.loggedOperation(log, "database-query", () -> {
@@ -280,9 +288,10 @@ return StructuredLogging.loggedOperation(log, "database-query", () -> {
 ```
 
 ### 4. Log Security Events
+
 ```java
 // Always log security-relevant events
-StructuredLogging.logSecurityEvent(log, "UNAUTHORIZED_ACCESS", 
+StructuredLogging.logSecurityEvent(log, "UNAUTHORIZED_ACCESS",
     "Unauthorized API access attempt",
     Map.of("ip", request.getRemoteAddr(), "endpoint", request.getRequestURI()));
 ```
@@ -307,6 +316,7 @@ StructuredLogging.logSecurityEvent(log, "UNAUTHORIZED_ACCESS",
 ### Log Level Management
 
 Change log levels at runtime using actuator:
+
 ```bash
 # Get current log levels
 curl http://localhost:8080/actuator/loggers
@@ -330,29 +340,32 @@ curl -X POST http://localhost:8080/actuator/loggers/com.iqkv.sample.bookingdeman
 ### Example Migration
 
 **Before:**
+
 ```java
 @Service
 @Slf4j
 public class UserService {
-    public void createUser(User user) {
-        MDC.put("correlationId", UUID.randomUUID().toString());
-        log.info("Creating user: {}", user.getId());
-        // ... business logic
-        MDC.clear();
-    }
+
+  public void createUser(User user) {
+    MDC.put("correlationId", UUID.randomUUID().toString());
+    log.info("Creating user: {}", user.getId());
+    // ... business logic
+    MDC.clear();
+  }
 }
 ```
 
 **After:**
+
 ```java
 @Service
 @Slf4j
 public class UserService {
-    public void createUser(User user) {
-        StructuredLogging.logBusinessEvent(log, "USER_CREATION", 
-            "Creating new user", Map.of("userId", user.getId()));
-        // ... business logic (correlation ID handled automatically)
-    }
+
+  public void createUser(User user) {
+    StructuredLogging.logBusinessEvent(log, "USER_CREATION", "Creating new user", Map.of("userId", user.getId()));
+    // ... business logic (correlation ID handled automatically)
+  }
 }
 ```
 

@@ -35,6 +35,7 @@ sample-booking-demand-api-etl/
 ### 🎯 Features Implemented
 
 #### Core Logging Features
+
 - ✅ **Centralized Configuration**: Single `logback-spring.xml` shared across all services
 - ✅ **Environment-Specific Settings**: Different configurations for dev, staging, and production
 - ✅ **Structured Logging**: JSON output for production environments
@@ -42,6 +43,7 @@ sample-booking-demand-api-etl/
 - ✅ **Rolling File Policy**: Automatic log rotation based on size and time
 
 #### Correlation & Tracing
+
 - ✅ **Correlation ID Management**: Automatic generation and propagation
 - ✅ **HTTP Header Integration**: `X-Correlation-ID` header handling
 - ✅ **MDC Integration**: Mapped Diagnostic Context for enriched logs
@@ -49,12 +51,14 @@ sample-booking-demand-api-etl/
 - ✅ **User Context**: User ID, session ID, and request ID tracking
 
 #### Utility Classes
+
 - ✅ **CorrelationIdUtils**: Complete correlation ID management
 - ✅ **StructuredLogging**: Business, technical, security, and performance event logging
 - ✅ **LoggingProperties**: Externalized configuration properties
 - ✅ **Auto-Configuration**: Spring Boot auto-configuration with servlet filter
 
 #### Service Integration
+
 - ✅ **Dashboard Service**: Added dependency and removed duplicate logback config
 - ✅ **Edge Service**: Added dependency and removed duplicate logback config
 - ✅ **Ingestor Service**: Added dependency and removed duplicate logback config
@@ -64,95 +68,86 @@ sample-booking-demand-api-etl/
 ## 🚀 Usage Examples
 
 ### Basic Logging
+
 ```java
 @Service
 @Slf4j
 public class UserService {
-    
-    public User createUser(CreateUserRequest request) {
-        // Correlation ID is automatically handled by servlet filter
-        
-        // Log business event
-        StructuredLogging.logBusinessEvent(
-            log,
-            "USER_CREATION_STARTED",
-            "Starting user creation process",
-            Map.of("email", request.getEmail(), "source", "api")
-        );
-        
-        try {
-            // Wrap database operation with performance logging
-            return StructuredLogging.loggedOperation(log, "create-user-db", () -> {
-                User user = new User(request.getEmail(), request.getName());
-                return userRepository.save(user);
-            });
-        } catch (Exception e) {
-            StructuredLogging.logError(log, "create-user", e, 
-                Map.of("email", request.getEmail()));
-            throw e;
-        }
+
+  public User createUser(CreateUserRequest request) {
+    // Correlation ID is automatically handled by servlet filter
+
+    // Log business event
+    StructuredLogging.logBusinessEvent(log, "USER_CREATION_STARTED", "Starting user creation process", Map.of("email", request.getEmail(), "source", "api"));
+
+    try {
+      // Wrap database operation with performance logging
+      return StructuredLogging.loggedOperation(log, "create-user-db", () -> {
+        User user = new User(request.getEmail(), request.getName());
+        return userRepository.save(user);
+      });
+    } catch (Exception e) {
+      StructuredLogging.logError(log, "create-user", e, Map.of("email", request.getEmail()));
+      throw e;
     }
+  }
 }
 ```
 
 ### Web Controller with Context
+
 ```java
 @RestController
 @Slf4j
 public class UserController {
-    
-    @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request, 
-                                         HttpServletRequest httpRequest) {
-        // Set additional context (correlation ID already handled by filter)
-        CorrelationIdUtils.setUserId(getCurrentUserId(httpRequest));
-        
-        // Log security-relevant events
-        StructuredLogging.logSecurityEvent(log, "API_ACCESS", 
-            "User creation API accessed",
-            Map.of("ip", httpRequest.getRemoteAddr(), 
-                   "endpoint", "/users",
-                   "method", "POST"));
-        
-        User user = userService.createUser(request);
-        return ResponseEntity.ok(user);
-    }
+
+  @PostMapping("/users")
+  public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request, HttpServletRequest httpRequest) {
+    // Set additional context (correlation ID already handled by filter)
+    CorrelationIdUtils.setUserId(getCurrentUserId(httpRequest));
+
+    // Log security-relevant events
+    StructuredLogging.logSecurityEvent(log, "API_ACCESS", "User creation API accessed", Map.of("ip", httpRequest.getRemoteAddr(), "endpoint", "/users", "method", "POST"));
+
+    User user = userService.createUser(request);
+    return ResponseEntity.ok(user);
+  }
 }
 ```
 
 ### Async Operations
+
 ```java
 @Service
 @Slf4j
 public class NotificationService {
-    
-    @Async
-    public void sendNotificationAsync(String userId, String message) {
-        // Preserve correlation ID across async boundaries
-        String correlationId = CorrelationIdUtils.getOrGenerateCorrelationId();
-        
-        CorrelationIdUtils.runWithCorrelationId(correlationId, () -> {
-            StructuredLogging.logTechnicalEvent(log, "send-notification", 
-                "notification-service",
-                "Sending async notification",
-                Map.of("userId", userId, "messageType", "email"));
-            
-            // Send notification logic
-            emailService.sendEmail(userId, message);
-        });
-    }
+
+  @Async
+  public void sendNotificationAsync(String userId, String message) {
+    // Preserve correlation ID across async boundaries
+    String correlationId = CorrelationIdUtils.getOrGenerateCorrelationId();
+
+    CorrelationIdUtils.runWithCorrelationId(correlationId, () -> {
+      StructuredLogging.logTechnicalEvent(log, "send-notification", "notification-service", "Sending async notification", Map.of("userId", userId, "messageType", "email"));
+
+      // Send notification logic
+      emailService.sendEmail(userId, message);
+    });
+  }
 }
 ```
 
 ## 📊 Log Output Examples
 
 ### Development Environment (Colored Console)
+
 ```
 2025-10-13 14:32:15.123 [http-nio-8080-exec-1] INFO  [a1b2c3d4,e5f6g7h8] c.i.s.b.s.UserService : Business event: USER_CREATION_STARTED - Starting user creation process
 2025-10-13 14:32:15.156 [http-nio-8080-exec-1] INFO  [a1b2c3d4,e5f6g7h8] c.i.s.b.s.UserService : Operation create-user-db completed successfully in 33ms
 ```
 
 ### Production Environment (JSON)
+
 ```json
 {
   "timestamp": "2025-10-13T14:32:15.123Z",
@@ -181,12 +176,13 @@ public class NotificationService {
 Each environment has optimized logging configuration:
 
 - **Development**: Colored console output, DEBUG level, extended actuator endpoints
-- **Staging**: JSON format, DEBUG level for testing, extended actuator endpoints  
+- **Staging**: JSON format, DEBUG level for testing, extended actuator endpoints
 - **Production**: JSON format only, INFO level, minimal actuator endpoints, security-focused
 
 ### Runtime Configuration
 
 Log levels can be changed at runtime:
+
 ```bash
 # Check current levels
 curl http://localhost:8080/actuator/loggers
@@ -200,22 +196,26 @@ curl -X POST http://localhost:8080/actuator/loggers/com.iqkv.sample.bookingdeman
 ## 🏃‍♂️ Running the Implementation
 
 ### 1. Build the Project
+
 ```bash
 mvn clean install
 ```
 
 ### 2. Run a Service with Development Profile
+
 ```bash
 cd dashboard-service
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
 ### 3. Run with Production Profile
+
 ```bash
 mvn spring-boot:run -Dspring-boot.run.profiles=prod
 ```
 
 ### 4. Test Correlation ID Propagation
+
 ```bash
 # Send request with correlation ID
 curl -H "X-Correlation-ID: test-correlation-123" \
@@ -227,6 +227,7 @@ curl -H "X-Correlation-ID: test-correlation-123" \
 ## 🛠️ Migration Status
 
 ### ✅ Completed
+
 - Created centralized logging configuration module
 - Implemented correlation ID utilities and structured logging
 - Added environment-specific configurations
@@ -255,15 +256,17 @@ curl -H "X-Correlation-ID: test-correlation-123" \
 ## 🔍 Testing the Implementation
 
 ### Manual Testing
+
 1. Start any service with different profiles
 2. Send requests and verify log formats
 3. Check correlation ID propagation
 4. Test actuator endpoints for log level management
 
 ### Verification Checklist
+
 - [ ] Logs appear in console/files as expected
 - [ ] Correlation IDs are generated and propagated
-- [ ] JSON format works in staging/prod profiles  
+- [ ] JSON format works in staging/prod profiles
 - [ ] Actuator endpoints are accessible
 - [ ] Log rotation works correctly
 - [ ] No duplicate configurations remain
