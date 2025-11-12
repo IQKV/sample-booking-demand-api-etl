@@ -67,9 +67,9 @@ public class AbstractNetClient {
 
     try {
       return httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body();
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new NetClientCommunicationException(e);
-    } catch (InterruptedException e) {
+    } catch (final InterruptedException e) {
       Thread.currentThread().interrupt();
       throw new NetClientCommunicationException(e);
     }
