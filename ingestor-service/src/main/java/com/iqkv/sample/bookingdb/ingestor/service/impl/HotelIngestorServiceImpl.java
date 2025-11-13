@@ -42,8 +42,8 @@ public class HotelIngestorServiceImpl implements HotelIngestorService {
   private final HotelRepository hotelRepository;
   private final ObjectMapper mapper;
 
-  public HotelIngestorServiceImpl(BookingcomNetClient client, CityRepository cityRepository,
-                                  HotelRepository hotelRepository, ObjectMapper mapper) {
+  public HotelIngestorServiceImpl(final BookingcomNetClient client, final CityRepository cityRepository,
+                                  final HotelRepository hotelRepository, final ObjectMapper mapper) {
     this.client = client;
     this.cityRepository = cityRepository;
     this.hotelRepository = hotelRepository;

@@ -41,9 +41,9 @@ public class CountryIngestorServiceImpl implements CountryIngestorService {
   private final CountryRepository countryRepository;
   private final ObjectMapper mapper;
 
-  public CountryIngestorServiceImpl(BookingcomNetClient client,
-                                    CountryRepository countryRepository,
-                                    ObjectMapper mapper) {
+  public CountryIngestorServiceImpl(final BookingcomNetClient client,
+                                    final CountryRepository countryRepository,
+                                    final ObjectMapper mapper) {
     this.client = client;
     this.countryRepository = countryRepository;
     this.mapper = mapper;

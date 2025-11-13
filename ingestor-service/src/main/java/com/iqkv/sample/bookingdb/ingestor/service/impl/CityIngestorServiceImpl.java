@@ -70,7 +70,7 @@ public class CityIngestorServiceImpl implements CityIngestorService {
         break;
       }
 
-      for (var node : nodes) {
+      for (final var node : nodes) {
         entities.add(new City(null, node.get("name").textValue(), node.get("city_id").longValue(), country, Set.of()));
       }
 
