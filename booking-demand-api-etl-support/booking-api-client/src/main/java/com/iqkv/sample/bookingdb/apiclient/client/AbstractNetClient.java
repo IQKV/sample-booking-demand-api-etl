@@ -45,7 +45,7 @@ public class AbstractNetClient {
         .scheme(properties.getApiSchema())
         .host(properties.apiHost())
         .path(properties.getApiPath());
-    for (var queryParam : queryParams.entrySet()) {
+    for (final var queryParam : queryParams.entrySet()) {
       uriBuilder.queryParam(queryParam.getKey(), queryParam.getValue());
     }
     final var uri = uriBuilder.buildAndExpand(
