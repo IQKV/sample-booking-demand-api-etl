@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingcomNetClient extends AbstractNetClient {
 
-  public BookingcomNetClient(NetClientProperties properties) {
+  public BookingcomNetClient(final NetClientProperties properties) {
     super(properties);
   }
 
