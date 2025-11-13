@@ -28,22 +28,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ImportServiceProducer extends AbstractProducer {
-  public ImportServiceProducer(RabbitTemplate template, AmqpQueuesProperties properties) {
+  public ImportServiceProducer(final RabbitTemplate template, final AmqpQueuesProperties properties) {
     super(template, properties);
   }
 
-  public JobParameters startImportCountries(CountriesImportParameters parameters) {
+  public JobParameters startImportCountries(final CountriesImportParameters parameters) {
     super.send(properties.getImportExchange(), "countries", parameters);
     return parameters;
   }
 
-  public JobParameters startImportCities(CitiesImportParameters parameters) {
+  public JobParameters startImportCities(final CitiesImportParameters parameters) {
     super.send(properties.getImportExchange(), "cities.country." + parameters.getCountry(), parameters);
     return parameters;
   }
 
-  public JobParameters startImportHotels(HotelsImportParameters parameters) {
-    for (Long cityId : parameters.getCityIds()) {
+  public JobParameters startImportHotels(final HotelsImportParameters parameters) {
+    for (final Long cityId : parameters.getCityIds()) {
       super.send(
           properties.getImportExchange(),
           "hotels.city." + cityId,
