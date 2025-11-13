@@ -23,7 +23,7 @@ public abstract class AbstractProducer {
   protected final RabbitTemplate template;
   protected final AmqpQueuesProperties properties;
 
-  public AbstractProducer(RabbitTemplate template, AmqpQueuesProperties properties) {
+  public AbstractProducer(final RabbitTemplate template, final AmqpQueuesProperties properties) {
     this.template = template;
     this.properties = properties;
   }
