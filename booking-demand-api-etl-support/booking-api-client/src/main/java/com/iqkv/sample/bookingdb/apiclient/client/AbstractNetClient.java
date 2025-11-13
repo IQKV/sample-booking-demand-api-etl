@@ -33,7 +33,7 @@ public class AbstractNetClient {
   protected final NetClientProperties properties;
   private final HttpClient httpClient;
 
-  public AbstractNetClient(NetClientProperties properties) {
+  public AbstractNetClient(final NetClientProperties properties) {
     this.properties = properties;
     this.httpClient = HttpClient.newBuilder()
         .connectTimeout(Duration.ofSeconds(properties.getConnectTimeout()))
