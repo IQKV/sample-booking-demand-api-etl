@@ -62,7 +62,7 @@ public class CityIngestorServiceImpl implements CityIngestorService {
       try {
         nodes = mapper.readTree(body).get("result");
 
-      } catch (JsonProcessingException e) {
+      } catch (final JsonProcessingException e) {
         throw new RuntimeException(e);
       }
 
