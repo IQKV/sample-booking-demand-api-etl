@@ -1,24 +1,24 @@
-spring :
-  jpa :
-    show-sql : false
-    properties :
-      hibernate.jdbc.time_zone : UTC
-      hibernate.cache.use_second_level_cache : false
-      hibernate.cache.use_query_cache : false
-      hibernate.generate_statistics : true
-      hibernate.format_sql : false
-  devtools :
-    add-properties : false
-    restart :
-      enabled : false
-    livereload :
-      enabled : false
-management :
-  endpoints :
-    enabled-by-default : true
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+      hibernate.format_sql: false
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+    livereload:
+      enabled: false
+management:
+  endpoints:
+    enabled-by-default: true
 
-server :
-  port : 2998
+server:
+  port: 2998
 
-springdoc :
-  show-actuator : true
+springdoc:
+  show-actuator: true

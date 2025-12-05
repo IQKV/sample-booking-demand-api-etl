@@ -1,93 +1,93 @@
-git :
-  commit : '@git.commit.id.abbrev@'
-  build_time : '@git.build.time@'
+git:
+  commit: '@git.commit.id.abbrev@'
+  build_time: '@git.build.time@'
 
-info :
-  app :
-    name : '@project.name@'
-    description : '@project.description@'
-    version : '@project.version@'
-    git_commit : ${git.commit}
-    build_time : ${git.build_time}
+info:
+  app:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+    git_commit: ${git.commit}
+    build_time: ${git.build_time}
 
-spring :
-  cloud :
-    compatibility-verifier :
+spring:
+  cloud:
+    compatibility-verifier:
       enabled: false
-  application :
-    name : edge-service
-  lifecycle :
-    timeout-per-shutdown-phase : ${TIMEOUT_PER_SHUTDOWN:20s}
-  graphql :
-    graphiql :
-      enabled : true
+  application:
+    name: edge-service
+  lifecycle:
+    timeout-per-shutdown-phase: ${TIMEOUT_PER_SHUTDOWN:20s}
+  graphql:
+    graphiql:
+      enabled: true
 
-logging :
-  pattern :
-    level : '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
-  level :
-    ROOT : ${LOGGING_LEVEL_ROOT:INFO}
-
-
-server :
-  port : ${SERVER_PORT:8080}
-  shutdown : graceful
-  forward-headers-strategy : framework
-  tomcat :
-    redirect-context-root : false
-
-management :
-  health :
-    livenessstate :
-      enabled : true
-    readinessstate :
-      enabled : true
-  info :
-    env :
-      enabled : true
-    java :
-      enabled : true
-    os :
-      enabled : true
-  server :
-    port : ${MANAGEMENT_SERVER_PORT:8080}
-    add-application-context-header : true
-
-  metrics :
-    tags :
-      application : ${spring.application.name}
-      profiles : ${spring.profiles.active}
-    distribution :
-      percentiles-histogram :
-        http :
-          server :
-            requests : true
-  prometheus :
-    metrics :
-      export :
-        step : 20s
-        enabled : true
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  level:
+    ROOT: ${LOGGING_LEVEL_ROOT:INFO}
 
 
-  endpoints :
-    enabled-by-default : false
-    web :
-      exposure :
-        include : health, metrics, prometheus, info, env
-  endpoint :
-    health :
-      enabled : true
-      show-details : always
-      probes :
-        enabled : true
-    info :
-      enabled : true
-    env :
-      enabled : true
-      show-values : always
-    prometheus :
-      enabled : true
-application-configuration :
-  service-discovery :
-    services :
-      dashboard-service : ${DASHBOARD_SERVICE_URL:http://dashboard-service}
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  forward-headers-strategy: framework
+  tomcat:
+    redirect-context-root: false
+
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+  server:
+    port: ${MANAGEMENT_SERVER_PORT:8080}
+    add-application-context-header: true
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+      profiles: ${spring.profiles.active}
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  prometheus:
+    metrics:
+      export:
+        step: 20s
+        enabled: true
+
+
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, metrics, prometheus, info, env
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      probes:
+        enabled: true
+    info:
+      enabled: true
+    env:
+      enabled: true
+      show-values: always
+    prometheus:
+      enabled: true
+application-configuration:
+  service-discovery:
+    services:
+      dashboard-service: ${DASHBOARD_SERVICE_URL:http://dashboard-service}

@@ -1,61 +1,61 @@
-spring :
-  application :
-    name : dashboard-service
-  devtools :
-    add-properties : false
-    restart :
-      enabled : false
-    livereload :
-      enabled : false
-
-  cloud :
-    compatibility-verifier :
+spring:
+  application:
+    name: dashboard-service
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+    livereload:
       enabled: false
 
-  datasource :
-    type : com.zaxxer.hikari.HikariDataSource
-    driver-class-name : ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
-    url : ${DATASOURCE_URL:jdbc:mysql://${embedded.mysql.host}:${embedded.mysql.port}/${embedded.mysql.schema}?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
-    username : ${DATASOURCE_USERNAME:${embedded.mysql.user:svc_testing}}
-    password : ${DATASOURCE_PASSWORD:${embedded.mysql.password:svc_testing}}
-    hikari :
-      pool-name : Hikari
-      auto-commit : false
-  jpa :
-    hibernate :
-      ddl-auto : none
-      naming :
-        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
-        implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-    open-in-view : true
-    properties :
-      hibernate.jdbc.time_zone : UTC
-      hibernate.cache.use_second_level_cache : false
-      hibernate.cache.use_query_cache : false
-      hibernate.generate_statistics : false
-    show-sql : false
-  rabbitmq :
-    host : ${RABBITMQ_HOST:${embedded.rabbitmq.host:localhost}}
-    port : ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
-    username : ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:svc_testing}}
-    password : ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:svc_testing}}
-embedded :
-  mysql :
-    enabled : true
-    reuse-container : true
-  rabbitmq :
-    enabled : true
-    reuse-container : true
-    docker-image : rabbitmq:management-alpine
+  cloud:
+    compatibility-verifier:
+      enabled: false
 
-application-configuration :
-  info :
-    description : '@project.description@'
-    relative-path : '/'
-    version : '@project.version@'
-bookingdemandapietl :
-  queues :
-    import-exchange : import-jobs-exchange
-    import-countries-queue : import-countries-queue
-    import-cities-queue : import-cities-queue
-    import-hotels-queue : import-hotels-queue
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: ${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    url: ${DATASOURCE_URL:jdbc:mysql://${embedded.mysql.host}:${embedded.mysql.port}/${embedded.mysql.schema}?serverTimezone=UTC&rewriteBatchedStatements=true&characterEncoding=UTF-8}
+    username: ${DATASOURCE_USERNAME:${embedded.mysql.user:svc_testing}}
+    password: ${DATASOURCE_PASSWORD:${embedded.mysql.password:svc_testing}}
+    hikari:
+      pool-name: Hikari
+      auto-commit: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    open-in-view: true
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+    show-sql: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:${embedded.rabbitmq.host:localhost}}
+    port: ${RABBITMQ_PORT:${embedded.rabbitmq.port:5672}}
+    username: ${RABBITMQ_USERNAME:${embedded.rabbitmq.user:svc_testing}}
+    password: ${RABBITMQ_PASSWORD:${embedded.rabbitmq.password:svc_testing}}
+embedded:
+  mysql:
+    enabled: true
+    reuse-container: true
+  rabbitmq:
+    enabled: true
+    reuse-container: true
+    docker-image: rabbitmq:management-alpine
+
+application-configuration:
+  info:
+    description: '@project.description@'
+    relative-path: '/'
+    version: '@project.version@'
+bookingdemandapietl:
+  queues:
+    import-exchange: import-jobs-exchange
+    import-countries-queue: import-countries-queue
+    import-cities-queue: import-cities-queue
+    import-hotels-queue: import-hotels-queue

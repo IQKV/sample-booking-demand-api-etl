@@ -1,10 +1,10 @@
-spring :
-  application :
-    name : edge-service
-  cloud :
-    compatibility-verifier :
+spring:
+  application:
+    name: edge-service
+  cloud:
+    compatibility-verifier:
       enabled: false
-application-configuration :
-  service-discovery :
-    services :
-      dashboard-service : http://dashboard-service
+application-configuration:
+  service-discovery:
+    services:
+      dashboard-service: http://dashboard-service
