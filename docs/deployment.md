@@ -746,7 +746,7 @@ data:
 
 Create environment-specific configuration files:
 
-**application-prod.yml**:
+**application-production.yml**:
 
 ```yaml
 spring:
@@ -795,7 +795,7 @@ docker push your-registry/init-container-service:latest
 #### Kubernetes Production Deployment
 
 ```yaml
-# production-values.yaml
+# values-production.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
