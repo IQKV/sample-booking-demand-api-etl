@@ -66,7 +66,7 @@ From the repository root:
 ```shell script
 docker compose up -d
 # or
-docker-compose up -d
+docker compose up -d
 ```
 
 To stop and remove containers:

@@ -55,7 +55,7 @@ For demonstration with pre-built images:
 
 ```bash
 # Start complete demo environment
-docker-compose up -d
+docker compose up -d
 
 # Check service status
 docker-compose ps
@@ -884,7 +884,7 @@ kubectl scale deployment edge-service --replicas=2
 kubectl scale deployment ingestor-service --replicas=2
 
 # Scale with Docker Compose
-docker-compose up -d --scale dashboard-service=3
+docker compose up -d --scale dashboard-service=3
 ```
 
 ### Load Balancing
@@ -1213,7 +1213,7 @@ kubectl rollout undo deployment/dashboard-service --to-revision=2
 
 ```bash
 # Stop current version
-docker-compose down
+docker compose down
 
 # Deploy previous version
 docker-compose -f docker-compose.previous.yml up -d
