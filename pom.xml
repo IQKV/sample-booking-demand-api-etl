@@ -5,7 +5,7 @@
 
     <groupId>com.iqkv</groupId>
     <artifactId>sample-booking-demand-api-etl</artifactId>
-    <version>0.25.0-SNAPSHOT</version>
+    <version>0.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>sample-booking-demand-api-etl</name>
@@ -34,7 +34,7 @@
     <parent>
         <groupId>com.iqkv</groupId>
         <artifactId>boot-parent-pom</artifactId>
-        <version>0.25.0-SNAPSHOT</version>
+        <version>0.24.0</version>
     </parent>
 
     <properties>

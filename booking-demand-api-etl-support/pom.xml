@@ -5,14 +5,14 @@
 
     <groupId>com.iqkv</groupId>
     <artifactId>sample-booking-demand-api-etl-support</artifactId>
-    <version>0.25.0-SNAPSHOT</version>
+    <version>0.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bookingdemandapietl-support</name>
     <parent>
         <groupId>com.iqkv</groupId>
         <artifactId>sample-booking-demand-api-etl</artifactId>
-        <version>0.25.0-SNAPSHOT</version>
+        <version>0.24.0-SNAPSHOT</version>
     </parent>
 
     <properties>

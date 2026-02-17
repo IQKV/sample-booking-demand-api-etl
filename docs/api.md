@@ -299,7 +299,7 @@ GET /actuator/info
   "app": {
     "name": "dashboard-service",
     "description": "Admin REST API Service",
-    "version": "0.25.0-SNAPSHOT",
+    "version": "0.24.0-SNAPSHOT",
     "git_commit": "abc123",
     "build_time": "2024-01-15T10:30:00Z"
   }
