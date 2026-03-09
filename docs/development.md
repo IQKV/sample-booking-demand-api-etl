@@ -163,10 +163,10 @@ http POST :8080/graphql query='{ cities { name country { name } } }'
 
 ```bash
 # Check formatting
-pnpm prettier:check
+pnpm formatter:check
 
 # Fix formatting
-pnpm prettier:write
+pnpm formatter:write
 
 # Lint styles
 pnpm lint:stylelint
