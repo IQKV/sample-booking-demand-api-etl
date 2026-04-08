@@ -468,8 +468,8 @@ helm create booking-demand-api-etl
 booking-demand-api-etl/
 ├── Chart.yaml
 ├── values.yaml
-├── values-prod.yaml
-├── values-staging.yaml
+├── values-prd.yaml
+├── values-uat.yaml
 └── templates/
     ├── configmap.yaml
     ├── secret.yaml
@@ -482,7 +482,7 @@ booking-demand-api-etl/
 **Helm Values for Production:**
 
 ```yaml
-# values-prod.yaml
+# values-prd.yaml
 global:
   environment: production
   namespace: booking-demand-api-etl-prod
@@ -539,7 +539,7 @@ monitoring:
 ```bash
 # Install/upgrade production deployment
 helm upgrade --install booking-demand-api-etl ./booking-demand-api-etl \
-  -f values-prod.yaml \
+  -f values-prd.yaml \
   --namespace booking-demand-api-etl-prod \
   --create-namespace
 
@@ -795,7 +795,7 @@ docker push your-registry/init-container-service:latest
 #### Kubernetes Production Deployment
 
 ```yaml
-# values-production.yaml
+# values-prd.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
