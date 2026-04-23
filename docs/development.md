@@ -4,7 +4,7 @@
 
 ### Required Tools
 
-- **Java 21+**: OpenJDK or Oracle JDK
+- **Java 25+**: OpenJDK or Oracle JDK
 - **Maven 3.8+**: Build and dependency management
 - **Docker & Docker Compose**: Container runtime
 - **Git**: Version control
