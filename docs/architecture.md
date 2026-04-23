@@ -81,7 +81,7 @@ This project demonstrates a production-ready microservices architecture using Sp
 
 ### Technology Stack
 
-- **Runtime**: Java 21, Spring Boot 3.x
+- **Runtime**: Java 25, Spring Boot 4.x
 - **Build**: Maven 3
 - **Database**: MySQL 5.7.44
 - **Message Broker**: RabbitMQ 3.8
