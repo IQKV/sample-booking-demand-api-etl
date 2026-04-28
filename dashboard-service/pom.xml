@@ -86,7 +86,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>local</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
