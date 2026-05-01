@@ -34,7 +34,7 @@
     <parent>
         <groupId>com.iqkv</groupId>
         <artifactId>boot-parent-pom</artifactId>
-        <version>0.24.0</version>
+        <version>0.24.7</version>
     </parent>
 
     <properties>
